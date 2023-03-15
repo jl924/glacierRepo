@@ -5,6 +5,7 @@ import App from './components/App.js';
 import { store } from './store.js';
 import { Provider } from 'react-redux';
 import './style.css';
+import './style.sass';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
