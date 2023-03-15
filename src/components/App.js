@@ -7,8 +7,7 @@ import '../style.css';
 
 const App = () => {
   return (
-    <div className='badge'>
-      <span className='badge'>Text</span>
+    <div>
       <Overview />
       <Related />
       <QuestionsAnswers />
