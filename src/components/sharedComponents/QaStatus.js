@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import Status from "./Status";
-import Helpful from "../sharedComponents/Helpful";
-import Report from "../sharedComponents/Report";
+import AuthorInfo from "./AuthorInfo";
+import Report from "./Report";
+import Helpful from "./Helpful";
 
-const HelpfulStatus = ({ handleHelpfulClick, handleReportClick }) => {
+const QaStatus = ({ handleReportClick, handleHelpfulClick, data }) => {
   const sharedClasses = "flex-initial";
 
   return (
     <Status
-      className="helpfulStatus"
+      className="qaStatus"
       sharedClasses={sharedClasses}
       children={[
+        <AuthorInfo key={1} sharedClasses={sharedClasses} data={data} />,
         <Helpful
-          key={1}
+          key={2}
           yesCount={10}
           handleHelpfulClick={handleHelpfulClick}
           className={sharedClasses + " status"}
         />,
         <Report
-          key={2}
+          key={3}
           handleReportClick={handleReportClick}
           className={sharedClasses + " status"}
         />,
@@ -27,4 +29,4 @@ const HelpfulStatus = ({ handleHelpfulClick, handleReportClick }) => {
   );
 };
 
-export default HelpfulStatus;
+export default QaStatus;
