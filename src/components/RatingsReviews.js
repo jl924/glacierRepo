@@ -1,7 +1,7 @@
 import React from 'react';
 import RatingsDistributionGraph from './RatingsReviews/RatingsDistributionGraph.js';
 import ReviewList from './RatingsReviews/ReviewList.js';
-import './RatingsReviews.sass';
+import '../styles/RatingsReviews.sass';
 
 const RatingsReviews = () => {
   return (
