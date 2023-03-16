@@ -1,18 +1,32 @@
-import React from 'react';
-import RatingsDistributionGraph from './RatingsReviews/RatingsDistributionGraph.js';
-import ReviewList from './RatingsReviews/ReviewList.js';
-import './RatingsReviews.sass';
+import React, { useState } from "react";
+import RatingsDistributionGraph from "./RatingsReviews/RatingsDistributionGraph.js";
+import ReviewList from "./RatingsReviews/ReviewList.js";
+import "../styles/RatingsReviews.sass";
+import exampleReviews from "../exampleData/reviews.json";
+import ButtonPair from "./sharedComponents/ButtonPair";
 
 const RatingsReviews = () => {
+  const [reviews, setReviews] = useState(exampleReviews.results);
+
+  function handleAddClick(ev) {
+    ev.preventDefault();
+    console.log(ev.target.textContent);
+  }
+
+  function handleMoreClick(ev) {
+    ev.preventDefault();
+    console.log(ev.target.textContent);
+  }
+
   return (
-    <div className='columns-2 gap-20 lg:container mx-auto'>
-      <div className='left 25% flex flex-col'>
+    <div className="columns-2 gap-20 lg:container mx-auto">
+      <div className="left 25% flex flex-col">
         <h4>Ratings & Reviews</h4>
         <div>
           <h1>3.5</h1>
-          <div className='starComponent'>*****</div>
+          <div className="starComponent">*****</div>
         </div>
-        <RatingsDistributionGraph />
+        <RatingsDistributionGraph reviews={reviews} />
         <div>
           <span>Comfort</span>
           <div>Slider Component</div>
@@ -22,14 +36,17 @@ const RatingsReviews = () => {
           </div>
         </div>
       </div>
-      <div className='right 75% flex flex-col'>
-        <div className='header'>
-          <h3>248 Reviews, sorted by <select ><option value='relevance'>relevance</option></select></h3>
-        </div>
-        <ReviewList />
+      <div className="right 75% flex flex-col">
+        <ReviewList reviews={reviews} />
+        <ButtonPair
+          buttons={{
+            ["More Reviews"]: handleMoreClick,
+            ["Add a Review"]: handleAddClick,
+          }}
+        />
       </div>
     </div>
   );
-}
+};
 
 export default RatingsReviews;
