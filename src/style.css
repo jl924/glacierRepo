@@ -2,3 +2,22 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
+
+#root {
+  display: flex;
+  justify-content: center;
+  min-width: 400px;
+  max-width: 1000px;
+  width: 1000px;
+}
+
+#root > * {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
