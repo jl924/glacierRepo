@@ -10,7 +10,7 @@ const Related = () => {
     <div>
     <div> Related Items </div>
     <MdChevronLeft size={40}/>
-    <div className="carousel max-w-7xl p-4 space-x-2">
+    <div id="relatedItems"className="carousel max-w-7xl p-4 space-x-2">
       <RelatedCard/>
       <RelatedCard/>
       <RelatedCard/>
