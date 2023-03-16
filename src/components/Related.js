@@ -1,7 +1,7 @@
 import React from "react";
 import RelatedCard from "./Related/RelatedCard";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { AiFillStar } from "react-icons/Ai";
+import { AiFillStar } from "react-icons/ai";
 
 const Related = () => {
   return (
