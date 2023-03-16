@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -52,5 +54,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
     }),
+    new Dotenv(),
   ],
+  resolve: {
+    fallback: {
+      "os": require.resolve("os-browserify/browser"),
+      "fs": false,
+      "process": require.resolve("process/browser")
+    }
+  }
 }
