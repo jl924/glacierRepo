@@ -15,7 +15,7 @@ const RelatedCard = () => {
   <figure><img class='w-full'src="https://nb.scene7.com/is/image/NB/mt21540ag_nb_70_i?$dw_detail_main_lg$&bgc=f1f1f1&layer=1&bgcolor=f1f1f1&blendMode=mult&scale=10&wid=1600&hei=1600" /></figure>
   <div className="card-body" >
   <small>Hoodies & Sweaters</small>
-    <h2 className="card-title">Soft Hoodie</h2>
+    <h2 className="card-title">Soft Hoodie!</h2>
     <small>$200</small>
     <small><AiFillStar/></small>
     <div className="card-actions justify-end">
