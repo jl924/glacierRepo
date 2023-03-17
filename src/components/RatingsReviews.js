@@ -19,10 +19,10 @@ const RatingsReviews = () => {
   }
 
   return (
-    <div className="columns-2 gap-20 lg:container mx-auto">
-      <div className="left 25% flex flex-col">
+    <div className="mainRatings columns-2 gap-20 lg:container grid mx-auto">
+      <div className="leftReviews left flex flex-col">
         <h4>Ratings & Reviews</h4>
-        <div>
+        <div className='averageAndStars flex'>
           <h1>3.5</h1>
           <div className="starComponent">*****</div>
         </div>
@@ -36,7 +36,7 @@ const RatingsReviews = () => {
           </div>
         </div>
       </div>
-      <div className="right 75% flex flex-col">
+      <div className="right flex flex-col">
         <ReviewList reviews={reviews} />
         <ButtonPair
           buttons={{
