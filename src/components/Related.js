@@ -15,7 +15,7 @@ const Related = () => {
   return (
     <>
     <div id='relatedTitle'> Related Items </div>
-    <div className='container'>
+    <div className='container container1'>
     <button id='left-related' type='button' onClick={()=>document.getElementById('caro-related').scrollLeft -= 500}>❮</button>
     <div id='caro-related' className="carousel carousel-center max-w-4xl p-4 space-x-2">
       <RelatedCard/>
@@ -32,7 +32,7 @@ const Related = () => {
     <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}}>❯</button>
 </div>
 <div id='outfitTitle'> Your Outfits </div>
-<div className='container'>
+<div className='container container1'>
     <button id='left-related' type='button' onClick={()=>document.getElementById('caro-outfit').scrollLeft -= 500}>❮</button>
     <div id='caro-outfit' className="carousel carousel-center max-w-4xl p-4 space-x-2">
       <YourOutfitCard/>
