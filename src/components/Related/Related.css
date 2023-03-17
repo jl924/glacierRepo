@@ -1,0 +1,57 @@
+
+
+#titleCard {
+  color: blue;
+}
+
+#tooltip {
+  z-index: 1;
+}
+
+#relatedItems {
+  z-index: 1;
+}
+
+#card {
+  z-index: 1;
+}
+
+#starbtn {
+  z-index: 1;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  border-radius: 0.25rem;
+}
+
+#modal1 {
+  z-index: 999999;
+}
+
+#modal2 {
+  z-index: 999999;
+}
+
+#carol {
+  z-index: 1;
+}
+
+#compareBtn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  border-radius: 0.25rem;
+}
+
+#left-related {
+  position: absolute;
+  top: 60rem;
+  left: 46rem;
+  cursor: pointer;
+}
