@@ -13,10 +13,11 @@ const Related = () => {
 
 
   return (
-    <div className='container mx-auto'>
-    <div> Related Items </div>
-    <button id='left-related' type='button' onClick={()=>document.getElementById('caro').scrollLeft -= 20}>❮</button>
-    <div id='caro' className="carousel max-w-7xl p-4 space-x-2">
+    <>
+    <div id='relatedTitle'> Related Items </div>
+    <div className='container'>
+    <button id='left-related' type='button' onClick={()=>document.getElementById('caro-related').scrollLeft -= 500}>❮</button>
+    <div id='caro-related' className="carousel carousel-center max-w-4xl p-4 space-x-2">
       <RelatedCard/>
       <RelatedCard/>
       <RelatedCard/>
@@ -28,19 +29,26 @@ const Related = () => {
       <RelatedCard/>
       <RelatedCard/>
     </div>
-    <button id='right-related' type='button' onClick={()=>document.getElementById('caro').scrollLeft += 20}>❮</button>
-    <div> Your outfit </div>
-    <div className="carousel max-w-7xl p-4 space-x-4">
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-      <YourOutfitCard/>
-    </div>
+    <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}}>❯</button>
 </div>
+<div id='outfitTitle'> Your Outfits </div>
+<div className='container'>
+    <button id='left-related' type='button' onClick={()=>document.getElementById('caro-outfit').scrollLeft -= 500}>❮</button>
+    <div id='caro-outfit' className="carousel carousel-center max-w-4xl p-4 space-x-2">
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+      <YourOutfitCard/>
+    </div>
+    <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-outfit').scrollLeft += 400}}>❯</button>
+</div>
+</>
   );
 }
 
