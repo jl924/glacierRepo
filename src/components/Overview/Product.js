@@ -21,7 +21,7 @@ const Product = () => {
 
 
   return (
-    <div className="flex flex-row box-border w-full h-[500px] p-4 border border-gray-400">
+    <div className="flex flex-row box-border w-full h-[550px] border border-gray-400">
       <Imageslide product={product} style={style}/>
       <Selection product={product} setStyle={setStyle}/>
     </div>
