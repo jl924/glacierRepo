@@ -4,15 +4,15 @@ import ReviewListHeader from "./ReviewListHeader.js";
 
 const getReviewListItems = (reviews) => {
   const ret = [];
-  reviews.forEach(review => {
+  reviews.forEach((review) => {
     ret.push(
       <ReviewListItem key={review.summary} review={review} />,
-      <div className='divider' />
+      <div key={review.summary + "n"} className="divider" />
     );
   });
   ret.pop();
   return ret;
-}
+};
 
 const ReviewList = ({ reviews }) => {
   return (

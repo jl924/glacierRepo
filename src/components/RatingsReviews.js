@@ -36,7 +36,7 @@ const RatingsReviews = () => {
           </div>
         </div>
       </div>
-      <div className="right 75% flex flex-col">
+      <div className="right flex flex-col">
         <ReviewList reviews={reviews} />
         <ButtonPair
           buttons={{
