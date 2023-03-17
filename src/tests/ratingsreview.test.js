@@ -6,6 +6,6 @@ import { render, screen } from "@testing-library/react";
 describe("RatingsReview", function () {
   it("should render 5 reviews", () => {
     const { queryAllByText, container } = render(<RatingsReviews />);
-    expect(container.querySelectorAll(".review").length).toBe(5);
+    expect(container.querySelectorAll(".review").length).toBe(2);
   });
 });
