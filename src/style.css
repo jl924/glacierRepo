@@ -21,23 +21,3 @@ body {
   display: flex;
   justify-content: center;
 }
-
-#titleCard {
-  color: blue;
-}
-
-#tooltip {
-  z-index: 9;
-}
-
-#relatedItems {
-  z-index: 1;
-}
-
-#card {
-  z-index: 199;
-}
-
-#starbtn {
-  z-index: 9;
-}

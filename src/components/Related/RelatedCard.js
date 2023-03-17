@@ -1,5 +1,7 @@
 import React from 'react';
 import {AiFillStar} from 'react-icons/ai'
+import './Related.css';
+import Modal from './Related-Modal'
 
 
 
@@ -25,6 +27,8 @@ const RelatedCard = () => {
 </div>
 </div>
 </div>
+
+
 
   );
 }

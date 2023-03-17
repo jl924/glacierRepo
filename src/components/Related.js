@@ -2,12 +2,19 @@ import React from 'react';
 import RelatedCard from './Related/RelatedCard';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import {AiFillStar} from 'react-icons/ai'
+import HoverModal from './Related/Related-Modal'
 
 const Related = () => {
 
 
   return (
     <div>
+      <div className="Appp">
+      <HoverModal hoverId="hover-button">
+        <p>This is some example content for the modal.</p>
+      </HoverModal>
+      <button id="hover-button">Hover over me!</button>
+    </div>
     <div> Related Items </div>
     <MdChevronLeft size={40}/>
     <div id="relatedItems"className="carousel max-w-7xl p-4 space-x-2">
