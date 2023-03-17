@@ -1,17 +1,30 @@
 import React from 'react';
 import Answer from './Answer.js';
-import exampleData from '../../exampleData/questionsForOneProduct.json';
+import QaStatus from '../sharedComponents/QaStatus.js';
 import HelpfulStatus from '../sharedComponents/HelpfulStatus.js';
 
 // Question component to house:
 // Answer and HelpfulStatus components
-const Question = () => {
-let question = exampleData.results[0];
+const Question = ({exampleQuestion}) => {
+  let question = exampleQuestion.results[0];
+
+  let helpfulQuestionCount = {
+    helpfulCount: question.question_helpfulness
+  };
+
+  var handleQuestionHelpfulClick = () => {
+
+  };
+
+  var handleQuestionReportClick = () => {
+
+  };
+
 
   return (
     <div>
-      <h3>Q: {question.question_body}<span className='float-right'><HelpfulStatus /></span></h3>
-      <Answer answers={question.answers} HelpfulStatus={HelpfulStatus}/>
+      <h3>Q: {question.question_body}<span className='float-right'><HelpfulStatus handleQuestionHelpfulClick={handleQuestionHelpfulClick} handleQuestionReportClick={handleQuestionReportClick} data={helpfulQuestionCount} /></span></h3>
+      <Answer answers={question.answers} QaStatus={QaStatus} />
     </div>
   );
 
