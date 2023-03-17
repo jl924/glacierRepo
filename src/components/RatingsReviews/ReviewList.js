@@ -7,7 +7,7 @@ const ReviewList = ({ reviews }) => {
     <div className="">
       <ReviewListHeader reviews={reviews} />
       {reviews.map((review) => (
-        <ReviewListItem review={review} />
+        <ReviewListItem key={review.summary} review={review} />
       ))}
     </div>
   );

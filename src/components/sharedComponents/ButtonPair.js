@@ -3,10 +3,11 @@ import BigButton from "./BigButton";
 
 export default function ButtonPair({ buttons }) {
   const buttonKeys = Object.keys(buttons);
+  const plusButtonWhitelist = ['Add a Review'];
   const buttonElements = [];
   for (var name in buttons) {
     buttonElements.push(
-      <BigButton key={name} text={name} handleClick={buttons[name]} />
+      <BigButton key={name} text={name} handleClick={buttons[name]} plusIcon={plusButtonWhitelist.includes(name)}/>
     );
   }
 
