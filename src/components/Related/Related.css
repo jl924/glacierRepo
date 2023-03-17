@@ -1,19 +1,5 @@
-
-
 #titleCard {
   color: blue;
-}
-
-#tooltip {
-  z-index: 1;
-}
-
-#relatedItems {
-  z-index: 1;
-}
-
-#card {
-  z-index: 1;
 }
 
 #starbtn {
@@ -27,18 +13,6 @@
   border-radius: 0.25rem;
 }
 
-#modal1 {
-  z-index: 999999;
-}
-
-#modal2 {
-  z-index: 999999;
-}
-
-#carol {
-  z-index: 1;
-}
-
 #compareBtn {
   position: absolute;
   top: 0.25rem;
@@ -50,8 +24,34 @@
 }
 
 #left-related {
+  display: inline-flex;
   position: absolute;
-  top: 60rem;
-  left: 46rem;
-  cursor: pointer;
+  top: 10rem;
+  left: 0rem;
+  height: 20px;
+  width: 20px;
+}
+
+#right-related {
+  display: inline-flex;
+  position: absolute;
+  top: 10rem;
+  right: 0rem;
+  height: 20px;
+  width: 20px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#relatedTitle {
+  margin-bottom: 0px !important;
+}
+
+#outfitTitle {
+  margin-bottom: 0px !important;
 }
