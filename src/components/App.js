@@ -6,7 +6,7 @@ import Related from "./Related.js";
 
 const App = () => {
   return (
-    <div data-theme="lightTheme">
+    <div className="app" data-theme="lightTheme">
       <Overview />
       <Related />
       <QuestionsAnswers />
