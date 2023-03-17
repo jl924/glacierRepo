@@ -1,8 +1,11 @@
 // placeholder test
-function sum (a, b) {
-  return a + b;
-};
+import React from "react";
+import RatingsReviews from "../components/RatingsReviews";
+import { render, screen } from "@testing-library/react";
 
-test('adds 1 + 2 and returns 3', () => {
-  expect(sum(1,2)).toBe(3);
+describe("RatingsReview", function () {
+  it("should render 5 reviews", () => {
+    const { queryAllByText, container } = render(<RatingsReviews />);
+    expect(container.querySelectorAll(".review").length).toBe(5);
+  });
 });

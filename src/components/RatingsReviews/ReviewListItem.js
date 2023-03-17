@@ -13,7 +13,7 @@ const ReviewListItem = ({ review }) => {
   };
 
   return (
-    <div>
+    <div className="review">
       <ReviewHeader />
       <h3 className="bold">{review.summary}</h3>
       <p>Boring text goes here</p>

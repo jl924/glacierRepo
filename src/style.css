@@ -8,14 +8,40 @@
   display: flex;
   justify-content: center;
   min-width: 400px;
+  max-width: 1000px;
   width: 1000px;
 }
 
-.app {
-  width: 100%;
+#root > * {
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
 body {
   display: flex;
   justify-content: center;
+}
+
+#root > * > * {
+  margin-bottom: 55px;
+}
+
+#titleCard {
+  color: blue;
+}
+
+#tooltip {
+  z-index: 9;
+}
+
+#relatedItems {
+  z-index: 1;
+}
+
+#card {
+  z-index: 199;
+}
+
+#starbtn {
+  z-index: 9;
 }
