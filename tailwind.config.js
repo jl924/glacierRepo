@@ -1,10 +1,19 @@
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {},
-  },
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  themes: [
+    {
+      lightTheme: {
+        "base-100": "#FFFFFF",
+        "base-200": "#EBEBEB",
+        "base-300": "#E6E6E6",
+        primary: "#525252",
+        secondary: "#656565",
+        accent: "#000000",
+      },
+    },
+  ],
   variants: {
     extend: {},
   },
   plugins: [require("daisyui")],
-}
+};
