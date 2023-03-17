@@ -1,7 +1,15 @@
 import React from 'react';
 
-const Answer = ({answers, HelpfulStatus}) => {
+const Answer = ({answers, QaStatus}) => {
   let answerId = Object.keys(answers);
+
+  var handleAnswerHelpfulClick = () => {
+
+  };
+
+  var handleAnswerReportClick = () => {
+
+  };
 
   return (
     <div>
@@ -10,7 +18,7 @@ const Answer = ({answers, HelpfulStatus}) => {
           return (
             <div key={id} className='container mx-auto px-10 py-4'>
               <p>A: {answers[id].body}</p>
-              <HelpfulStatus />
+              <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}} handleAnswerHelpfulClick={handleAnswerHelpfulClick} handleAnswerReportClick={handleAnswerReportClick}/>
             </div>
           );
         })}
