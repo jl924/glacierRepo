@@ -16,7 +16,7 @@ const Related = () => {
       <RelatedCard/>
       <RelatedCard/>
       <RelatedCard/>
-      <RelatedCard/>git p
+      <RelatedCard/>
       <RelatedCard/>
       <RelatedCard/>
       <RelatedCard/>
