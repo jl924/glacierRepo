@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchQA from './QuestionsAnswers/SearchQA.js';
 import Question from './QuestionsAnswers/Question.js';
 import exampleQuestion from '../exampleData/questionsForOneProduct.json';
 import ButtonPair from './sharedComponents/ButtonPair.js';
+import LoadMoreAnswers from './QuestionsAnswers/LoadMoreAnswers.js';
 
 const QuestionsAnswers = () => {
+
+  const [loadMore, setLoadMore] = useState(false);
+
+  var handleLoadMoreAnswers = (e) => {
+    e.preventDefault();
+    setLoadMore(true);
+  };
 
   var handleAddQuestionClick = () => {
 
@@ -20,8 +28,9 @@ const QuestionsAnswers = () => {
         <h4 className='Q&A-heading'>Questions & Answers</h4>
         <SearchQA />
         <div>
-          <Question exampleQuestion={exampleQuestion} />
+          <Question exampleQuestion={exampleQuestion} loadMore={loadMore} />
         </div>
+        <LoadMoreAnswers exampleQuestion={exampleQuestion} handleLoadMoreAnswers={handleLoadMoreAnswers} />
         <ButtonPair
           buttons={{
             ["More Answered Questions"]: handleMoreQuestionsClick,
