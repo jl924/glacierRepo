@@ -5,7 +5,7 @@ import HelpfulQA from './HelpfulQA.js';
 
 // Question component to house:
 // Answer and HelpfulStatus components
-const Question = ({exampleQuestion, loadMore}) => {
+const Question = ({exampleQuestion, loadMore, setLoadMore}) => {
 
   const [displayAnswers, setDisplayAnswers] = useState(false);
 
@@ -32,14 +32,15 @@ const Question = ({exampleQuestion, loadMore}) => {
   var handleQuestionDisplay = (e) => {
     e.preventDefault();
     setDisplayAnswers(!displayAnswers);
+    setLoadMore(false);
   };
 
   // need Add Answer button next to HelpFulStatus
   return (
     <div className='question py-10'>
-      <h3 onClick={handleQuestionDisplay}>
+      <h3>
         <span className='QAheader'>Q: </span>
-        <a href=''>{question.question_body}</a>
+        <a className ='questionHeader' onClick={handleQuestionDisplay} href=''>{question.question_body}</a>
         <span className='float-right'>
           <HelpfulQA
           handleQuestionHelpfulClick={handleQuestionHelpfulClick}
@@ -51,6 +52,8 @@ const Question = ({exampleQuestion, loadMore}) => {
     </div>
   );
 
+  module.exports.handleQuestionDisplay = handleQuestionDisplay;
+  module.exports.displayAnswers = displayAnswers;
 };
 
 export default Question;
