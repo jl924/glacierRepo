@@ -1,0 +1,18 @@
+.input-container {
+  position: relative;
+}
+
+.input-container .searchIcon {
+  position: relative;
+  top: 40px;
+  float: right;
+  right: 15px
+}
+
+/* .input-container .searchBox {
+
+} */
+
+.QAheader {
+  font-weight: bold;
+}
