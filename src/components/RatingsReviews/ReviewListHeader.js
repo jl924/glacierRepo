@@ -5,7 +5,7 @@ const ReviewListHeader = ({ reviews }) => {
     <div className="header">
       <h3>
         248 Reviews, sorted by{" "}
-        <select>
+        <select className="underline bg-base-100">
           <option value="relevance">relevance</option>
         </select>
       </h3>

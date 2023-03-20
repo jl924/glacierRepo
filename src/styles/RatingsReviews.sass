@@ -21,8 +21,24 @@
     .check
       position: relative
       top: 2px
-      left: 1px
+      left: 2px
       max-width: 7px
       max-height: 7px
   a
     font-size: 10pt
+
+.mainRatings
+  grid-template-columns: 25% 75%
+  .right > *
+    .header
+      h3
+        font-weight: 600
+        margin: 30px 0
+        select
+          outline: 0
+          text-decoration: underline
+  .leftReviews > *
+    margin-bottom: 20px
+    h1
+      font-size: 4rem
+      font-weight: 900

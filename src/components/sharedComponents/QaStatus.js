@@ -15,7 +15,7 @@ const QaStatus = ({ handleReportClick, handleHelpfulClick, data }) => {
         <AuthorInfo key={1} sharedClasses={sharedClasses} data={data} />,
         <Helpful
           key={2}
-          yesCount={10}
+          yesCount={data.helpfulCount}
           handleHelpfulClick={handleHelpfulClick}
           className={sharedClasses + " status"}
         />,

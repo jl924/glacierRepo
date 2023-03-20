@@ -1,0 +1,57 @@
+#titleCard {
+  color: blue;
+}
+
+#starbtn {
+  z-index: 1;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  border-radius: 0.25rem;
+}
+
+#compareBtn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  border-radius: 0.25rem;
+}
+
+#left-related {
+  display: inline-flex;
+  position: absolute;
+  top: 10rem;
+  left: 0rem;
+  height: 20px;
+  width: 20px;
+}
+
+#right-related {
+  display: inline-flex;
+  position: absolute;
+  top: 10rem;
+  right: 0rem;
+  height: 20px;
+  width: 20px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#relatedTitle {
+  margin-bottom: 0px !important;
+}
+
+#outfitTitle {
+  margin-bottom: 0px !important;
+}

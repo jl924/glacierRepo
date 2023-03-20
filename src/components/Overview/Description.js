@@ -4,7 +4,12 @@ const Description = () => {
   return (
     <div className="flex flex-row box-border w-full h-40 p-4 border border-gray-400">
       <div className="w-3/4">
-        desc
+        <div>
+          Desc
+        </div>
+        <div>
+          Social Media Icons
+        </div>
       </div>
       <div className="border-l-2 border-black pl-4">
         <p>Feature</p>
