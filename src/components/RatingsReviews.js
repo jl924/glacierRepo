@@ -25,7 +25,6 @@ const RatingsReviews = () => {
     let onWhitelist = false;
     whiteList.forEach((allowClass) => {
       if (Array.from(ev.target.classList).includes(allowClass)) {
-        console.log("found", allowClass);
         onWhitelist = true;
       }
     });
@@ -37,7 +36,6 @@ const RatingsReviews = () => {
       } else {
         currentClasses.push("modalOpen");
       }
-      console.log(currentClasses);
       document.querySelector(".app").className = currentClasses.join(" ");
     }
   }

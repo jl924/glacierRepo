@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import RatingView from "../sharedComponents/RatingView";
 
 const NewReviewForm = () => {
   const ratings = [0, 1, 2, 3, 4, 5];
@@ -64,39 +65,7 @@ const NewReviewForm = () => {
                 />
               ))}
             </div>
-
-            <div className="relative">
-              <div class="rating rating2 rating-lg">
-                {ratings.map((rating) => (
-                  <input
-                    key={rating}
-                    type="radio"
-                    name="rating3"
-                    className={
-                      rating === 0 ? "rating-hidden" : "mask mask-star 2"
-                    }
-                    value={rating}
-                    readOnly={true}
-                    checked={0 === rating}
-                  />
-                ))}
-              </div>
-              <div class="rating rating3 rating-lg">
-                {ratings.map((rating) => (
-                  <input
-                    key={rating}
-                    type="radio"
-                    name="rating2"
-                    className={
-                      rating === 0 ? "rating-hidden" : "mask mask-star 2"
-                    }
-                    value={rating}
-                    readOnly={true}
-                    checked={rating === 5}
-                  />
-                ))}
-              </div>
-            </div>
+            <RatingView width={208} numStars={5} rating={1.5} />
           </form>
         )}
       </Formik>
