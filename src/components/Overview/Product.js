@@ -3,9 +3,11 @@ import {useState, useEffect} from 'react'
 import Imageslide from './ProductComp/Imageslide.js';
 import Selection from './ProductComp/Selection.js';
 import axios from 'axios';
-import getProductById from './reqHelpers.js'
+import helpers from './reqHelpers.js'
 
-const Product = () => {
+const getProductById = helpers.getProductById
+
+const Product = ({info}) => {
   const [product, setProduct] = useState(null);
   const [style, setStyle] = useState({})
 
@@ -19,14 +21,11 @@ const Product = () => {
         console.log(err)
       })
   }, [])
-  if(product) {
-    console.log(product.results)
-  }
 
   return (
-    <div className="flex flex-row box-border w-full h-[550px] border border-gray-400">
+    <div className="flex flex-row box-border w-full h-[550px]">
       <Imageslide product={product} style={style}/>
-      <Selection product={product} setStyle={setStyle}/>
+      <Selection style={style} info={info} product={product} setStyle={setStyle}/>
     </div>
   );
 }
