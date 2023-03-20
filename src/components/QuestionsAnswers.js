@@ -28,7 +28,7 @@ const QuestionsAnswers = () => {
         <h4 className='Q&A-heading'>Questions & Answers</h4>
         <SearchQA />
         <div>
-          <Question exampleQuestion={exampleQuestion} loadMore={loadMore} />
+          <Question exampleQuestion={exampleQuestion} loadMore={loadMore} setLoadMore={setLoadMore}/>
         </div>
         <LoadMoreAnswers exampleQuestion={exampleQuestion} handleLoadMoreAnswers={handleLoadMoreAnswers} />
         <ButtonPair
@@ -41,6 +41,8 @@ const QuestionsAnswers = () => {
     </>
 
   );
+
+  module.exports.handleLoadMoreAnswers = handleLoadMoreAnswers;
 }
 
 export default QuestionsAnswers;
