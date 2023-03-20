@@ -5,7 +5,7 @@ import { AiOutlineStar } from 'react-icons/ai';
 import StyleBtn from './StyleBtn'
 import Form from './Form'
 
-const Selection = ({ product, setStyle }) => {
+const Selection = ({info, product, setStyle, style }) => {
 
   const [imgs, setImgs] = useState([])
 
@@ -24,16 +24,20 @@ const Selection = ({ product, setStyle }) => {
     }
   }, [product])
 
+
   return (
-    <div className="w-[400px] box-border border border-gray-400">
-      <div>
-        <p>Star Rating</p>
-        <p>Category</p>
-        <p>Expanded Product Name</p>
-        <p>Price</p>
+    <div className="w-[400px] ml-[20px]">
+      <div className="flex flex-col">
+        <div className="mb-[5px]">***** <a className="text-gray-400 underline">Read all reviews</a></div>
+        <p className="text-gray-400">{info.category}</p>
+        <p className="text-4xl text-gray-500">{info.name}</p>
+        <p>${style.original_price}</p>
       </div>
       <div>
-        <p>STYLE > SELECTED STYLE</p>
+        <div className="flex">
+           <p className="font-bold">STYLE > </p>
+           <p> {style.name} </p>
+        </div>
       </div>
       <div>
 
