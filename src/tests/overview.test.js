@@ -1,11 +1,11 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import OverView from '../components/Overview';
+import Header from '../components/Overview/Header';
 
 
 
-test('renders correctly and contains a question', function () {
-  const {getByText} = render(<OverView />);
+test('renders company name correctly', function () {
+  const {getByText} = render(<Header />);
   let element = getByText('BENJ');
   expect(element).toBeTruthy();
 });
