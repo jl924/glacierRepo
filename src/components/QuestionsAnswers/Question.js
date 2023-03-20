@@ -1,7 +1,7 @@
 import React from 'react';
 import Answer from './Answer.js';
 import QaStatus from '../sharedComponents/QaStatus.js';
-import HelpfulStatus from '../sharedComponents/HelpfulStatus.js';
+import HelpfulQA from './HelpfulQA.js';
 
 // Question component to house:
 // Answer and HelpfulStatus components
@@ -20,10 +20,18 @@ const Question = ({exampleQuestion}) => {
 
   };
 
+  var handleAddAnswer = () => {
 
+  };
+
+  // need Add Answer button next to HelpFulStatus
   return (
     <div>
-      <h3>Q: {question.question_body}<span className='float-right'><HelpfulStatus handleQuestionHelpfulClick={handleQuestionHelpfulClick} handleQuestionReportClick={handleQuestionReportClick} data={helpfulQuestionCount} /></span></h3>
+      <h3>Q: {question.question_body}<span className='float-right'><HelpfulQA handleQuestionHelpfulClick={handleQuestionHelpfulClick}
+      data={helpfulQuestionCount}
+      handleAddAnswer={handleAddAnswer} />
+      </span>
+      </h3>
       <Answer answers={question.answers} QaStatus={QaStatus} />
     </div>
   );
