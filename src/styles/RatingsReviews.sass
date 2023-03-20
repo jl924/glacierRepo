@@ -1,5 +1,7 @@
 .circle
   border-radius: 50%
+.hidden
+  display: none
 .background-wh
   background-color: white
 .x10
@@ -29,6 +31,7 @@
 
 .mainRatings
   grid-template-columns: 25% 75%
+  width: 100%
   .right > *
     .header
       h3
@@ -42,3 +45,18 @@
     h1
       font-size: 4rem
       font-weight: 900
+.newReviewModal
+  position: fixed
+  left: 0px
+  top: 0px
+  width: 100%
+  height: 100%
+  cursor: pointer
+  background-color: rgba(0, 0, 0, 0.8)
+  z-index: 999
+  .modalBox
+    cursor: default
+    transition: opacity 500ms ease
+    opacity: 0
+  .modalBox.active
+    opacity: 1
