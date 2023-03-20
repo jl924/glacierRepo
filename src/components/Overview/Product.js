@@ -13,12 +13,15 @@ const Product = () => {
     getProductById(37311)
       .then(product => {
         setProduct(product)
+        setStyle(product.results[0])
       })
       .catch(err => {
         console.log(err)
       })
   }, [])
-
+  if(product) {
+    console.log(product.results)
+  }
 
   return (
     <div className="flex flex-row box-border w-full h-[550px] border border-gray-400">
