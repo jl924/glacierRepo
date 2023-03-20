@@ -11,7 +11,7 @@ const YourOutfitCard = () => {
       <div className="carousel-item container w-[220px]">
     <div id="card" className="card w-[220px] card-bordered rounded border-grey">
     <label onClick={() => console.log('clicked')}id='compareBtn' className="btn">X</label>
-  <figure><img className='w-full'src="https://nb.scene7.com/is/image/NB/mt21540ag_nb_70_i?$dw_detail_main_lg$&bgc=f1f1f1&layer=1&bgcolor=f1f1f1&blendMode=mult&scae=10&wid=1600&hei=1600" /></figure>
+  <figure><img className='w-full'src="https://images.unsplash.com/photo-1514866726862-0f081731e63f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" /></figure>
   <div className="card-body" >
   <small>Hoodies & Sweaters</small>
     <h2 id="titleCard" className="card-title">Soft Hoodie!</h2>
