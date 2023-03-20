@@ -60,9 +60,9 @@ const Imageslide = ({product, style}) => {
       thumbCount++
       //TODO - UNDERLINE IMAGE THAT IS SELECTED
       return(
-      <div key={index} className="carousel-item relative">
-        <a href={"#slide" + thumbCount}>
-          <img className="h-[50px] w-[50px] mb-[10px] border border-black" src={img} />
+      <div key={index} className="carousel-item relative mb-[10px]">
+        <a className="h-[50px] w-[50px]" href={"#slide" + thumbCount}>
+          <img className="h-[50px] w-[50px] border-2 border-black" src={img} />
         </a>
       </div>
       )
