@@ -13,7 +13,7 @@ const RatingsReviews = () => {
   const [reviews, setReviews] = useState(exampleReviews.results);
   const [displayedReviews, setDisplayedReviews] = useState(reviews.slice(0, 2));
   const [product, setProduct] = useState(exampleProduct);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   function handleAddClick(ev) {
     ev.preventDefault();
@@ -29,7 +29,17 @@ const RatingsReviews = () => {
         onWhitelist = true;
       }
     });
-    if (onWhitelist) setVisible(!visible);
+    if (onWhitelist) {
+      setVisible(!visible);
+      let currentClasses = Array.from(document.querySelector(".app").classList);
+      if (currentClasses.includes("modalOpen")) {
+        currentClasses.splice(currentClasses.indexOf("modalOpen"), 1);
+      } else {
+        currentClasses.push("modalOpen");
+      }
+      console.log(currentClasses);
+      document.querySelector(".app").className = currentClasses.join(" ");
+    }
   }
 
   function handleMoreClick(ev) {

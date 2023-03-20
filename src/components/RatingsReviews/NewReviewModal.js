@@ -4,13 +4,16 @@ import NewReviewForm from "./NewReviewForm.js";
 export default function NewReviewModal({ checked, toggleModal, name, hidden }) {
   return (
     <div
-      className={"flex newReviewModal" + (hidden ? " hidden" : "")}
+      className={
+        "flex justify-center items-center newReviewModal" +
+        (hidden ? " hidden" : "")
+      }
       onClick={toggleModal}
     >
       <section
         role="dialog"
         className={
-          "modalBox bg-base-200 max-w-[800px] min-w-[500px] max-h-4/6 h-4/6" +
+          "modalBox bg-base-200 max-w-[800px] min-w-[500px] max-h-2/3" +
           (hidden ? "" : " active")
         }
       >
