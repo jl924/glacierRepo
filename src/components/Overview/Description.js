@@ -1,8 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
-import helpers from './reqHelpers.js'
 
-const getInfoById = helpers.getInfoById
 
 const Description = ({info}) => {
 

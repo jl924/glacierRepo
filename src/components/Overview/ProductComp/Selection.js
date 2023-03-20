@@ -52,7 +52,7 @@ const Selection = ({info, product, setStyle, style }) => {
         </div>
 
         {/*------FORM------*/}
-        <Form />
+        <Form style={style}/>
       </div>
     </div>
   );
