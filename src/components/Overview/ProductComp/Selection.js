@@ -11,20 +11,19 @@ const Selection = ({ product, setStyle }) => {
 
   let handleStyleClick = (id) => {
     console.log(id)
-    setStyle()
+    setStyle(product.results[id])
   }
 
   useEffect(() => {
     if(product) {
       let productImgs = []
-      product.results.forEach((result) => {
-      productImgs.push({id: result.style_id, img: result.photos[0].url})
+      product.results.forEach((result, index) => {
+      productImgs.push({id: index, img: result.photos[0].url})
     })
     setImgs(productImgs)
     }
   }, [product])
 
-  console.log(imgs)
   return (
     <div className="w-[400px] box-border border border-gray-400">
       <div>
