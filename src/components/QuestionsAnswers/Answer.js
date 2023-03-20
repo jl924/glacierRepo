@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Answer = ({answers, QaStatus}) => {
+const Answer = ({answers, QaStatus, loadMore, firstTwo}) => {
   let answerId = Object.keys(answers);
 
   var handleAnswerHelpfulClick = () => {
@@ -13,16 +13,30 @@ const Answer = ({answers, QaStatus}) => {
 
   return (
     <div>
-      <h4>
+      {loadMore ? <h4>
         {answerId.map((id) => {
           return (
-            <div key={id} className='container mx-auto px-10 py-4'>
-              <p>A: {answers[id].body}</p>
-              <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}} handleAnswerHelpfulClick={handleAnswerHelpfulClick} handleAnswerReportClick={handleAnswerReportClick}/>
+            <div key={id} className='container mx-auto py-4'>
+              <p><span className='QAheader'>A: </span>{answers[id].body}</p>
+              <div className='px-4'>
+                <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}} handleAnswerHelpfulClick={handleAnswerHelpfulClick} handleAnswerReportClick={handleAnswerReportClick}/>
+              </div>
             </div>
           );
         })}
-        </h4>
+        </h4> :
+        <h4>
+        {firstTwo.map((id) => {
+          return (
+            <div key={id} className='container mx-auto py-4'>
+              <p><span className='QAheader'>A: </span>{answers[id].body}</p>
+              <div className='px-4'>
+                <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}} handleAnswerHelpfulClick={handleAnswerHelpfulClick} handleAnswerReportClick={handleAnswerReportClick}/>
+              </div>
+            </div>
+          );
+        })}
+        </h4>}
     </div>
   );
 };
