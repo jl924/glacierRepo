@@ -5,6 +5,7 @@ import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import {AiFillStar} from 'react-icons/ai'
 import HoverModal from './Related/Related-Modal'
 import './Related/Related.css';
+import AddCard from './Related/Add-card'
 
 
 
@@ -35,7 +36,7 @@ const Related = () => {
 <div className='container container1'>
     <button id='left-related' type='button' onClick={()=>document.getElementById('caro-outfit').scrollLeft -= 500}>❮</button>
     <div id='caro-outfit' className="carousel carousel-center max-w-4xl p-4 space-x-2">
-      <YourOutfitCard/>
+      <AddCard/>
       <YourOutfitCard/>
       <YourOutfitCard/>
       <YourOutfitCard/>
