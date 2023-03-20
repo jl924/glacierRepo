@@ -15,7 +15,7 @@ const NewReviewForm = () => {
   //document.querySelector('input[name="rate"]:checked').value;
 
   return (
-    <div className="newReviewForm">
+    <div className="newReviewForm flex flex-column justify-center">
       <Formik
         initialValues={initialValues}
         validate={(values) => {
@@ -51,16 +51,51 @@ const NewReviewForm = () => {
             <div class="rating rating-lg">
               {ratings.map((rating) => (
                 <input
+                  key={rating}
                   type="radio"
                   name="rating"
                   className={
                     rating === 0 ? "rating-hidden" : "mask mask-star 2"
                   }
                   value={rating}
+                  readOnly={true}
                   checked={values.rating === rating}
                   onClick={() => setFieldValue("rating", rating)}
                 />
               ))}
+            </div>
+
+            <div className="relative">
+              <div class="rating rating2 rating-lg">
+                {ratings.map((rating) => (
+                  <input
+                    key={rating}
+                    type="radio"
+                    name="rating3"
+                    className={
+                      rating === 0 ? "rating-hidden" : "mask mask-star 2"
+                    }
+                    value={rating}
+                    readOnly={true}
+                    checked={0 === rating}
+                  />
+                ))}
+              </div>
+              <div class="rating rating3 rating-lg">
+                {ratings.map((rating) => (
+                  <input
+                    key={rating}
+                    type="radio"
+                    name="rating2"
+                    className={
+                      rating === 0 ? "rating-hidden" : "mask mask-star 2"
+                    }
+                    value={rating}
+                    readOnly={true}
+                    checked={rating === 5}
+                  />
+                ))}
+              </div>
             </div>
           </form>
         )}
