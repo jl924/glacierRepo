@@ -2,8 +2,18 @@ import React from 'react';
 import SearchQA from './QuestionsAnswers/SearchQA.js';
 import Question from './QuestionsAnswers/Question.js';
 import exampleQuestion from '../exampleData/questionsForOneProduct.json';
+import ButtonPair from './sharedComponents/ButtonPair.js';
 
 const QuestionsAnswers = () => {
+
+  var handleAddQuestionClick = () => {
+
+  };
+
+  var handleMoreQuestionsClick = () => {
+
+  };
+
   return (
     <>
       <div className='container mx-auto border text-black-700 text-left bg-white-400 px-4 py-2'>
@@ -12,8 +22,12 @@ const QuestionsAnswers = () => {
         <div>
           <Question exampleQuestion={exampleQuestion} />
         </div>
-        <button className='more-questions btn btn-outline'>More Answered Questions +</button>
-        <button className=' add-question btn btn-outline'>Add A Question +</button>
+        <ButtonPair
+          buttons={{
+            ["More Answered Questions"]: handleMoreQuestionsClick,
+            ["Add A Question"]: handleAddQuestionClick,
+          }}
+        />
       </div>
     </>
 
