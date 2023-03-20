@@ -33,6 +33,19 @@ const RatingView = ({
       cursor: clickable ? "pointer" : "default",
     };
   };
+  const innerStarStyle = (rating, clickable = true) => {
+    const width = starStyle(rating).width;
+    const w = width.slice(0, width.length - 2);
+    const newWidth = w * 0.7;
+    const diff = w - newWidth;
+    return {
+      width: rating === 0 ? "8px" : newWidth + "px",
+      margin: `0 ${diff / 2}px`,
+      height: starLen + "px",
+      float: "left",
+      cursor: clickable ? "pointer" : "default",
+    };
+  };
 
   return (
     <div className="ratingView relative" style={sharedDims}>
@@ -56,17 +69,24 @@ const RatingView = ({
         className={"rating ratingForeground rating-" + size}
         style={foregroundStyle}
       >
-        {ratings.map((rating) => (
-          <input
-            key={rating}
-            type="radio"
-            className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
-            readOnly={true}
-            style={starStyle(rating)}
-            checked={rating === numStars}
-          />
-        ))}
+        {ratings
+          .map((rating) => [
+            <input
+              key={rating}
+              type="radio"
+              className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
+              readOnly={true}
+              style={starStyle(rating)}
+              checked={rating === numStars}
+            />,
+            ,
+          ])
+          .flat()}
       </div>
+      <div
+        className={"rating ratingBackgroundCutout rating-" + size}
+        style={foregroundStyle}
+      ></div>
     </div>
   );
 };
