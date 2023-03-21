@@ -12,7 +12,6 @@ const Overview = (store) => {
   const[info, setInfo] = useState([])
 
   const cartItems = useSelector((state) => state.cartReducer.cart)
-  console.log(cartItems)
 
   const id = useSelector((state) => state)
 
