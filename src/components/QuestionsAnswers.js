@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import SearchQA from './QuestionsAnswers/SearchQA.js';
 import Question from './QuestionsAnswers/Question.js';
 import exampleQuestion from '../exampleData/questionsForOneProduct.json';
@@ -7,6 +8,16 @@ import LoadMoreAnswers from './QuestionsAnswers/LoadMoreAnswers.js';
 import AddQAModal from './QuestionsAnswers/AddQAModal.js';
 
 const QuestionsAnswers = () => {
+
+  const questions = useSelector(
+    (state) => state.questionsAnswersReducer.questionsAnswers
+  );
+
+  const product = useSelector(
+    (state => state.selectedProductReducer.selectedProduct)
+  );
+
+  console.log(questions);
 
   const [loadMore, setLoadMore] = useState(false);
   const [questionForm, setQuestionForm] = useState(false);
@@ -52,11 +63,15 @@ const QuestionsAnswers = () => {
         {answerForm ? <AddQAModal setQuestionForm={setQuestionForm}
         setAnswerForm={setAnswerForm}
         answerForm={answerForm}
-        questionForm={questionForm} /> : null}
+        questionForm={questionForm}
+        product={product}
+        exampleQuestion={exampleQuestion} /> : null}
         {questionForm ? <AddQAModal setQuestionForm={setQuestionForm}
         setAnswerForm={setAnswerForm}
         answerForm={answerForm}
-        questionForm={questionForm} /> : null}
+        questionForm={questionForm}
+        product={product}
+        exampleQuestion={exampleQuestion} /> : null}
       </div>
     </>
 

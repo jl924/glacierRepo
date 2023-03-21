@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import {Formik, Field, Form} from 'formik';
 
-const AddAnswerForm = () => {
+const AddAnswerForm = ({ product, question }) => {
 
   var handleAnswerSubmit = () => {
 
@@ -14,7 +14,7 @@ const AddAnswerForm = () => {
   return (
     <div>
       <h1 className='text-center font-bold'>Submit Your Answer
-        <h2>Product Name: Question Body.</h2>
+        <h2>{product.name}: {question}</h2>
       </h1>
       <Formik
       initialValues={{
