@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
@@ -26,7 +26,7 @@ const initialState = {
 };
 
 const selectedProductSlice = createSlice({
-  name: 'selectedProduct',
+  name: "selectedProduct",
   initialState,
   reducers: {
     selectedProductRequest(state) {
@@ -35,8 +35,8 @@ const selectedProductSlice = createSlice({
     selectedProductRequestSuccess(state, action) {
       state.selectedProduct = action.payload.selectedProduct;
       state.isLoading = false;
-    }
-  }
+    },
+  },
 });
 
 export default selectedProductSlice;

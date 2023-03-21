@@ -4,6 +4,7 @@ import { AiFillStar } from 'react-icons/ai';
 import { AiOutlineStar } from 'react-icons/ai';
 import StyleBtn from './StyleBtn'
 import Form from './Form'
+import RatingView from '../../../components/sharedComponents/RatingView'
 
 const Selection = ({info, product, setStyle, style }) => {
 
@@ -23,12 +24,17 @@ const Selection = ({info, product, setStyle, style }) => {
     setImgs(productImgs)
     }
   }, [product])
-
+  console.log(style)
 
   return (
-    <div className="w-[400px] ml-[20px]">
+    <div className="w-[450px] ml-[20px]">
       <div className="flex flex-col">
-        <div className="mb-[5px]">***** <a className="text-gray-400 underline">Read all reviews</a></div>
+
+        <div className="flex mb-[5px] items-center">
+          <RatingView width={75} numStars={5} rating={1.5} />
+          <a className="text-gray-400 underline ml-[20px]">Read all reviews</a>
+        </div>
+
         <p className="text-gray-400">{info.category}</p>
         <p className="text-4xl text-gray-500">{info.name}</p>
         <p>${style.original_price}</p>
@@ -42,7 +48,7 @@ const Selection = ({info, product, setStyle, style }) => {
       <div>
 
         {/*------STYLE BUTTONS------*/}
-        <div className="flex flex-row flex-wrap justify-start w-52">
+        <div className="flex flex-row flex-wrap justify-start w-[250px]">
           {imgs.map((style) =>
             {
               return (

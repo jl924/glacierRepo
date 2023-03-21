@@ -1,6 +1,6 @@
 import React from 'react';
 import {MdSearch} from 'react-icons/md';
-import './QASearch.css';
+import './QACss/QASearch.css';
 
 // filter through the questions and answers section
 // remember placeholder text, container for input and align left
