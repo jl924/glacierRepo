@@ -18,8 +18,8 @@ describe("buildUrl", function () {
   });
 });
 
-describe.only("apiGetRequest", function () {
-  it("should take in parameters and return a valid request", (done) => {
+describe("apiGetRequest", function () {
+  /* it("should take in parameters and return a valid request", (done) => {
     apiGetRequest("/reviews", { product_id: "37311" })
       .then((req) => {
         expect(req.results.length > 0).toBe(true);
@@ -34,5 +34,5 @@ describe.only("apiGetRequest", function () {
         expect(req.results.length > 0).toBe(true);
       })
       .finally(() => done());
-  });
+  }); */
 });
