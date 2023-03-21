@@ -26,7 +26,7 @@ const Selection = ({info, product, setStyle, style }) => {
 
 
   return (
-    <div className="w-[400px] ml-[20px]">
+    <div className="w-[450px] ml-[20px]">
       <div className="flex flex-col">
         <div className="mb-[5px]">***** <a className="text-gray-400 underline">Read all reviews</a></div>
         <p className="text-gray-400">{info.category}</p>
@@ -42,7 +42,7 @@ const Selection = ({info, product, setStyle, style }) => {
       <div>
 
         {/*------STYLE BUTTONS------*/}
-        <div className="flex flex-row flex-wrap justify-start w-52">
+        <div className="flex flex-row flex-wrap justify-start w-[250px]">
           {imgs.map((style) =>
             {
               return (
