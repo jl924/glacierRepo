@@ -64,4 +64,4 @@ let loadCarousel = (id) => {
 
 }
 
-export default loadCarousel
+export default loadCarousel;

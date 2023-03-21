@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import RelatedCard from './Related/RelatedCard';
 import YourOutfitCard from './Related/YourOutfitCard';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
-import loadCarousel from './Related/RelatedFunc.js'
 import {AiFillStar} from 'react-icons/ai'
 import HoverModal from './Related/Related-Modal'
 import './Related/Related.css';
 import AddCard from './Related/Add-card'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
+// const loadCarousel = require('./Related/RelatedFunc.js');
+import loadCarousel from './Related/RelatedFunc.js'
 
 
 
