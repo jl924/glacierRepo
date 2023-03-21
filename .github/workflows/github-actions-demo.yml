@@ -25,4 +25,4 @@ jobs:
           npm ci
           npm run testJest
         env:
-          KEY: ${{ secrets.KEY }}
+          API_KEY: ${{ secrets.API_KEY }}
