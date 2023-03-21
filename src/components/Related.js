@@ -9,7 +9,7 @@ import AddCard from './Related/Add-card'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
 // const loadCarousel = require('./Related/RelatedFunc.js');
-import loadCarousel from './Related/RelatedFunc.js'
+import loadCarousel from './Related/RelatedFunc'
 
 
 

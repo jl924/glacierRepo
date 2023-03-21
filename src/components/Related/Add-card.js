@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {AiFillStar} from 'react-icons/ai'
 import './Related.css';
 import {useSelector} from 'react-redux'
-import getProductById from './RelatedFunc'
 import axios from 'axios'
 
 
