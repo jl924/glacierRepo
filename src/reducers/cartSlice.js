@@ -17,12 +17,3 @@ const cartSlice = createSlice({
 
 export const { addItem } = cartSlice.actions;
 export default cartSlice;
-
-
-// cartRequest(state) {
-//   state.isLoading = true;
-// },
-// cartRequestSuccess(state, action) {
-//   state.cart = action.payload.cart;
-//   state.isLoading = false;
-// }
