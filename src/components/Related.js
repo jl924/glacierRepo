@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import RelatedCard from './Related/RelatedCard';
 import YourOutfitCard from './Related/YourOutfitCard';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
-import loadCarousel from './Related/RelatedFunc'
+import loadCarousel from './Related/RelatedFunc.js'
 import {AiFillStar} from 'react-icons/ai'
 import HoverModal from './Related/Related-Modal'
 import './Related/Related.css';
