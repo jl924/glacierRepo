@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewListItem from "./ReviewListItem.js";
 import ReviewListHeader from "./ReviewListHeader.js";
+import { useSelector } from "react-redux";
 
 const getReviewListItems = (reviews) => {
   const ret = [];
@@ -16,11 +17,14 @@ const getReviewListItems = (reviews) => {
   return ret;
 };
 
-const ReviewList = ({ reviews }) => {
+const ReviewList = ({}) => {
+  const { ratingsReviews } = useSelector(
+    (state) => state.ratingsReviewsReducer
+  );
   return (
     <div className="">
-      <ReviewListHeader reviews={reviews} />
-      {getReviewListItems(reviews)}
+      <ReviewListHeader />
+      {getReviewListItems(ratingsReviews.slice(0, 2))}
     </div>
   );
 };
