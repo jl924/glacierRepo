@@ -4,10 +4,13 @@ import Question from './QuestionsAnswers/Question.js';
 import exampleQuestion from '../exampleData/questionsForOneProduct.json';
 import ButtonPair from './sharedComponents/ButtonPair.js';
 import LoadMoreAnswers from './QuestionsAnswers/LoadMoreAnswers.js';
+import AddQAModal from './QuestionsAnswers/AddQAModal.js';
 
 const QuestionsAnswers = () => {
 
   const [loadMore, setLoadMore] = useState(false);
+  const [questionForm, setQuestionForm] = useState(false);
+  const [answerForm, setAnswerForm] = useState(false);
 
   var handleLoadMoreAnswers = (e) => {
     e.preventDefault();
@@ -15,11 +18,17 @@ const QuestionsAnswers = () => {
   };
 
   var handleAddQuestionClick = () => {
-
+    setQuestionForm(true);
+    console.log('adding a question!')
   };
 
   var handleMoreQuestionsClick = () => {
 
+  };
+
+  var handleAddAnswer = () => {
+    setAnswerForm(true);
+    console.log('Adding an Answer!');
   };
 
   return (
@@ -28,7 +37,10 @@ const QuestionsAnswers = () => {
         <h4 className='Q&A-heading'>Questions & Answers</h4>
         <SearchQA />
         <div>
-          <Question exampleQuestion={exampleQuestion} loadMore={loadMore} setLoadMore={setLoadMore}/>
+          <Question exampleQuestion={exampleQuestion}
+          loadMore={loadMore}
+          setLoadMore={setLoadMore}
+          handleAddAnswer={handleAddAnswer}/>
         </div>
         <LoadMoreAnswers exampleQuestion={exampleQuestion} handleLoadMoreAnswers={handleLoadMoreAnswers} />
         <ButtonPair
@@ -37,6 +49,14 @@ const QuestionsAnswers = () => {
             ["Add A Question"]: handleAddQuestionClick,
           }}
         />
+        {answerForm ? <AddQAModal setQuestionForm={setQuestionForm}
+        setAnswerForm={setAnswerForm}
+        answerForm={answerForm}
+        questionForm={questionForm} /> : null}
+        {questionForm ? <AddQAModal setQuestionForm={setQuestionForm}
+        setAnswerForm={setAnswerForm}
+        answerForm={answerForm}
+        questionForm={questionForm} /> : null}
       </div>
     </>
 
