@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { AiOutlineStar } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../../reducers/cartSlice'
 
 const Form = ({ style }) => {
 
@@ -61,8 +63,13 @@ const Form = ({ style }) => {
     }
   }
 
-  let handleSubmit = () => {
-    console.log(formData);
+
+  const dispatch = useDispatch();
+
+  let handleSubmit = (e) => {
+    e.preventDefault()
+    var item = {Style: style, Size: formData.size, Qty: formData.qty}
+    dispatch(addItem(item))
   }
 
   return (

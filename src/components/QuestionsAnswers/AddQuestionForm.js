@@ -9,7 +9,7 @@ const AddQuestionForm = () => {
 
   return (
     <div>
-      <h1 className='text-center'>Ask a question
+      <h1 className='text-center font-bold'>Ask a question
         <h2>About the product name.</h2>
       </h1>
       <Formik
@@ -26,22 +26,22 @@ const AddQuestionForm = () => {
         }, 400);
       }}
       >
-        <Form>
-          <p>
+        <Form className='px-3'>
+          <p className='py-5'>
             <label htmlFor='question'>Your Question: </label>
             <Field id='question' name='question' />
           </p>
 
-          <p>
+          <p className='py-5'>
             <label htmlFor='nickname'>Nickname: </label>
             <Field id='nickname' name='nickname' placeholder='Example: jackson11!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
           </p>
 
-          <p>
+          <p className='py-5'>
             <label htmlFor='email'>Email: </label>
             <Field id='email' name='email' type='email' placeholder='Why did you like the product or not?' />
-            <p><small>For authentication reasons, you will not be emailed.</small></p>
+            <p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
           </p>
 
           <button>Submit</button>
