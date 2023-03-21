@@ -22,7 +22,7 @@ describe.only("apiGetRequest", function () {
   it("should take in parameters and return a valid request", (done) => {
     apiGetRequest("/reviews", { product_id: "37311" })
       .then((req) => {
-        expect(req.data.results.length > 0).toBe(true);
+        expect(req.results.length > 0).toBe(true);
       })
       .catch((err) => console.log(err))
       .finally(() => done());
@@ -31,7 +31,7 @@ describe.only("apiGetRequest", function () {
   it("should blah blah blah", (done) => {
     apiGetRequest("/reviews", { product_id: "37311" })
       .then((req) => {
-        expect(req.data.results.length > 0).toBe(true);
+        expect(req.results.length > 0).toBe(true);
       })
       .finally(() => done());
   });
