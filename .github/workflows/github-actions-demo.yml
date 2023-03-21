@@ -25,8 +25,8 @@ jobs:
         with:
           node-version: 16.19.0
           cache: "npm"
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
       - run: npm ci
       - run: npm run build --if-present
       - run: npm run testJest
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
