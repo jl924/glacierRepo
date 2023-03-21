@@ -9,7 +9,7 @@ import AddCard from './Related/Add-card'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
 // const loadCarousel = require('./Related/RelatedFunc.js');
-import loadCarousel from './Related/RelatedFunc'
+import loadCarousel from './Related/RelatedFunc.js'
 
 
 
@@ -28,7 +28,7 @@ const Related = () => {
       for(var i = 0; i<productList.length; i++) {
         productList[i].extra = result[1][i]
       }
-      console.log(productList, 'plese work')
+      console.log(productList, 'plese workk')
       setProduct(productList)
     })
 
@@ -73,3 +73,4 @@ const Related = () => {
 }
 
 export default Related;
+
