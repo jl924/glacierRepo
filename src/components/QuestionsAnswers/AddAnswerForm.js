@@ -7,9 +7,13 @@ const AddAnswerForm = () => {
 
   };
 
+  var handlePhotoUpload = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
-      <h1>Submit Your Answer
+      <h1 className='text-center font-bold'>Submit Your Answer
         <h2>Product Name: Question Body.</h2>
       </h1>
       <Formik
@@ -26,26 +30,26 @@ const AddAnswerForm = () => {
         }, 400);
       }}
       >
-        <Form>
-        <p>
+        <Form className='px-3'>
+          <p className='py-5'>
             <label htmlFor='answer'>Your Answer: </label>
             <Field id='answer' name='answer' />
           </p>
 
-          <p>
+          <p className='py-5'>
             <label htmlFor='nickname'>Nickname: </label>
             <Field id='nickname' name='nickname' placeholder='Example: jack543!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
           </p>
 
-          <p>
+          <p p className='py-5'>
             <label htmlFor='email'>Email: </label>
             <Field id='email' name='email' type='email' placeholder='Example: jack@email.com' />
-            <p><small>For authentication reasons, you will not be emailed.</small></p>
+            <p p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
           </p>
           <div>
-            <p>
-              <button>Upload Photos</button>
+            <p p className='py-2'>
+              <button onClick={handlePhotoUpload}>Upload Photos</button>
             </p>
             <button>Submit</button>
           </div>
