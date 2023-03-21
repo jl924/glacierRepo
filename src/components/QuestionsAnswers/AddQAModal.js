@@ -13,7 +13,7 @@ const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm}) 
 
   return (
     <div className='QAmodal'>
-      <div className='QAmodalcontent'>
+      <div className='QAmodalcontent container mx-auto py-3'>
         <a href='' className='float-right' onClick={handleClosingModal}>&times;</a>
         {answerForm ? <AddAnswerForm /> : null}
         {questionForm ? <AddQuestionForm /> : null}
