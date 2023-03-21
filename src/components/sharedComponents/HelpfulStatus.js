@@ -3,7 +3,12 @@ import Status from "./Status";
 import Helpful from "../sharedComponents/Helpful";
 import Report from "../sharedComponents/Report";
 
-const HelpfulStatus = ({ handleHelpfulClick, handleReportClick, data }) => {
+const HelpfulStatus = ({
+  handleHelpfulClick,
+  handleReportClick,
+  data,
+  messageType = "question",
+}) => {
   const sharedClasses = "flex-initial";
 
   // Currently need this if you are relying on hardcoded data
@@ -23,6 +28,7 @@ const HelpfulStatus = ({ handleHelpfulClick, handleReportClick, data }) => {
           yesCount={count}
           handleHelpfulClick={handleHelpfulClick}
           className={sharedClasses + " status"}
+          messageType={messageType}
         />,
         <Report
           key={2}
