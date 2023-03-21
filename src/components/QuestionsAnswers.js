@@ -9,9 +9,9 @@ import AddQAModal from './QuestionsAnswers/AddQAModal.js';
 
 const QuestionsAnswers = () => {
 
-  const questions = useSelector(
-    (state) => state.questionsAnswersReducer.questionsAnswers
-  );
+  // const questions = useSelector(
+  //   (state) => state.questionsAnswersReducer.questionsAnswers
+  // );
 
   const product = useSelector(
     (state => state.selectedProductReducer.selectedProduct)
