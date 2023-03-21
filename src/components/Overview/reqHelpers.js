@@ -26,4 +26,14 @@ let getInfoById = (id) => {
     })
 }
 
-export default {getProductById, getInfoById}
+let getRatingById = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}`, { headers })
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export default {getProductById, getInfoById, getRatingById}
