@@ -7,7 +7,7 @@ import RelatedCompare from './Related-Card-Compare'
 
 
 
-const RelatedCard = () => {
+const RelatedCard = ({products}) => {
   return (
     <div className="relative">
         <input type="checkbox" id="my-modal-4" className="modal-toggle" />
@@ -16,14 +16,15 @@ const RelatedCard = () => {
     <RelatedCompare/>
   </label>
 </label>
-      <div className="carousel-item container w-[220px]">
-    <div id="card" className="card w-[220px] card-bordered rounded border-grey">
+      <div className="carousel-item container w-[250px]">
+    <div id={products.product_id} onClick={()=>console.log(products.product_id)} className="card card1 w-[250px] card-bordered rounded border-grey">
     <label id='compareBtn' htmlFor="my-modal-4" className="btn">☆</label>
-  <figure><img className='w-full'src="https://nb.scene7.com/is/image/NB/mt21540ag_nb_70_i?$dw_detail_main_lg$&bgc=f1f1f1&layer=1&bgcolor=f1f1f1&blendMode=mult&scae=10&wid=1600&hei=1600" /></figure>
+  <figure id='cardImgContainter'><img className='cardImg' src={products.results[3].photos[0].thumbnail_url
+ ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" }/></figure>
   <div className="card-body" >
-  <small>Hoodies & Sweaters</small>
-    <h2 id="titleCard" className="card-title">Soft Hoodie!</h2>
-    <small>$200</small>
+  <small>{products.extra.category}</small>
+    <h2 id="titleCard" className="card-title">{products.extra.name}</h2>
+    <small>{products.extra.default_price}</small>
     <small><AiFillStar/></small>
     <div className="card-actions justify-end">
     <small></small>
