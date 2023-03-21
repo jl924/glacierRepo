@@ -1,5 +1,5 @@
 const apiKey = process.env.API_KEY;
-throw new Error(process.env);
+console.error(process.env);
 const headers = { Authorization: apiKey };
 import axios from "axios";
 
