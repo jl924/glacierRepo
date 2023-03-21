@@ -6,6 +6,7 @@ import exampleReviews from "../exampleData/reviews.json";
 import ButtonPair from "./sharedComponents/ButtonPair";
 import exampleProduct from "../exampleData/oneProduct.json";
 import NewReviewModal from "./RatingsReviews/NewReviewModal";
+import RatingView from "./sharedComponents/RatingView";
 
 const RatingsReviews = () => {
   useEffect(() => {}, []);
@@ -13,15 +14,31 @@ const RatingsReviews = () => {
   const [reviews, setReviews] = useState(exampleReviews.results);
   const [displayedReviews, setDisplayedReviews] = useState(reviews.slice(0, 2));
   const [product, setProduct] = useState(exampleProduct);
-  const [checked, setChecked] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   function handleAddClick(ev) {
     ev.preventDefault();
-    toggleModal();
+    toggleModal(ev);
   }
 
-  function toggleModal() {
-    setChecked(!checked);
+  const whiteList = ["newReviewModal", "btn-secondary"];
+  function toggleModal(ev) {
+    let onWhitelist = false;
+    whiteList.forEach((allowClass) => {
+      if (Array.from(ev.target.classList).includes(allowClass)) {
+        onWhitelist = true;
+      }
+    });
+    if (onWhitelist) {
+      setVisible(!visible);
+      let currentClasses = Array.from(document.querySelector(".app").classList);
+      if (currentClasses.includes("modalOpen")) {
+        currentClasses.splice(currentClasses.indexOf("modalOpen"), 1);
+      } else {
+        currentClasses.push("modalOpen");
+      }
+      document.querySelector(".app").className = currentClasses.join(" ");
+    }
   }
 
   function handleMoreClick(ev) {
@@ -30,12 +47,12 @@ const RatingsReviews = () => {
   }
 
   return (
-    <div className="mainRatings columns-2 gap-20 lg:container grid mx-auto">
+    <div className="mainRatings columns-2 grid mx-auto">
       <div className="leftReviews left flex flex-col">
         <h4>Ratings & Reviews</h4>
-        <div className="averageAndStars flex">
+        <div className="averageAndStars flex items-center">
           <h1>3.5</h1>
-          <div className="starComponent">*****</div>
+          <RatingView width={94} rating={3.5} />
         </div>
         <RatingsDistributionGraph reviews={reviews} />
         <div>
@@ -47,7 +64,7 @@ const RatingsReviews = () => {
           </div>
         </div>
       </div>
-      <div className="right flex flex-col">
+      <div className="rightReviews right flex flex-col ml-20">
         <ReviewList reviews={displayedReviews} />
         <ButtonPair
           buttons={{
@@ -57,9 +74,10 @@ const RatingsReviews = () => {
         />
       </div>
       <NewReviewModal
-        checked={checked}
+        checked={visible}
         toggleModal={toggleModal}
         name={product.name}
+        hidden={!visible}
       />
     </div>
   );

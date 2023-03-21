@@ -2,18 +2,18 @@ import React from 'react';
 import {AiFillStar} from 'react-icons/ai'
 import './Related.css';
 import Modal from './Related-Modal'
+import RelatedCompare from './Related-Card-Compare'
 
 
 
 
 const RelatedCard = () => {
   return (
-    <div>
+    <div className="relative">
         <input type="checkbox" id="my-modal-4" className="modal-toggle" />
 <label id='modal1' htmlFor="my-modal-4" className="modal cursor-pointer">
   <label id='modal2'className="modal-box relative" htmlFor="">
-    <h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+    <RelatedCompare/>
   </label>
 </label>
       <div className="carousel-item container w-[220px]">

@@ -1,8 +1,11 @@
-// placeholder test
-function sum (a, b) {
-  return a + b;
-};
+import React from 'react';
+import {render, screen} from '@testing-library/react';
+import Header from '../components/Overview/Header';
 
-test('adds 1 + 2 and returns 3', () => {
-  expect(sum(1,2)).toBe(3);
+
+
+test('renders company name correctly', function () {
+  const {getByText} = render(<Header />);
+  let element = getByText('BENJ');
+  expect(element).toBeTruthy();
 });
