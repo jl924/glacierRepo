@@ -8,7 +8,7 @@ import './Related/Related.css';
 import AddCard from './Related/Add-card'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
-import loadCarousel from './Related/RelatedFunc.JS'
+import loadCarousel from './Related/RelatedFunc'
 
 
 
