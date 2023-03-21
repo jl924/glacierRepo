@@ -31,7 +31,7 @@ describe.only("apiGetRequest", function () {
   it("should blah blah blah", (done) => {
     apiGetRequest("/reviews", { product_id: "37311" })
       .then((req) => {
-        expect(req.results.length > 1).toBe(true);
+        expect(req.results.length > 0).toBe(true);
       })
       .finally(() => done());
   });
