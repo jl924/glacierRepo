@@ -1,12 +1,15 @@
 import React from 'react';
 import { Carousel } from 'daisyui';
-const Imageslide = ({product, style}) => {
+import { useState } from 'react'
+const Imageslide = ({product, style, expanded, setExpanded}) => {
 
   var thumbCount = 0
   var mainCount = 0
 
   const thumbImgs = []
   const mainImgs = []
+
+
 
   if (product) {
     style.photos.forEach((img) => {
@@ -18,10 +21,35 @@ const Imageslide = ({product, style}) => {
    var thumbSelection = `carousel carousel-vertical max-h-[410px] w-[55px] thumbnails`
 
   return (
+  expanded ? (
+    <div onClick={()=>{setExpanded(false)}} className="carousel w-full h-full hover:cursor-zoom-in h-[550px]">
+
+    {mainImgs.map((img, index) => {
+      const prev = index === 0 ? mainImgs.length : index;
+      const next = index === mainImgs.length - 1 ? 0 : index + 1;
+
+      return (
+        <div key={index} id={"slide" + (index + 1)} className="carousel-item relative w-full">
+        <img src={img} className="w-full" />
+        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+
+          <a href={"#slide" + (prev)} className="btn btn-circle ml-[100px]" >❮</a>
+
+          <a href={"#slide" + (next + 1)} className="btn btn-circle ml-[100px]" >❯</a>
+
+        </div>
+      </div>
+      )
+    })}
+
+    </div>
+  ) : (
+
+
   <div className="h-full w-full">
 
     {/*--------MAIN IMAGES--------*/}
-  <div className="carousel w-full h-full">
+  <div onClick={()=>{setExpanded(true)}} className="carousel w-full h-full hover:cursor-zoom-in">
 
     {mainImgs.map((img, index) => {
       const prev = index === 0 ? mainImgs.length : index;
@@ -81,7 +109,7 @@ const Imageslide = ({product, style}) => {
 </div>
 
 
-  );
+  ));
 }
 
 export default Imageslide;
