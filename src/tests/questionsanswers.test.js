@@ -11,9 +11,6 @@ import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import App from "../components/App.js";
 
-const {handleLoadMoreAnswers} = require('../components/QuestionsAnswers.js');
-const {handleQuestionDisplay} = require('../components/QuestionsAnswers/Question.js');
-
 //Review jest-dom test functions like toBeInTheDocument(). Currently not working.
 let getByText, queryAllByText, container;
 describe('Questions Component', function () {
