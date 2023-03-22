@@ -32,6 +32,7 @@ const Related = () => {
       for(var i = 0; i<productList.length; i++) {
         productList[i].extra = result[1][i]
       }
+      // console.log(productList)
       setProduct(productList)
     })
 
@@ -48,7 +49,7 @@ const Related = () => {
     <button id='left-related' type='button' onClick={()=>document.getElementById('caro-related').scrollLeft -= 500}>❮</button>
     <div id='caro-related' className="carousel carousel-center max-w-4xl p-4 space-x-2">
       {product.map((single) => (
-        <RelatedCard products={single}/>
+        <RelatedCard products={single} key={single.product_id}/>
       ))}
     </div>
     <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}}>❯</button>

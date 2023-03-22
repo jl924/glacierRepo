@@ -40,6 +40,17 @@ const headers = {
 
   }, [selectedProduct]);
 
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div className="relative">
     <div className="carousel-item container w-[220px]">

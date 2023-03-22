@@ -23,7 +23,6 @@ const RelatedCard = ({products}) => {
   const dispatch = useDispatch();
 
     let getProductById = (id) => {
-      console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`)
       return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, { headers })
         .then(response => {
           return response.data
@@ -32,7 +31,7 @@ const RelatedCard = ({products}) => {
           console.log(err)
         })
     }
-    console.log("getProductById", getProductById)
+    // console.log("getProductById", getProductById)
 
 
   return (
@@ -51,7 +50,7 @@ const RelatedCard = ({products}) => {
   <div className="card-body" id={products.product_id} onClick={
       ()=>getProductById(products.product_id)
       .then((response)=> {
-        console.log('then response after req',response)
+        // console.log('then response after req',response)
         dispatch(selectedProductSlice.actions.selectedProductRequestSuccess(response))
       })}>
   <small>{products.extra.category || " "}</small>
