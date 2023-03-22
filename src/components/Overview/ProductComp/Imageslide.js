@@ -37,7 +37,6 @@ const Imageslide = ({product, style, expanded, setExpanded}) => {
     return (
       <div
         key={index}
-        id={"slide" + (index + 1)}
         className={`carousel-item absolute inset-0 w-[1000px] transition duration-500  ${
           currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"
         }`}
@@ -59,7 +58,7 @@ const Imageslide = ({product, style, expanded, setExpanded}) => {
             const next = index === mainImgs.length - 1 ? 0 : index + 1;
 
             return (
-              <div key={index} id={"slide" + (index + 1)} className={`carousel-item absolute w-full h-full transition duration-500 ${currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
+              <div key={index} className={`carousel-item absolute w-full h-full transition duration-500 ${currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
                 <img onClick={() => { setExpanded(true) }} src={img} className="w-full h-full object-cover" />
                 <div className="absolute flex justify-between left-5 right-5 top-1/2">
                   <button onClick={() => handleNavigationClick(prev)} className="btn btn-circle ml-[100px]">❮</button>
@@ -83,12 +82,13 @@ const Imageslide = ({product, style, expanded, setExpanded}) => {
 
             {thumbImgs.map((img, index) => {
             thumbCount++
+            var count = thumbCount
              //TODO - UNDERLINE IMAGE THAT IS SELECTED
              return(
              <div key={index} className="carousel-item relative mb-[10px]">
-               <a className="h-[50px] w-[50px]" href={"#slide" + thumbCount}>
+               <button onClick={() => handleNavigationClick(count-1)} className="h-[50px] w-[50px]">
                  <img className="h-[50px] w-[50px] mb-[10px] border-2 border-black" src={img} />
-               </a>
+               </button>
              </div>
              )
             })}
