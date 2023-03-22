@@ -38,7 +38,7 @@ const headers = {
       setAddImage(res.results[0].photos[0].thumbnail_url)
     })
 
-  }, []);
+  }, [selectedProduct]);
 
   return (
     <div className="relative">
