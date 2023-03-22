@@ -5,14 +5,17 @@ import { AiOutlineStar } from 'react-icons/ai';
 import StyleBtn from './StyleBtn'
 import Form from './Form'
 import RatingView from '../../../components/sharedComponents/RatingView'
-
+import helpers from '../reqHelpers'
+const getRatingById = helpers.getRatingById
 const Selection = ({info, product, setStyle, style }) => {
 
-  const [imgs, setImgs] = useState([])
+  const[imgs, setImgs] = useState([])
+  const[rating, setRating] = useState([])
+  const[selectedId, setSelectedId] = useState(0)
 
   let handleStyleClick = (id) => {
-    console.log(id)
     setStyle(product.results[id])
+    setSelectedId(id)
   }
 
   useEffect(() => {
@@ -24,14 +27,28 @@ const Selection = ({info, product, setStyle, style }) => {
     setImgs(productImgs)
     }
   }, [product])
-  console.log(style)
+
+  useEffect(() => {
+    if(product) {
+      getRatingById(product.product_id)
+      .then((res) => {
+        var count = 0
+        var rating = 0
+        res.results.forEach((review) => {
+          count++
+          rating += review.rating
+        })
+        setRating(rating/count)
+      })
+    }
+  })
 
   return (
     <div className="w-[450px] ml-[20px]">
       <div className="flex flex-col">
 
         <div className="flex mb-[5px] items-center">
-          <RatingView width={75} numStars={5} rating={1.5} />
+          <RatingView width={75} numStars={5} rating={rating} />
           <a className="text-gray-400 underline ml-[20px]">Read all reviews</a>
         </div>
 
@@ -52,7 +69,7 @@ const Selection = ({info, product, setStyle, style }) => {
           {imgs.map((style) =>
             {
               return (
-              <StyleBtn key={style.id} style={style} handleStyleClick={handleStyleClick}/>
+              <StyleBtn key={style.id} style={style} selectedId={selectedId} handleStyleClick={handleStyleClick}/>
             )}
           )}
         </div>
