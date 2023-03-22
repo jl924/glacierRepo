@@ -1,14 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { sortingSet } from "../../reducers/ratingsReviewsSlice";
 
 const ReviewListHeader = ({}) => {
   const { meta } = useSelector((state) => state.ratingsReviewsReducer);
+  const dispatch = useDispatch();
+
+  const handleSortingChange = (ev) => {
+    if (ev.target && ev.target.value) {
+      dispatch(sortingSet({ sorting: ev.target.value }));
+    }
+  };
+
   return (
     <div className="header">
       <h3>
         {meta.numReviews} Reviews, sorted by{" "}
-        <select className="underline bg-base-100">
-          <option value="relevance">relevance</option>
+        <select
+          className="underline bg-base-100"
+          onChange={handleSortingChange}
+        >
+          <option value="relevant">relevance</option>
+          <option value="helpful">helpfulness</option>
+          <option value="newest">newest</option>
         </select>
       </h3>
     </div>
