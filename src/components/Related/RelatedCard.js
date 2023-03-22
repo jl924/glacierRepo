@@ -49,7 +49,7 @@ const RelatedCard = ({products}) => {
   <figure id='cardImgContainter'><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
  ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" }/></figure>
   <div className="card-body" id={products.product_id} onClick={
-      ()=>getProductById(37317)
+      ()=>getProductById(products.product_id)
       .then((response)=> {
         console.log('then response after req',response)
         dispatch(selectedProductSlice.actions.selectedProductRequestSuccess(response))
