@@ -7,6 +7,7 @@ import {
   ratingsReviewsSuccess,
   metaRequest,
   metaSuccess,
+  reRenderSuccess,
 } from "../reducers/ratingsReviewsSlice.js";
 import App from "./App";
 
@@ -16,16 +17,22 @@ export default function AppLoader() {
     (state) => state.selectedProductReducer.selectedProduct
   );
   const sorting = useSelector((state) => state.ratingsReviewsReducer.sorting);
+  const reRender = useSelector((state) => state.ratingsReviewsReducer.reRender);
   useEffect(() => {
-    dispatch(ratingsReviewsRequest());
-    if (product && product.id) {
-      apiGetRequest("/reviews", { sort: sorting, product_id: product.id }).then(
-        (res) => {
+    if (reRender === true) {
+      dispatch(reRenderSuccess());
+    } else {
+      dispatch(ratingsReviewsRequest());
+      if (product && product.id) {
+        apiGetRequest("/reviews", {
+          sort: sorting,
+          product_id: product.id,
+        }).then((res) => {
           dispatch(ratingsReviewsSuccess({ ratingsReviews: res.results }));
-        }
-      );
+        });
+      }
     }
-  }, [product, sorting]);
+  }, [product, sorting, reRender]);
 
   useEffect(() => {
     dispatch(metaRequest());
