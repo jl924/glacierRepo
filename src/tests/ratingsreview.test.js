@@ -23,7 +23,7 @@ describe("RatingsReview", function () {
     container = rendered.container;
   });
 
-  it("should render 5 reviews", () => {
+  it("should render 2 reviews", () => {
     //const { queryAllByText, container } = render(<RatingsReviews />);
     expect(container.querySelectorAll(".review").length).toBe(2);
   });
