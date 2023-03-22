@@ -1,10 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { HorizontalBarWithLabels } from "./HorizontalBarWithLabels";
+import {
+  addRatingFilter,
+  removeRatingFilter,
+} from "../../reducers/ratingsReviewsSlice.js";
 
 const RatingsDistributionGraph = ({}) => {
   const meta = useSelector((state) => state.ratingsReviewsReducer.meta);
   const { recommend, ratings } = meta;
+  const ratingFilter = useSelector(
+    (state) => state.ratingsReviewsReducer.ratingFilter
+  );
+  const dispatch = useDispatch();
+
+  function handleRatingClick(rating) {
+    console.log("called with ", rating);
+    if (ratingFilter.includes(rating)) {
+      dispatch(removeRatingFilter({ rating }));
+    } else {
+      dispatch(addRatingFilter({ rating }));
+    }
+  }
 
   return (
     <div className="graph">
@@ -15,6 +32,10 @@ const RatingsDistributionGraph = ({}) => {
         Object.keys(ratings)
           .reverse()
           .map((k) => {
+            let selected = false;
+            if (ratingFilter.length !== 0 && ratingFilter.includes(k)) {
+              selected = true;
+            }
             return (
               <HorizontalBarWithLabels
                 labels={[
@@ -22,7 +43,9 @@ const RatingsDistributionGraph = ({}) => {
                   `(${ratings[k]})`,
                 ]}
                 key={k}
+                handleRatingClick={() => handleRatingClick(k)}
                 percentage={ratings[k] / meta.max}
+                selected={selected}
               />
             );
           })}

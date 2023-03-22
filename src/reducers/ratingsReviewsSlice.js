@@ -2,9 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sorting: "relevant",
+  showModal: false,
+  showMore: false,
   reRender: false,
   reviewsLoading: false,
   metaLoading: false,
+  ratingFilter: [],
   meta: [],
   ratingsReviews: [
     {
@@ -113,6 +116,12 @@ const ratingsReviewsSlice = createSlice({
     reRenderSuccess(state) {
       state.reRender = false;
     },
+    toggleShowMore(state) {
+      state.showMore = !state.showMore;
+    },
+    toggleModal(state) {
+      state.showModal = !state.showModal;
+    },
     incrementHelpfulness(state, action) {
       var i;
       const review = state.ratingsReviews.filter((review, index) => {
@@ -133,6 +142,13 @@ const ratingsReviewsSlice = createSlice({
       });
       state.ratingsReviews.splice(i, 1);
     },
+    addRatingFilter(state, action) {
+      state.ratingFilter.push(action.payload.rating);
+    },
+    removeRatingFilter(state, action) {
+      const index = state.ratingFilter.indexOf(action.payload.rating);
+      if (index !== -1) state.ratingFilter.splice(index, 1);
+    },
   },
 });
 
@@ -146,5 +162,9 @@ export const {
   reRenderRequest,
   incrementHelpfulness,
   removeResult,
+  toggleModal,
+  toggleShowMore,
+  addRatingFilter,
+  removeRatingFilter,
 } = ratingsReviewsSlice.actions;
 export default ratingsReviewsSlice.reducer;
