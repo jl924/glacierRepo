@@ -33,7 +33,7 @@ const selectedProductSlice = createSlice({
       state.isLoading = true;
     },
     selectedProductRequestSuccess(state, action) {
-      state.selectedProduct = action.payload.selectedProduct;
+      state.selectedProduct = action.payload
       state.isLoading = false;
     },
   },

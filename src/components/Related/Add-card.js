@@ -31,10 +31,10 @@ const headers = {
   }
 
   useEffect(() => {
-    console.log('USEFFECT IS WORKING')
+    // console.log('USEFFECT IS WORKING')
     getProductById(selectedProduct.id)
     .then((res) => {
-      console.log(res,'RESULTS IN ADD')
+      // console.log(res,'RESULTS IN ADD')
       setAddImage(res.results[0].photos[0].thumbnail_url)
     })
 
