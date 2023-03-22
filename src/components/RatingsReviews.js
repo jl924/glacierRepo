@@ -39,6 +39,7 @@ const RatingsReviews = () => {
       document.querySelector(".app").className = currentClasses.join(" ");
     }
   }
+  console.log(meta.characteristics);
 
   return (
     <div className="mainRatings grid mx-auto">
@@ -52,7 +53,7 @@ const RatingsReviews = () => {
         {meta.characteristics &&
           Object.keys(meta.characteristics).map((characteristic) => (
             <RatingsSlider
-              percentage={meta.characteristics[characteristic] / 5}
+              percentage={(meta.characteristics[characteristic].value - 1) / 4}
               title={characteristic}
             />
           ))}

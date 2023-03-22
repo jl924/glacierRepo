@@ -7,9 +7,9 @@ const getReviewListItems = (reviews) => {
   const ret = [];
   reviews.forEach((review) => {
     ret.push(
-      <ReviewListItem key={review.summary} review={review} />,
+      <ReviewListItem key={review.review_id} review={review} />,
       <div
-        key={review.summary + "n"}
+        key={review.review_id + "n"}
         className="divider before:bg-primary after:bg-secondary"
       />
     );

@@ -9,7 +9,7 @@ const ReviewHeader = ({ review }) => {
         <RatingView width={94} rating={review.rating} />
       </div>
       {/* <RatingView style={{ float: "left" }} rating={3.5} width={108} /> */}
-      <UserDateInfo />
+      <UserDateInfo review={review} />
     </div>
   );
 };
