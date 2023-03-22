@@ -8,7 +8,7 @@ import ButtonPair from "./sharedComponents/ButtonPair";
 import exampleProduct from "../exampleData/oneProduct.json";
 import NewReviewModal from "./RatingsReviews/NewReviewModal";
 import RatingView from "./sharedComponents/RatingView";
-import RatingsReviewsLoader from "./RatingsReviews/RatingsReviewsLoader.js";
+import { RatingsSlider } from "./RatingsReviews/RatingsSlider";
 
 const RatingsReviews = () => {
   const reviews = useSelector(
@@ -41,24 +41,23 @@ const RatingsReviews = () => {
   }
 
   return (
-    <div className="mainRatings columns-2 grid mx-auto">
+    <div className="mainRatings grid mx-auto">
       <div className="leftReviews left flex flex-col align-top">
         <h4>Ratings & Reviews</h4>
         <div className="averageAndStars flex items-start h-[80px]">
-          <h1 className="leading-[60px]">{meta.averageReviews}</h1>
-          <RatingView width={94} rating={meta.averageReviews} />
+          <h1 className="leading-[54px]">{meta.averageReviews}</h1>
+          <RatingView width={108} rating={meta.averageReviews} numStars={5} />
         </div>
         <RatingsDistributionGraph reviews={reviews} />
-        <div>
-          <span>Comfort</span>
-          <div>Slider Component</div>
-          <div>
-            <span>Poor</span>
-            <span>Perfect</span>
-          </div>
-        </div>
+        {meta.characteristics &&
+          Object.keys(meta.characteristics).map((characteristic) => (
+            <RatingsSlider
+              percentage={meta.characteristics[characteristic] / 5}
+              title={characteristic}
+            />
+          ))}
       </div>
-      <div className="rightReviews right flex flex-col ml-20">
+      <div className="rightReviews right flex flex-col">
         <ReviewList />
         <NewReviewModal
           checked={visible}

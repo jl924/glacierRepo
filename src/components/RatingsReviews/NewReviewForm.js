@@ -49,7 +49,7 @@ const NewReviewForm = () => {
           /* and other goodies */
         }) => (
           <form>
-            <div class="rating rating-lg">
+            <div className="rating rating-lg">
               {ratings.map((rating) => (
                 <input
                   key={rating}
