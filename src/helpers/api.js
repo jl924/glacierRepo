@@ -29,10 +29,10 @@ const apiGetRequest = (
   page = 1
 ) => {
   queryParams = {
-    ...queryParams,
     count: 1000,
     page: page,
     sort,
+    ...queryParams,
   };
   const url = buildUrl(endPoint, queryParams);
   return axios({

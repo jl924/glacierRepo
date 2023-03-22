@@ -13,7 +13,13 @@ const Overview = (store) => {
 
   const selectedProduct = useSelector((state) => state.selectedProductReducer.selectedProduct)
 
-  const productId = selectedProduct.id || 37311;
+  var productId = 37311
+
+  if(selectedProduct) {
+    productId = selectedProduct.id
+  }
+
+
 
   const[info, setInfo] = useState([])
 

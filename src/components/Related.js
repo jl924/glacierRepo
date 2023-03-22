@@ -22,11 +22,11 @@ const Related = () => {
 
 
   useEffect(() => {
-    console.log('useeffect has started')
-    console.log('what going inside the then', selectedProduct.id)
+    console.log('insde the local storage', { ...localStorage })
+    // console.log('what going inside the then', selectedProduct.id)
     loadCarousel(selectedProduct.id)
     .then((result) => {
-      console.log('useeffect has reached then')
+      // console.log('useeffect has reached then')
       var productList = result[0]
       for(var i = 0; i<productList.length; i++) {
         productList[i].extra = result[1][i]
@@ -49,7 +49,6 @@ const Related = () => {
       {product.map((single) => (
         <RelatedCard products={single}/>
       ))}
-
     </div>
     <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}}>❯</button>
 </div>
