@@ -17,7 +17,7 @@ const QuestionsAnswers = () => {
     (state => state.selectedProductReducer.selectedProduct)
   );
 
-  console.log(questions);
+  // console.log(questions);
 
   const [loadMore, setLoadMore] = useState(false);
   const [questionForm, setQuestionForm] = useState(false);
