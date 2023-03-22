@@ -43,6 +43,7 @@ const Selection = ({info, product, setStyle, style }) => {
     }
   })
 
+
   return (
     <div className="w-[450px] ml-[20px]">
       <div className="flex flex-col">

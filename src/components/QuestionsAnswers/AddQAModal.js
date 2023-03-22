@@ -3,7 +3,9 @@ import AddAnswerForm from './AddAnswerForm.js';
 import AddQuestionForm from './AddQuestionForm.js';
 import './QACss/QAModal.css';
 
-const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm}) => {
+const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, product, exampleQuestion}) => {
+
+  let question = exampleQuestion.results[0].question_body;
 
   var handleClosingModal = (e) => {
     e.preventDefault();
@@ -15,8 +17,8 @@ const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm}) 
     <div className='QAmodal'>
       <div className='QAmodalcontent container mx-auto py-3'>
         <a href='' className='float-right' onClick={handleClosingModal}>&times;</a>
-        {answerForm ? <AddAnswerForm /> : null}
-        {questionForm ? <AddQuestionForm /> : null}
+        {answerForm ? <AddAnswerForm product={product} question={question} /> : null}
+        {questionForm ? <AddQuestionForm product={product} /> : null}
       </div>
     </div>
   );

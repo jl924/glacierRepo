@@ -7,12 +7,13 @@ import helpers from './reqHelpers.js'
 
 const getProductById = helpers.getProductById
 
-const Product = ({info}) => {
+const Product = ({info, productId}) => {
   const [product, setProduct] = useState(null);
   const [style, setStyle] = useState({})
+  const[expanded, setExpanded] = useState(false)
 
   useEffect(() => {
-    getProductById(37311)
+    getProductById(productId)
       .then(product => {
         setProduct(product)
         setStyle(product.results[0])
@@ -23,10 +24,16 @@ const Product = ({info}) => {
   }, [])
 
   return (
-    <div className="flex flex-row box-border w-full h-[550px]">
-      <Imageslide product={product} style={style}/>
-      <Selection style={style} info={info} product={product} setStyle={setStyle}/>
-    </div>
+    expanded ? (
+      <div className="flex flex-row box-border w-full h-[600px]">
+        <Imageslide expanded={expanded} setExpanded={setExpanded} product={product} style={style}/>
+      </div>
+    ) : (
+      <div className="flex flex-row box-border w-full h-[550px]">
+        <Imageslide expanded={expanded} setExpanded={setExpanded} product={product} style={style}/>
+        <Selection style={style} info={info} product={product} setStyle={setStyle}/>
+      </div>
+    )
   );
 }
 

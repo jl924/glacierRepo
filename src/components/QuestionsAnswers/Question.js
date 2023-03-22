@@ -44,7 +44,10 @@ const Question = ({exampleQuestion, loadMore, setLoadMore, handleAddAnswer}) => 
           handleAddAnswer={handleAddAnswer} />
         </span>
       </h3>
-      {displayAnswers ? <Answer answers={question.answers} QaStatus={QaStatus} loadMore={loadMore} firstTwo={firstTwo} /> : null}
+      {displayAnswers ? <Answer answers={question.answers}
+      QaStatus={QaStatus}
+      loadMore={loadMore}
+      firstTwo={firstTwo} /> : null}
     </div>
   );
 
