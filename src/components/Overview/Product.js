@@ -26,12 +26,12 @@ const Product = ({info, productId}) => {
   return (
     expanded ? (
       <div className="flex flex-row box-border w-full h-[600px]">
-        <Imageslide expanded={expanded} setExpanded={setExpanded} product={product} style={style}/>
+        <Imageslide expanded={expanded} setExpanded={setExpanded} product={product} sty={style}/>
       </div>
     ) : (
       <div className="flex flex-row box-border w-full h-[550px]">
-        <Imageslide expanded={expanded} setExpanded={setExpanded} product={product} style={style}/>
-        <Selection style={style} info={info} product={product} setStyle={setStyle}/>
+        <Imageslide expanded={expanded} setExpanded={setExpanded} product={product} sty={style}/>
+        <Selection sty={style} info={info} product={product} setStyle={setStyle}/>
       </div>
     )
   );
