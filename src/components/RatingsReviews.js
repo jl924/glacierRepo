@@ -52,7 +52,8 @@ const RatingsReviews = () => {
         {meta.characteristics &&
           Object.keys(meta.characteristics).map((characteristic) => (
             <RatingsSlider
-              percentage={meta.characteristics[characteristic] / 5}
+              key={characteristic}
+              percentage={(meta.characteristics[characteristic].value - 1) / 4}
               title={characteristic}
             />
           ))}

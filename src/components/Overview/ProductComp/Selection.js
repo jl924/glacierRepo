@@ -53,8 +53,8 @@ const Selection = ({info, product, setStyle, style }) => {
           <a className="text-gray-400 underline ml-[20px]">Read all reviews</a>
         </div>
 
-        <p className="text-gray-400">{info.category}</p>
-        <p className="text-4xl text-gray-500">{info.name}</p>
+        <p className="text-gray-400">{info ? (info.category) : (<p></p>)}</p>
+        <p className="text-4xl text-gray-500">{info ? (info.name) : (<p></p>)}</p>
         <p>${style.original_price}</p>
       </div>
       <div>
