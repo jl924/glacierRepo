@@ -5,16 +5,22 @@ import HelpfulQA from './HelpfulQA.js';
 
 // Question component to house:
 // Answer and HelpfulStatus components
-const Question = ({exampleQuestion, loadMore, setLoadMore, handleAddAnswer}) => {
+const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) => {
 
-  const [displayAnswers, setDisplayAnswers] = useState(false);
-
-  let question = exampleQuestion.results[0];
-  let firstTwo = Object.keys(question.answers).slice(0,2);
+  const [displayAnswers, setDisplayAnswers] = useState();
 
 
-  let helpfulQuestionCount = {
-    helpfulCount: question.question_helpfulness
+  console.log("DOES THIS CHANGE", questions);
+
+  let getFirstTwo = (question) => {
+    let firstTwo = Object.keys(question.answers).slice(0,2);
+    return firstTwo;
+  }
+
+  let handleHelpfulCount = (question) => {
+    return {
+      helpfulCount: question.question_helpfulness
+    };
   };
 
   var handleQuestionHelpfulClick = () => {
@@ -25,34 +31,39 @@ const Question = ({exampleQuestion, loadMore, setLoadMore, handleAddAnswer}) => 
 
   };
 
-  var handleQuestionDisplay = (e) => {
+  var handleQuestionDisplay = (e, index) => {
     e.preventDefault();
     setDisplayAnswers(!displayAnswers);
     setLoadMore(false);
   };
 
-  // need Add Answer button next to HelpFulStatus
   return (
-    <div className='question py-10'>
-      <h3>
-        <span className='QAheader'>Q: </span>
-        <a className ='questionHeader' onClick={handleQuestionDisplay} href=''>{question.question_body}</a>
-        <span className='float-right'>
-          <HelpfulQA
-          handleQuestionHelpfulClick={handleQuestionHelpfulClick}
-          data={helpfulQuestionCount}
-          handleAddAnswer={handleAddAnswer} />
-        </span>
-      </h3>
-      {displayAnswers ? <Answer answers={question.answers}
-      QaStatus={QaStatus}
-      loadMore={loadMore}
-      firstTwo={firstTwo} /> : null}
+    <div>
+      {questions.map((question, index) => {
+        return (
+          <div className='question py-10'>
+            <h3>
+              <span className='QAheader'>Q: </span>
+              <a key={index} className ='questionHeader' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
+              <span className='float-right'>
+                <HelpfulQA
+                handleQuestionHelpfulClick={handleQuestionHelpfulClick}
+                data={handleHelpfulCount(question)}
+                handleAddAnswer={handleAddAnswer} />
+              </span>
+             </h3>
+              <Answer answers={question.answers}
+              QaStatus={QaStatus}
+              loadMore={loadMore}
+              firstTwo={getFirstTwo(question)}
+              setLoadMore={setLoadMore}
+              displayAnswers={displayAnswers} />
+          </div>
+        )
+      })}
     </div>
   );
 
-  module.exports.handleQuestionDisplay = handleQuestionDisplay;
-  module.exports.displayAnswers = displayAnswers;
 };
 
 export default Question;
