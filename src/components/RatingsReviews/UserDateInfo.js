@@ -3,7 +3,6 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import moment from "moment";
 
 const UserDateInfo = ({ review }) => {
-  console.log(review);
   return (
     <div className="userDateCheck inline-flex">
       <AiFillCheckCircle />

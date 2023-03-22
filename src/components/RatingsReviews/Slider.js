@@ -6,8 +6,9 @@ export default function Slider({ numBlocks = 3, percentage }) {
   const eachWidth = maxWidth / numBlocks;
   return (
     <div className="w-[240px] h-[8px] flex flex-row justify-between">
-      {new Array(numBlocks).fill(10).map(() => (
+      {new Array(numBlocks).fill(10).map((_, i) => (
         <div
+          key={i * eachWidth}
           style={{ width: eachWidth + "px" }}
           className="bg-base-200 h-full"
         ></div>

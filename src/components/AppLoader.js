@@ -21,7 +21,6 @@ export default function AppLoader() {
     if (product && product.id) {
       apiGetRequest("/reviews", { sort: sorting, product_id: product.id }).then(
         (res) => {
-          console.log("apploader 24", res.results);
           dispatch(ratingsReviewsSuccess({ ratingsReviews: res.results }));
         }
       );

@@ -18,7 +18,9 @@ export const RatingsSlider = ({ title = "Comfort", percentage }) => {
       <Slider numBlocks={labels.length === 3 ? 3 : 4} percentage={percentage} />
       <div className="w-[240px] flex justify-between">
         {labels.map((label) => (
-          <span className="text-sm">{label}</span>
+          <span key={label} className="text-sm">
+            {label}
+          </span>
         ))}
       </div>
     </div>
