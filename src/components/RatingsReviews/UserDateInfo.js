@@ -1,11 +1,14 @@
 import React from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
+import moment from "moment";
 
-const UserDateInfo = () => {
+const UserDateInfo = ({ review }) => {
   return (
-    <div className="userDateCheck ">
+    <div className="userDateCheck inline-flex">
       <AiFillCheckCircle />
-      <a href="#">User1234, January 1, 2019</a>
+      <a href="#">{`${review.reviewer_name}, ${moment(review.date).format(
+        "MMMM D, YYYY"
+      )}`}</a>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  sorting: "relevant",
   reviewsLoading: false,
   metaLoading: false,
   meta: [],
@@ -102,6 +103,9 @@ const ratingsReviewsSlice = createSlice({
       state.metaLoading = true;
       state.meta = action.payload.meta;
     },
+    sortingSet(state, action) {
+      state.sorting = action.payload.sorting;
+    },
   },
 });
 
@@ -110,5 +114,6 @@ export const {
   ratingsReviewsSuccess,
   metaRequest,
   metaSuccess,
+  sortingSet,
 } = ratingsReviewsSlice.actions;
 export default ratingsReviewsSlice.reducer;
