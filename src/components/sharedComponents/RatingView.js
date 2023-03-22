@@ -7,6 +7,9 @@ const RatingView = ({
   width = 200,
   size = "lg",
 }) => {
+  rating =
+    Math.floor(rating) +
+    Math.floor((rating - Math.floor(rating)) / 0.25) * 0.25;
   const starLen = (width - 8) / numStars;
   const defaultOffset = width - 8 - starLen * rating; // 192.5 - 38.4 * rating;
   const offset = defaultOffset * ((width - 8) / (numStars * starLen));

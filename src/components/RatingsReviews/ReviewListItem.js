@@ -21,7 +21,7 @@ const ReviewListItem = ({ review }) => {
         handleHelpfulClick={handleHelpfulClick}
         handleReportClick={handleReportClick}
         messageType={"review"}
-        data={{ yesCount: review.helpfulness }}
+        data={{ helpfulCount: review.helpfulness }}
       />
     </div>
   );
