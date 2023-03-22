@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const LoadMoreAnswers = ({exampleQuestion, handleLoadMoreAnswers}) => {
+const LoadMoreAnswers = ({handleLoadMoreAnswers}) => {
 
   return (
     <span className='font-bold px-4'>

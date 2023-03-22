@@ -1,32 +1,50 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import SearchQA from './QuestionsAnswers/SearchQA.js';
 import Question from './QuestionsAnswers/Question.js';
 import exampleQuestion from '../exampleData/questionsForOneProduct.json';
 import ButtonPair from './sharedComponents/ButtonPair.js';
-import LoadMoreAnswers from './QuestionsAnswers/LoadMoreAnswers.js';
 import AddQAModal from './QuestionsAnswers/AddQAModal.js';
+import questionsAnswersSlice from '../reducers/questionsAnswersSlice.js';
+import axios from 'axios';
 
 const QuestionsAnswers = () => {
 
-  // const questions = useSelector(
-  //   (state) => state.questionsAnswersReducer.questionsAnswers
-  // );
+  const token = process.env.API_KEY;
+
+  const headers = {
+    'Authorization': token
+  };
+
+  var getQuestionsById = (id) => {
+     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${id}`, {headers})
+    .then((response) => {
+      return response.data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
 
   const product = useSelector(
     (state => state.selectedProductReducer.selectedProduct)
   );
 
-  // console.log(questions);
+  const questions = useSelector(
+    (state) => state.questionsAnswersReducer.questionsAnswers
+  );
+
+  // const dispatch = useDispatch();
+  // // dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
+  // useEffect(() => {
+  //   getQuestionsById(product.id).then(response => {
+  //     dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess(response.results));
+  //   });
+  // }, [product]);
 
   const [loadMore, setLoadMore] = useState(false);
   const [questionForm, setQuestionForm] = useState(false);
   const [answerForm, setAnswerForm] = useState(false);
-
-  var handleLoadMoreAnswers = (e) => {
-    e.preventDefault();
-    setLoadMore(true);
-  };
 
   var handleAddQuestionClick = () => {
     setQuestionForm(true);
@@ -46,14 +64,14 @@ const QuestionsAnswers = () => {
     <>
       <div className='container mx-auto border text-black-700 text-left bg-white-400 px-4 py-2'>
         <h4 className='Q&A-heading'>Questions & Answers</h4>
-        <SearchQA />
+        <SearchQA questions={questions} />
         <div>
-          <Question exampleQuestion={exampleQuestion}
+          <Question questions={questions}
           loadMore={loadMore}
           setLoadMore={setLoadMore}
-          handleAddAnswer={handleAddAnswer}/>
+          handleAddAnswer={handleAddAnswer}
+          product={product} />
         </div>
-        <LoadMoreAnswers exampleQuestion={exampleQuestion} handleLoadMoreAnswers={handleLoadMoreAnswers} />
         <ButtonPair
           buttons={{
             ["More Answered Questions"]: handleMoreQuestionsClick,
@@ -76,8 +94,6 @@ const QuestionsAnswers = () => {
     </>
 
   );
-
-  module.exports.handleLoadMoreAnswers = handleLoadMoreAnswers;
 }
 
 export default QuestionsAnswers;
