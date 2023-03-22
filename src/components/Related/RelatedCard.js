@@ -40,7 +40,7 @@ const RelatedCard = ({products}) => {
         <input type="checkbox" id={products.product_id} className="modal-toggle" />
 <label id={products.product_id} htmlFor={products.product_id} className="modal cursor-pointer">
   <label id={products.product_id} className="modal-box relative max-w-2xl w-full">
-    <RelatedCompare compare={products}/>
+    <RelatedCompare compare={products} />
   </label>
 </label>
       <div className="carousel-item container w-[250px]">
@@ -54,7 +54,7 @@ const RelatedCard = ({products}) => {
         console.log('then response after req',response)
         dispatch(selectedProductSlice.actions.selectedProductRequestSuccess(response))
       })}>
-  <small>{products.extra.category}</small>
+  <small>{products.extra.category || " "}</small>
     <h2 id="titleCard" className="card-title">{products.extra.name}</h2>
     <small>{products.extra.default_price}</small>
     <small><AiFillStar/></small>
