@@ -22,6 +22,7 @@ const Related = () => {
 
 
   useEffect(() => {
+    localStorage.test = {};
     console.log('insde the local storage', { ...localStorage })
     // console.log('what going inside the then', selectedProduct.id)
     loadCarousel(selectedProduct.id)
