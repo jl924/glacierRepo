@@ -42,7 +42,7 @@ let loadCarousel = (id) => {
   let getInfoByIdRelated = (id) => {
     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/related`, { headers })
       .then((response) => {
-        console.log(response)
+        console.log('related request', response.data)
         for (var i = 0; i<response.data.length;i++) {
 
           styles.push(getProductById(response.data[i]))
@@ -53,7 +53,7 @@ let loadCarousel = (id) => {
       })
       .then((result) => {
         return result;
-        console.log(result, 'result')
+        // console.log(result, 'result')
       })
       .catch(err => {
         console.log(err)

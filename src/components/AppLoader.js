@@ -1,5 +1,5 @@
 import React from "react";
-import { apiGetRequest } from "../../helpers/api.js";
+import { apiGetRequest } from "../helpers/api.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -7,10 +7,10 @@ import {
   ratingsReviewsSuccess,
   metaRequest,
   metaSuccess,
-} from "../../reducers/ratingsReviewsSlice.js";
-import RatingsReviews from "../RatingsReviews.js";
+} from "../reducers/ratingsReviewsSlice.js";
+import App from "./App";
 
-export default function RatingsReviewsLoader() {
+export default function AppLoader() {
   const dispatch = useDispatch();
   dispatch(ratingsReviewsRequest());
   dispatch(metaRequest());
@@ -26,13 +26,17 @@ export default function RatingsReviewsLoader() {
       apiGetRequest("/reviews/meta", { product_id: product.id }).then((res) => {
         let sum = 0;
         let num = 0;
+        let max = 0;
         for (let key in res.ratings) {
           sum += key * res.ratings[key];
           num += parseInt(res.ratings[key]);
+          if (parseInt(res.ratings[key]) > max)
+            max = parseInt(res.ratings[key]);
         }
         const average = sum / num;
         res.numReviews = num;
-        res.averageReviews = Math.floor(average * 100) / 100;
+        res.averageReviews = Math.floor(average * 10) / 10;
+        res.max = max;
         res.recommend = Math.floor(
           (100 * res.recommended.true) /
             (parseInt(res.recommended.true) + parseInt(res.recommended.false))
@@ -42,5 +46,5 @@ export default function RatingsReviewsLoader() {
     }
   }, [product]);
 
-  return <RatingsReviews />;
+  return <App />;
 }

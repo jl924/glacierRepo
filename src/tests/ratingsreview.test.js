@@ -24,7 +24,11 @@ describe("RatingsReview", function () {
   });
 
   it("should render 2 reviews", () => {
-    //const { queryAllByText, container } = render(<RatingsReviews />);
+    const { queryAllByText, container } = render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
     expect(container.querySelectorAll(".review").length).toBe(2);
   });
 });

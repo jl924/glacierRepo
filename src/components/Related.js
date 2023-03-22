@@ -22,17 +22,19 @@ const Related = () => {
 
 
   useEffect(() => {
+    console.log('useeffect has started')
+    console.log('what going inside the then', selectedProduct.id)
     loadCarousel(selectedProduct.id)
     .then((result) => {
+      console.log('useeffect has reached then')
       var productList = result[0]
       for(var i = 0; i<productList.length; i++) {
         productList[i].extra = result[1][i]
       }
-      console.log(productList, 'plese workk')
       setProduct(productList)
     })
 
-  }, []);
+  }, [selectedProduct]);
 
 
 
