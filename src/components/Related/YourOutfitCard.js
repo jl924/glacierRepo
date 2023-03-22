@@ -7,7 +7,7 @@ import {AiFillStar} from 'react-icons/ai'
 
 const YourOutfitCard = () => {
   return (
-    <div class="relative">
+    <div className="relative">
       <div className="carousel-item container w-[220px]">
     <div id="card" className="card w-[220px] card-bordered rounded border-grey">
     <label onClick={() => console.log('clicked')}id='compareBtn' className="btn">X</label>

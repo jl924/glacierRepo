@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import RatingsDistributionGraph from "./RatingsReviews/RatingsDistributionGraph.js";
 import ReviewList from "./RatingsReviews/ReviewList.js";
 import "../styles/RatingsReviews.sass";
@@ -7,19 +8,17 @@ import ButtonPair from "./sharedComponents/ButtonPair";
 import exampleProduct from "../exampleData/oneProduct.json";
 import NewReviewModal from "./RatingsReviews/NewReviewModal";
 import RatingView from "./sharedComponents/RatingView";
+import RatingsReviewsLoader from "./RatingsReviews/RatingsReviewsLoader.js";
 
 const RatingsReviews = () => {
-  useEffect(() => {}, []);
-
-  const [reviews, setReviews] = useState(exampleReviews.results);
-  const [displayedReviews, setDisplayedReviews] = useState(reviews.slice(0, 2));
-  const [product, setProduct] = useState(exampleProduct);
+  const reviews = useSelector(
+    (state) => state.ratingsReviewsReducer.ratingsReviews
+  );
+  const product = useSelector(
+    (state) => state.selectedProductReducer.selectedProduct
+  );
+  const meta = useSelector((state) => state.ratingsReviewsReducer.meta);
   const [visible, setVisible] = useState(false);
-
-  function handleAddClick(ev) {
-    ev.preventDefault();
-    toggleModal(ev);
-  }
 
   const whiteList = ["newReviewModal", "btn-secondary"];
   function toggleModal(ev) {
@@ -41,18 +40,13 @@ const RatingsReviews = () => {
     }
   }
 
-  function handleMoreClick(ev) {
-    ev.preventDefault();
-    console.log(ev.target.textContent);
-  }
-
   return (
     <div className="mainRatings columns-2 grid mx-auto">
-      <div className="leftReviews left flex flex-col">
+      <div className="leftReviews left flex flex-col align-top">
         <h4>Ratings & Reviews</h4>
-        <div className="averageAndStars flex items-center">
-          <h1>3.5</h1>
-          <RatingView width={94} rating={3.5} />
+        <div className="averageAndStars flex items-start h-[80px]">
+          <h1 className="leading-[60px]">{meta.averageReviews}</h1>
+          <RatingView width={94} rating={meta.averageReviews} />
         </div>
         <RatingsDistributionGraph reviews={reviews} />
         <div>
@@ -65,20 +59,14 @@ const RatingsReviews = () => {
         </div>
       </div>
       <div className="rightReviews right flex flex-col ml-20">
-        <ReviewList reviews={displayedReviews} />
-        <ButtonPair
-          buttons={{
-            ["More Reviews"]: handleMoreClick,
-            ["Add a Review"]: handleAddClick,
-          }}
+        <ReviewList />
+        <NewReviewModal
+          checked={visible}
+          toggleModal={toggleModal}
+          name={product.name}
+          hidden={!visible}
         />
       </div>
-      <NewReviewModal
-        checked={visible}
-        toggleModal={toggleModal}
-        name={product.name}
-        hidden={!visible}
-      />
     </div>
   );
 };

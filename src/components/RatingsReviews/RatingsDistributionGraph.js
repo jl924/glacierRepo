@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
 
-const RatingsDistributionGraph = () => {
-  return (
-    <div>100% of reviews recommend this product</div>
-  )
+const RatingsDistributionGraph = ({}) => {
+  const recommend = useSelector(
+    (state) => state.ratingsReviewsReducer.meta.recommend
+  );
+
+  return <div>{recommend || "Loading"}% of reviews recommend this product</div>;
 };
 
 export default RatingsDistributionGraph;

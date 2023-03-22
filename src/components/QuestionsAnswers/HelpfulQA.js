@@ -18,7 +18,7 @@ const HelpfulQA = ({ data, handleHelpfulClick, handleAddAnswer}) => {
         />,
         <AddAnswer
           key={4}
-          handleHelpfulClick={handleAddAnswer}
+          handleAddAnswer={handleAddAnswer}
           className={sharedClasses + " status"}
         />,
       ]}

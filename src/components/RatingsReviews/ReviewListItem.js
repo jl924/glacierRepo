@@ -14,12 +14,14 @@ const ReviewListItem = ({ review }) => {
 
   return (
     <div className="review">
-      <ReviewHeader />
+      <ReviewHeader review={review} />
       <h3 className="bold">{review.summary}</h3>
       <p>{review.body}</p>
       <HelpfulStatus
         handleHelpfulClick={handleHelpfulClick}
         handleReportClick={handleReportClick}
+        messageType={"review"}
+        data={{ yesCount: review.helpfulness }}
       />
     </div>
   );

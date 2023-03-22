@@ -5,7 +5,7 @@ import HelpfulQA from './HelpfulQA.js';
 
 // Question component to house:
 // Answer and HelpfulStatus components
-const Question = ({exampleQuestion, loadMore, setLoadMore}) => {
+const Question = ({exampleQuestion, loadMore, setLoadMore, handleAddAnswer}) => {
 
   const [displayAnswers, setDisplayAnswers] = useState(false);
 
@@ -22,10 +22,6 @@ const Question = ({exampleQuestion, loadMore, setLoadMore}) => {
   };
 
   var handleQuestionReportClick = () => {
-
-  };
-
-  var handleAddAnswer = () => {
 
   };
 
