@@ -29,14 +29,17 @@
 .mainRatings
   grid-template-columns: 30% 70%
   width: 100%
-  .right > *
-    .header
-      h3
-        font-weight: 600
-        margin: 30px 0
-        select
-          outline: 0
-          text-decoration: underline
+  .rightReviews
+    .reviewList::-webkit-scrollbar
+      display: none
+    > *
+      .header
+        h3
+          font-weight: 600
+          margin: 30px 0
+          select
+            outline: 0
+            text-decoration: underline
   .leftReviews > *
     margin-bottom: 20px
     h1
@@ -69,6 +72,8 @@
 .graph
   h2
     margin-bottom: 15px
+  div
+    transition: background-color 0.5s ease-in
 .sliderDisplay > *
   margin-bottom: 5px
 .userDateCheck

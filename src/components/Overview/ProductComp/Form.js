@@ -4,7 +4,7 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../reducers/cartSlice'
 
-const Form = ({ style }) => {
+const Form = ({ sty }) => {
 
 
 
@@ -31,10 +31,10 @@ const Form = ({ style }) => {
   }
 
   let mapSizes = () => {
-    if((Object.keys(style).length)) {
-      return Object.keys(style.skus).map((id, index) => {
-        if(style.skus[id].quantity) {
-          return <option value={style.skus[id].size} key={index}>{style.skus[id].size}</option>
+    if((Object.keys(sty).length)) {
+      return Object.keys(sty.skus).map((id, index) => {
+        if(sty.skus[id].quantity) {
+          return <option value={sty.skus[id].size} key={index}>{sty.skus[id].size}</option>
         } else {
           setOutOfStock(true)
         }
@@ -43,11 +43,11 @@ const Form = ({ style }) => {
   }
 
   let mapQtys = () => {
-    if((Object.keys(style).length)) {
+    if((Object.keys(sty).length)) {
       var qtys = []
       var done = false
-      Object.keys(style.skus).forEach((id, index) => {
-        var sku = style.skus[id]
+      Object.keys(sty.skus).forEach((id, index) => {
+        var sku = sty.skus[id]
         if(sku.size === formData.size && !done) {
           done = true
           for(var i = 1; i < sku.quantity; i++) {
@@ -68,8 +68,12 @@ const Form = ({ style }) => {
 
   let handleSubmit = (e) => {
     e.preventDefault()
-    var item = {Style: style, Size: formData.size, Qty: formData.qty}
-    dispatch(addItem(item))
+    var item = {Style: sty, Size: formData.size, Qty: formData.qty}
+    if (formData.size.length) {
+      dispatch(addItem(item))
+    } else {
+      alert("Please Select a Size!")
+    }
   }
 
   return (
@@ -97,13 +101,13 @@ const Form = ({ style }) => {
       </div>
 
       <div className="flex flex-row mt-[10px] font-bold">
-
-        <button onClick={handleSubmit} className="flex items-center h-[50px] border border-black w-[210px]">
-          <p className="w-[180px] pr-[70px]">ADD TO BAG</p>
-          <p className="font-light text-2xl mb-[4px]">+</p>
-        </button>
-
-        <button className="flex flex-row justify-center items-center border w-[50px] h-[50px] bg-white border border-solid border-black ml-[20px]" onClick={handleFavoriteClick}>
+        {outOfStock ? (<p></p>) : (
+          <button onClick={handleSubmit} className="flex items-center h-[50px] border border-black w-[210px] mr-[20px]">
+            <p className="w-[180px] pr-[70px]">ADD TO BAG</p>
+            <p className="font-light text-2xl mb-[4px]">+</p>
+          </button>
+        )}
+        <button className="flex flex-row justify-center items-center border w-[50px] h-[50px] bg-white border border-solid border-black" onClick={handleFavoriteClick}>
           {starFill ? (
             <AiFillStar className="text-yellow-500 fill-current" />
           ) : (

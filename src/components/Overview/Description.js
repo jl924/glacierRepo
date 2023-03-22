@@ -16,7 +16,7 @@ const Description = ({info}) => {
         {info && info.features ? (
         <div>
           {info.features.map((item, index) =>
-            <p key={index}>{item.feature} : {item.value}</p>
+            <p key={index} className="flex font-bold"><p className="text-green-400 mr-[6px]">✓</p> {item.value} {item.feature}</p>
           )}
         </div>
         ) : (

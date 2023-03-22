@@ -9,6 +9,7 @@ import exampleProduct from "../exampleData/oneProduct.json";
 import NewReviewModal from "./RatingsReviews/NewReviewModal";
 import RatingView from "./sharedComponents/RatingView";
 import { RatingsSlider } from "./RatingsReviews/RatingsSlider";
+import ReviewListHeader from "./RatingsReviews/ReviewListHeader";
 
 const RatingsReviews = () => {
   const reviews = useSelector(
@@ -59,6 +60,7 @@ const RatingsReviews = () => {
           ))}
       </div>
       <div className="rightReviews right flex flex-col">
+        <ReviewListHeader />
         <ReviewList />
         <NewReviewModal
           checked={visible}

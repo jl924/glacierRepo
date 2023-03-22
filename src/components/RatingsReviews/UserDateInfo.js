@@ -6,7 +6,7 @@ const UserDateInfo = ({ review }) => {
   return (
     <div className="userDateCheck inline-flex">
       <AiFillCheckCircle />
-      <a href="#">{`${review.reviewer_name}, ${moment(review.date).format(
+      <a>{`${review.reviewer_name}, ${moment(review.date).format(
         "MMMM D, YYYY"
       )}`}</a>
     </div>
