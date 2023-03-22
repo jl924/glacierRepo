@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  sorting: "relevant",
+  showModal: false,
+  showMore: false,
+  reRender: false,
   reviewsLoading: false,
   metaLoading: false,
+  ratingFilter: [],
   meta: [],
   ratingsReviews: [
     {
@@ -102,6 +107,48 @@ const ratingsReviewsSlice = createSlice({
       state.metaLoading = true;
       state.meta = action.payload.meta;
     },
+    sortingSet(state, action) {
+      state.sorting = action.payload.sorting;
+    },
+    reRenderRequest(state) {
+      state.reRender = true;
+    },
+    reRenderSuccess(state) {
+      state.reRender = false;
+    },
+    toggleShowMore(state) {
+      state.showMore = !state.showMore;
+    },
+    toggleModal(state) {
+      state.showModal = !state.showModal;
+    },
+    incrementHelpfulness(state, action) {
+      var i;
+      const review = state.ratingsReviews.filter((review, index) => {
+        if (review.review_id === action.payload.review_id) {
+          i = index;
+          return true;
+        }
+      })[0];
+      review.helpfulness++;
+      state.ratingsReviews.splice(i, 1, JSON.parse(JSON.stringify(review)));
+    },
+    removeResult(state, action) {
+      var i;
+      state.ratingsReviews.forEach((review, index) => {
+        if (review.review_id === action.payload.review_id) {
+          i = index;
+        }
+      });
+      state.ratingsReviews.splice(i, 1);
+    },
+    addRatingFilter(state, action) {
+      state.ratingFilter.push(action.payload.rating);
+    },
+    removeRatingFilter(state, action) {
+      const index = state.ratingFilter.indexOf(action.payload.rating);
+      if (index !== -1) state.ratingFilter.splice(index, 1);
+    },
   },
 });
 
@@ -110,5 +157,14 @@ export const {
   ratingsReviewsSuccess,
   metaRequest,
   metaSuccess,
+  sortingSet,
+  reRenderSuccess,
+  reRenderRequest,
+  incrementHelpfulness,
+  removeResult,
+  toggleModal,
+  toggleShowMore,
+  addRatingFilter,
+  removeRatingFilter,
 } = ratingsReviewsSlice.actions;
 export default ratingsReviewsSlice.reducer;

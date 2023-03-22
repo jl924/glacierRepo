@@ -16,9 +16,14 @@ const buildUrl = (endPoint = "/", queryParams = {}) => {
   return url;
 };
 
-const axiosRequest = (options) => {
-  let optionsWithDefaults = Object.assign(options, {});
-  return axios(options);
+const axiosRequest = ({ method, data, headers, endPoint, queryParams }) => {
+  const url = buildUrl(endPoint, queryParams);
+  return axios({
+    url,
+    method,
+    data,
+    headers,
+  });
 };
 
 const apiGetRequest = (
@@ -29,17 +34,17 @@ const apiGetRequest = (
   page = 1
 ) => {
   queryParams = {
-    ...queryParams,
     count: 1000,
-    page: page,
+    page,
     sort,
+    ...queryParams,
   };
-  const url = buildUrl(endPoint, queryParams);
-  return axios({
-    url,
+  return axiosRequest({
     method: "GET",
     data,
     headers,
+    endPoint,
+    queryParams,
   }).then((req) => req.data);
 };
 
@@ -50,19 +55,29 @@ const apiPostRequest = (
   sort = "relevant",
   page = 1
 ) => {
-  queryParams = {
-    ...queryParams,
-    count: 1000,
-    page: page,
-    sort,
-  };
-  const url = buildUrl(endPoint, queryParams);
-  return axios({
-    url,
+  return axiosRequest({
     method: "POST",
     data: body,
     headers,
+    queryParams,
+    endPoint,
   });
 };
 
-export { buildUrl, apiGetRequest };
+const apiPutRequest = (
+  endPoint = "/",
+  body = {},
+  queryParams = {},
+  sort = "relevant",
+  page = 1
+) => {
+  return axiosRequest({
+    method: "PUT",
+    data: body,
+    headers,
+    queryParams,
+    endPoint,
+  });
+};
+
+export { buildUrl, apiGetRequest, apiPostRequest, apiPutRequest };

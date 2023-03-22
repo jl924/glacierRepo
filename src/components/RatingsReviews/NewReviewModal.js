@@ -1,46 +1,59 @@
 import React from "react";
 import NewReviewForm from "./NewReviewForm.js";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  toggleModal,
+  toggleShowMore,
+} from "../../reducers/ratingsReviewsSlice.js";
 import ButtonPair from "../sharedComponents/ButtonPair";
 
-export default function NewReviewModal({ checked, toggleModal, name, hidden }) {
+export default function NewReviewModal({ checked, name, hidden }) {
+  const dispatch = useDispatch();
+  const { showModal, showMore } = useSelector(
+    (state) => state.ratingsReviewsReducer
+  );
+
   function handleMoreClick(ev) {
     ev.preventDefault();
-    console.log(ev.target.textContent);
+    dispatch(toggleShowMore());
   }
 
   function handleAddClick(ev) {
     ev.preventDefault();
-    toggleModal(ev);
+    dispatch(toggleModal());
   }
 
-  return (
-    <div>
-      <ButtonPair
-        buttons={{
-          ["More Reviews"]: handleMoreClick,
-          ["Add a Review"]: handleAddClick,
-        }}
-      />
-      <div
-        className={
-          "flex justify-center items-center newReviewModal" +
-          (hidden ? " hidden" : "")
+  return [
+    <ButtonPair
+      key={"unique"}
+      buttons={{
+        [showMore ? "Less Reviews" : "More Reviews"]: handleMoreClick,
+        ["Add a Review"]: handleAddClick,
+      }}
+    />,
+    <div
+      className={
+        "flex justify-center items-center newReviewModal" +
+        (!showModal ? " hidden" : "")
+      }
+      onClick={(ev) => {
+        if (Array.from(ev.target.classList).includes("newReviewModal")) {
+          dispatch(toggleModal());
         }
-        onClick={toggleModal}
-        key={100000000}
+      }}
+      key={100000000}
+    >
+      <section
+        role="dialog"
+        className={
+          "modalBox bg-base-200 max-w-[800px] min-w-[500px] max-h-2/3" +
+          (!showModal ? "" : " active")
+        }
       >
-        <section
-          role="dialog"
-          className={
-            "modalBox bg-base-200 max-w-[800px] min-w-[500px] max-h-2/3" +
-            (hidden ? "" : " active")
-          }
-        >
-          <h3 className="font-bold text-2xl text-center">Write Your Review</h3>
-          <h4 className="font-bold text-xl text-center">About the {name}</h4>
-          <NewReviewForm />
-        </section>
-      </div>
-    </div>
-  );
+        <h3 className="font-bold text-2xl text-center">Write Your Review</h3>
+        <h4 className="font-bold text-xl text-center">About the {name}</h4>
+        <NewReviewForm />
+      </section>
+    </div>,
+  ];
 }

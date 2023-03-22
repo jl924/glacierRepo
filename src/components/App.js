@@ -2,7 +2,7 @@ import React from "react";
 import Overview from "./Overview.js";
 import QuestionsAnswers from "./QuestionsAnswers.js";
 import Related from "./Related.js";
-import RatingsReviewsLoader from "./RatingsReviews/RatingsReviewsLoader";
+import RatingsReviews from "./RatingsReviews";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
       <Overview />
       <Related />
       <QuestionsAnswers />
-      <RatingsReviewsLoader />
+      <RatingsReviews />
     </div>
   );
 };

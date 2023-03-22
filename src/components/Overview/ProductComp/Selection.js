@@ -7,11 +7,12 @@ import Form from './Form'
 import RatingView from '../../../components/sharedComponents/RatingView'
 import helpers from '../reqHelpers'
 const getRatingById = helpers.getRatingById
-const Selection = ({info, product, setStyle, style }) => {
+const Selection = ({info, product, setStyle, sty }) => {
 
   const[imgs, setImgs] = useState([])
   const[rating, setRating] = useState([])
   const[selectedId, setSelectedId] = useState(0)
+  const[rev, setRevCount] = useState(0)
 
   let handleStyleClick = (id) => {
     setStyle(product.results[id])
@@ -39,9 +40,11 @@ const Selection = ({info, product, setStyle, style }) => {
           rating += review.rating
         })
         setRating(rating/count)
+        setRevCount(count)
       })
     }
   })
+
 
   return (
     <div className="w-[450px] ml-[20px]">
@@ -49,17 +52,26 @@ const Selection = ({info, product, setStyle, style }) => {
 
         <div className="flex mb-[5px] items-center">
           <RatingView width={75} numStars={5} rating={rating} />
-          <a className="text-gray-400 underline ml-[20px]">Read all reviews</a>
+          <a className="text-gray-400 underline ml-[20px]">Read all {rev} reviews</a>
         </div>
 
-        <p className="text-gray-400">{info.category}</p>
-        <p className="text-4xl text-gray-500">{info.name}</p>
-        <p>${style.original_price}</p>
+        <p className="text-gray-400">{info ? (info.category) : (<p></p>)}</p>
+        <p className="text-4xl text-gray-500">{info ? (info.name) : (<p></p>)}</p>
+        {sty.sale_price ? (
+          <div className="flex">
+            <p className="line-through">${sty.original_price}</p>  <p className="text-red-400">&nbsp; {sty.sale_price}</p>
+          </div>
+        ) : (
+            <p>${sty.original_price}</p>
+        )}
+
+
+
       </div>
       <div>
         <div className="flex">
            <p className="font-bold">STYLE > </p>
-           <p> {style.name} </p>
+           <p> {sty.name} </p>
         </div>
       </div>
       <div>
@@ -69,13 +81,13 @@ const Selection = ({info, product, setStyle, style }) => {
           {imgs.map((style) =>
             {
               return (
-              <StyleBtn key={style.id} style={style} selectedId={selectedId} handleStyleClick={handleStyleClick}/>
+              <StyleBtn key={sty.id} sty={style} selectedId={selectedId} handleStyleClick={handleStyleClick}/>
             )}
           )}
         </div>
 
         {/*------FORM------*/}
-        <Form style={style}/>
+        <Form sty={sty}/>
       </div>
     </div>
   );
