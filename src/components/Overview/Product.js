@@ -21,7 +21,7 @@ const Product = ({info, productId}) => {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [productId])
 
   return (
     expanded ? (
