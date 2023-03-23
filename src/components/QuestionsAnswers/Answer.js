@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import LoadMoreAnswers from './LoadMoreAnswers.js';
 
 const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, displayAnswers}) => {
   let answerId = Object.keys(answers);
 
 
+  const [loadMoreVisible, setLoadMoreVisible] = useState(true);
+  if (answerId.length <= 2) {
+    setLoadMoreVisible(false);
+  }
 
   var handleAnswerHelpfulClick = () => {
 
