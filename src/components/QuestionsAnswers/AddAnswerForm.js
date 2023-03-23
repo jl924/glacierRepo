@@ -1,10 +1,50 @@
 import React, {useState,useEffect} from 'react';
 import {Formik, Field, Form} from 'formik';
+import {useSelector, useDispatch} from 'react-redux';
+import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
+import { apiPostRequest } from "../../helpers/api.js";
+import axios from 'axios';
 
-const AddAnswerForm = ({ product, question }) => {
+const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
-  var handleAnswerSubmit = () => {
+  const token = process.env.API_KEY;
+  const headers = {
+    'Authorization': token
+  };
 
+  let [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  var handleAnswerSubmit = (values) => {
+    setAnswerForm(false);
+    console.log(values);
+    console.log('Submit!');
+    let newAnswer = {
+      body: values.answer,
+      name: values.nickname,
+      email: values.email,
+      photos: []
+    };
+
+    if (!loading) {
+      setLoading(true);
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`, {
+        body: values.answer,
+        name: values.nickname,
+        email: values.email,
+        photos: []
+      }, {headers})
+      .then(response => console.log(response))
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false)
+
+      });
+      // .then(() => {
+      //   dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess())
+      // })
+    }
   };
 
   var handlePhotoUpload = (e) => {
@@ -27,6 +67,7 @@ const AddAnswerForm = ({ product, question }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
+          handleAnswerSubmit(values);
         }, 400);
       }}
       >

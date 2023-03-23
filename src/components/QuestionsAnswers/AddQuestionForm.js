@@ -1,10 +1,38 @@
 import React, {useState,useEffect} from 'react';
 import {Formik, Field, Form} from 'formik';
+import {useSelector, useDispatch} from 'react-redux';
+import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
+import { apiPostRequest } from "../../helpers/api.js";
+import axios from 'axios';
 
 const AddQuestionForm = ({ product }) => {
 
-  var handleSubmitQuestion = () => {
+  const token = process.env.API_TOKEN;
+  const headers = {
+    'Authorization': token
+  };
+
+  let [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  var handleSubmitQuestion = (values) => {
     console.log('Submit!');
+
+    if (!loading) {
+      setLoading(true);
+      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
+        body: values.question,
+        name: values.nickname,
+        email: values.email,
+        product_id: product.id
+      }, {headers})
+      .then(response => console.log(response))
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false)
+      });
+    }
   };
 
   return (
@@ -23,6 +51,7 @@ const AddQuestionForm = ({ product }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
+          handleSubmitQuestion(values)
         }, 400);
       }}
       >

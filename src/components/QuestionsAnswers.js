@@ -43,9 +43,6 @@ const QuestionsAnswers = () => {
   const filteredQuestions = useSelector((state) => state.questionsAnswersReducer.filteredQuestions);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(questionsAnswersSlice.actions.searchByTerm(searchTerm));
-  }, [searchTerm, questions]);
 
 
   dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
@@ -56,6 +53,9 @@ const QuestionsAnswers = () => {
     });
   }, [product]);
 
+  useEffect(() => {
+    dispatch(questionsAnswersSlice.actions.searchByTerm(searchTerm));
+  }, [searchTerm, questions]);
 
 
 
