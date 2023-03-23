@@ -15,7 +15,6 @@ const RatingsDistributionGraph = ({}) => {
   const dispatch = useDispatch();
 
   function handleRatingClick(rating) {
-    console.log("called with ", rating);
     if (ratingFilter.includes(rating)) {
       dispatch(removeRatingFilter({ rating }));
     } else {

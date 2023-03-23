@@ -337,7 +337,29 @@ const questionsAnswersSlice = createSlice({
     filteredQuestionsRequestSuccess(state, action) {
       state.filteredQuestions = action.payload;
       state.isLoading = false;
-    }
+    },
+    incrementHelpfulness(state, action) {
+      var i;
+      const question = state.questionsAnswers.filter((question, index) => {
+        if (question.question_id === action.payload.question_id) {
+          i = index;
+          return true
+        }
+      })[0];
+      question.question_helpfulness++;
+      state.questionsAnswers.splice(i, 1, JSON.parse(JSON.stringify(question)));
+    },
+    incrementHelpfulness(state, action) {
+      var i;
+      const question = state.questionsAnswers.filter((question, index) => {
+        if (question.answers.answerId === action.payload.answers) {
+          i = index;
+          return true
+        }
+      })[0];
+      question.question_helpfulness++;
+      state.questionsAnswers.splice(i, 1, JSON.parse(JSON.stringify(question)));
+    },
   }
 });
 
