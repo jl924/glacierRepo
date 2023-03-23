@@ -3,9 +3,7 @@ import AddAnswerForm from './AddAnswerForm.js';
 import AddQuestionForm from './AddQuestionForm.js';
 import './QACss/QAModal.css';
 
-const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, product, exampleQuestion}) => {
-
-  let question = exampleQuestion.results[0].question_body;
+const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, product, question}) => {
 
   var handleClosingModal = (e) => {
     e.preventDefault();

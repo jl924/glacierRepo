@@ -72,9 +72,11 @@ const QuestionsAnswers = () => {
 
   };
 
-  var handleAddAnswer = () => {
+  const [answeringQuestion, setAnsweringQuestion] = useState('');
+  var handleAddAnswer = (e, question) => {
     setAnswerForm(true);
-    console.log('Adding an Answer!');
+    console.log(question);
+    setAnsweringQuestion(question);
   };
 
   return (
@@ -100,13 +102,13 @@ const QuestionsAnswers = () => {
         answerForm={answerForm}
         questionForm={questionForm}
         product={product}
-        exampleQuestion={exampleQuestion} /> : null}
+        question={answeringQuestion} /> : null}
         {questionForm ? <AddQAModal setQuestionForm={setQuestionForm}
         setAnswerForm={setAnswerForm}
         answerForm={answerForm}
         questionForm={questionForm}
         product={product}
-        exampleQuestion={exampleQuestion} /> : null}
+        question={answeringQuestion} /> : null}
       </div>
     </>
 

@@ -14,7 +14,7 @@ const AddAnswerForm = ({ product, question }) => {
   return (
     <div>
       <h1 className='text-center font-bold'>Submit Your Answer
-        <h2>{product.name}: {question}</h2>
+        <h2>{product.name}: {question.question_body}</h2>
       </h1>
       <Formik
       initialValues={{
