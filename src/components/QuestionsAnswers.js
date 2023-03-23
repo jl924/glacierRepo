@@ -26,6 +26,12 @@ const QuestionsAnswers = () => {
     });
   };
 
+  const [loadMore, setLoadMore] = useState(false);
+  const [questionForm, setQuestionForm] = useState(false);
+  const [answerForm, setAnswerForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+
   const product = useSelector(
     (state => state.selectedProductReducer.selectedProduct)
   );
@@ -34,17 +40,28 @@ const QuestionsAnswers = () => {
     (state) => state.questionsAnswersReducer.questionsAnswers
   );
 
-  // const dispatch = useDispatch();
-  // // dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
-  // useEffect(() => {
-  //   getQuestionsById(product.id).then(response => {
-  //     dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess(response.results));
-  //   });
-  // }, [product]);
+  const filteredQuestions = useSelector((state) => state.questionsAnswersReducer.filteredQuestions);
 
-  const [loadMore, setLoadMore] = useState(false);
-  const [questionForm, setQuestionForm] = useState(false);
-  const [answerForm, setAnswerForm] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(questionsAnswersSlice.actions.searchByTerm(searchTerm));
+  }, [searchTerm, questions]);
+
+
+  dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
+  useEffect(() => {
+    console.log('PRODUCT CHANGED');
+    getQuestionsById(product.id).then(response => {
+      dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess(response.results));
+    });
+  }, [product]);
+
+
+
+
+  var onSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   var handleAddQuestionClick = () => {
     setQuestionForm(true);
@@ -64,9 +81,9 @@ const QuestionsAnswers = () => {
     <>
       <div className='container mx-auto border text-black-700 text-left bg-white-400 px-4 py-2'>
         <h4 className='Q&A-heading'>Questions & Answers</h4>
-        <SearchQA questions={questions} />
+        <SearchQA searchHandler={onSearch}/>
         <div>
-          <Question questions={questions}
+          <Question questions={filteredQuestions}
           loadMore={loadMore}
           setLoadMore={setLoadMore}
           handleAddAnswer={handleAddAnswer}
