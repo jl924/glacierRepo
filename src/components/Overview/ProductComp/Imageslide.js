@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'daisyui';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
   var thumbCount = 0
@@ -28,10 +28,27 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
   const [zoomLevel, setZoomLevel] = useState(1);
 
+  const carousel = document.querySelector('.thumbnails')
 
-  const handleNavigationClick = (newIndex) => {
+  useEffect(() => {
+    if(carousel) {
+      setTimeout(() => {carousel.scrollTop -= 1000}, 5000)
+    }
+  }, product)
+
+
+  const handleNavigationClick = (newIndex, oldIndex) => {
     setCurrentIndex(newIndex);
     setClickedThumb(newIndex);
+    if (newIndex===0) {
+    carousel.scrollTop -=2000
+    } else if (newIndex===mainImgs.length-1){
+    carousel.scrollTop +=1000
+    } else if(newIndex >= 7) {
+      carousel.scrollTop +=75
+    } else {
+      carousel.scrollTop -=75
+    }
   };
 
 
@@ -51,9 +68,14 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
       >
         <img onClick={() => { setZoom(true) }} src={img} className="h-full object-cover" />
-        <div className="absolute flex justify-between left-5 right-5">
+        <div className="absolute flex justify-between left-5">
           <button onClick={() => handleNavigationClick(prev)} className="btn btn-circle ml-[50px]">❮</button>
-          <button onClick={() => handleNavigationClick(next)} className="btn btn-circle mr-[50px]">❯</button>
+        </div>
+        <div className="absolute flex justify-between right-5">
+           <button onClick={() => handleNavigationClick(next)} className="btn btn-circle mr-[50px]">❯</button>
+        </div>
+        <div className="absolute flex justify-between right-5">
+          <button onClick={() => {setExpanded(false)}} className="mb-[500px]">x</button>
         </div>
       </div>
     );
@@ -108,11 +130,11 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                   event.target.style.transform = `translate(${x}px, ${y}px) scale(2)`;
                 }}
                 onMouseLeave={(event) => {
-                  event.target.style.transform= "scale(1)"
+                  //event.target.style.transform= "scale(1)"
                 }}
                 className={`transition-transform duration-500 bg-black transfrom-origin-center
                 ${currentIndex === index ? "opacity-100" : "opacity-0"}`}
-                style={{"transition" : "all .3s linear"}}
+                style={{"transition" : "all .5s ease-out"}}
                 onClick={() => { setZoom(false) }} src={img} className="h-full object-cover" />
               </div>
             );
@@ -129,8 +151,8 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
               <div key={index} className={`carousel-item absolute w-full h-full transition duration-500 ${currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
                 <img onClick={() => { setExpanded(true) }} src={img} className="w-full h-full object-cover" />
                 <div className="absolute flex justify-between left-5 right-5 mt-[250px]">
-                  <button onClick={() => handleNavigationClick(prev)} className="btn btn-circle ml-[100px]">❮</button>
-                  <button onClick={() => handleNavigationClick(next)} className="btn btn-circle ml-[100px]">❯</button>
+                  <button onClick={() => handleNavigationClick(prev, index)} className="btn btn-circle ml-[100px]">❮</button>
+                  <button onClick={() => handleNavigationClick(next, index)} className="btn btn-circle ml-[100px]">❯</button>
                 </div>
               </div>
             )
@@ -158,7 +180,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                 <button onClick={() => handleNavigationClick(count-1)} className="h-[50px] w-[50px]">
                   <img className="h-[50px] w-[50px] mb-[10px] border-2 border-black" src={img} />
                 </button>
-                <div className="bg-gray-700 h-[3px] w-[50px] mt-[2px]"></div>
+                <div className="bg-gray-700 border border-white h-[3px] w-[50px] mt-[2px]"></div>
               </div>
 
               ) : (
@@ -174,6 +196,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
           const carousel = document.querySelector('.thumbnails')
           carousel.scrollTop += 75
         }}>▽</button>
+
 
        </div>
     </div>
