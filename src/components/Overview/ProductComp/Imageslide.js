@@ -37,7 +37,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
   return (
     expanded && !zoom ? (
-      <div className="carousel relative w-full h-[550px] hover:cursor-zoom-out">
+      <div className="carousel relative w-full h-[550px] hover:cursor-crosshair">
   {mainImgs.map((img, index) => {
     const prev = index === 0 ? mainImgs.length - 1 : index - 1;
     const next = index === mainImgs.length - 1 ? 0 : index + 1;
@@ -93,7 +93,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
 </div>
     ) : expanded && zoom ? (
-      <div className="carousel relative w-full h-[550px] hover:cursor-zoom-out"
+      <div className="carousel relative w-full h-[550px] hover:cursor-minus"
         >
           {mainImgs.map((img, index) => {
             return (
@@ -103,12 +103,9 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                 <img
                 onMouseMove={(event) => {
                   const { left, top, width, height } = event.target.getBoundingClientRect();
-                  const x = ((event.pageX - left) / width - 0.5) * 2;
-                  const y = ((event.pageY - top) / height - 0.5) * 2;
-                  const tx = -(x * width / 3);
-                  const ty = -(y * height / 3);
-
-                  event.target.style.transform = `translate(${tx}px, ${ty}px) scale(2)`;
+                  const x = -((event.pageX - left) / width - 0.5) * 2 * width / 3;
+                  const y = -((event.pageY - top) / height - 0.5) * 2 * height / 3;
+                  event.target.style.transform = `translate(${x}px, ${y}px) scale(2)`;
                 }}
                 onMouseLeave={(event) => {
                   event.target.style.transform= "scale(1)"
