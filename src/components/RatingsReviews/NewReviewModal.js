@@ -46,7 +46,7 @@ export default function NewReviewModal({ checked, name, hidden }) {
       <section
         role="dialog"
         className={
-          "modalBox bg-base-200 max-w-[800px] min-w-[500px] max-h-2/3" +
+          "modalBox bg-base-200 max-w-[1000px] min-w-[800px] min-h-2/3" +
           (!showModal ? "" : " active")
         }
       >

@@ -9,6 +9,14 @@ const initialState = {
   metaLoading: false,
   ratingFilter: [],
   meta: [],
+  characteristicLabels: {
+    Size: ["Too small", "Perfect", "Too large"],
+    Width: ["Too narrow", "Perfect", "Too wide"],
+    Comfort: ["Uncomfortable", "Perfect"],
+    Quality: ["Poor", "Great"],
+    Length: ["Runs short", "Perfect", "Runs long"],
+    Fit: ["Runs tight", "Perfect", "Runs baggy"],
+  },
   ratingsReviews: [
     {
       review_id: 1277405,
