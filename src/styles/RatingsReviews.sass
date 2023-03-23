@@ -65,10 +65,35 @@
   z-index: 999
   .modalBox
     cursor: default
-    transition: opacity 500ms ease
+    transition: opacity 500ms ease-in
     opacity: 0
+    overflow-y: auto
+    max-height: 90%
+    padding: 30px 0
+    input[type='range']::-webkit-slider-thumb
+      background-color: #565656
+    input[type='range']
+      --p: '0'
+      transition: background-color 0.25s ease-in
+    input[type='range']:hover::-webkit-slider-thumb
+      background-color: grey
+    input[type='range']:active::-webkit-slider-thumb
+      background-color: darkgrey
+  .modalBox::-webkit-scrollbar
+    display: none
   .modalBox.active
     opacity: 1
+  form
+    > *
+      margin-bottom: 20px
+    > div > *
+      align-self: center
+    .recommendedButton
+      transition: background-color 0.5s ease-out
+    .recommendedButton:hover
+      background-color: lightgrey
+    .recommendedButton:active
+      background-color: grey
 .graph
   h2
     margin-bottom: 15px
