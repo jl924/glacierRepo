@@ -10,8 +10,6 @@ const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) 
   const [displayAnswers, setDisplayAnswers] = useState();
 
 
-  console.log("DOES THIS CHANGE", questions);
-
   let getFirstTwo = (question) => {
     let firstTwo = Object.keys(question.answers).slice(0,2);
     return firstTwo;
@@ -23,7 +21,7 @@ const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) 
     };
   };
 
-  var handleQuestionHelpfulClick = () => {
+  var handleQuestionHelpfulClick = (e) => {
 
   };
 
@@ -41,7 +39,7 @@ const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) 
     <div>
       {questions.map((question, index) => {
         return (
-          <div className='question py-10'>
+          <div key={index + 10} className='question py-10'>
             <h3>
               <span className='QAheader'>Q: </span>
               <a key={index} className ='questionHeader' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
