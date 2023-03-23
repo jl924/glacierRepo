@@ -108,11 +108,10 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                   const tx = -(x * width / 3);
                   const ty = -(y * height / 3);
 
-                  event.target.style.transform = `translate(${tx}px, ${ty}px) scale(1.5)`;
+                  event.target.style.transform = `translate(${tx}px, ${ty}px) scale(2)`;
                 }}
                 onMouseLeave={(event) => {
-                  //setZoomLevel(1)
-                  //event.target.style.transform= "none"
+                  event.target.style.transform= "scale(1)"
                 }}
                 className={`transition-transform duration-500 bg-black transfrom-origin-center
                 ${currentIndex === index ? "opacity-100" : "opacity-0"}`}
