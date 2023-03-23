@@ -3,7 +3,7 @@ import Status from "../sharedComponents/Status";
 import Helpful from "../sharedComponents/Helpful";
 import AddAnswer from './AddAnswer.js'
 
-const HelpfulQA = ({ data, handleHelpfulClick, handleAddAnswer}) => {
+const HelpfulQA = ({ data, handleHelpfulClick, handleAddAnswer, question}) => {
   const sharedClasses = 'flex-initial';
   return (
     <Status
@@ -20,6 +20,7 @@ const HelpfulQA = ({ data, handleHelpfulClick, handleAddAnswer}) => {
           key={4}
           handleAddAnswer={handleAddAnswer}
           className={sharedClasses + " status"}
+          question={question}
         />,
       ]}
     />
