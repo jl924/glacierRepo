@@ -2,9 +2,9 @@
 import React, {useEffect, useState} from 'react';
 import {AiFillStar} from 'react-icons/ai'
 import './Related.css';
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import axios from 'axios'
-
+import selectedProductSlice from '../../reducers/selectedProductSlice'
 
 
 const AddCard = () => {
@@ -34,6 +34,9 @@ const headers = {
       })
   }
 
+  const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     // console.log('USEFFECT IS WORKING')
@@ -60,6 +63,7 @@ const headers = {
 
     var string = JSON.stringify(curr)
 
+    dispatch(selectedProductSlice.actions.yourOutfitLoadRequestSuccess(curr))
     localStorage.setItem(`${selectedProduct.id}`, string)
     console.log("item has been added to local storage")
 
@@ -77,7 +81,7 @@ const headers = {
     <div className="relative">
     <div className="carousel-item container w-[220px]">
     <div id="addCard" className="card w-96 bg-base-100 shadow-xl image-full rounded border-grey">
-  <figure><img className='w-full' src={addImage} /></figure>
+  <figure><img className='w-full' src={addImage || "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" } /></figure>
   <div className="card-body">
   <label onClick={() => addToOutfit()} id='plus' className="btn">+</label>
     <div className="card-actions justify-end">

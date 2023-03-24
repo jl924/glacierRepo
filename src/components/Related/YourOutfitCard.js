@@ -10,9 +10,13 @@ import selectedProductSlice from '../../reducers/selectedProductSlice'
 
 const YourOutfitCard = ({outfits}) => {
 
+  const yourOutfitLoad = useSelector((state) => state.selectedProductReducer.yourOutfitLoad)
 
 let deleteIt = (id) => {
   localStorage.removeItem(`${id}`)
+  var dummmy = {}
+  dummmy['dummy'] = 2
+  dispatch(selectedProductSlice.actions.yourOutfitLoadRequestSuccess(dummmy))
 }
 
 const selectedProduct = useSelector((state) => state.selectedProductReducer.selectedProduct)
@@ -35,6 +39,8 @@ let getProductById = (id) => {
     })
 }
 // console.log("getProductById", getProductById)
+
+
 
   return (
     <div className="relative">

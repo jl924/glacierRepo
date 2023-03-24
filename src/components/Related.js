@@ -7,9 +7,11 @@ import HoverModal from './Related/Related-Modal'
 import './Related/Related.css';
 import AddCard from './Related/Add-card'
 import axios from 'axios'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 // const loadCarousel = require('./Related/RelatedFunc.js');
 import loadCarousel from './Related/RelatedFunc.js'
+import {outfit, setOutfit} from './Related/loadOutfit.js'
+import selectedProductSlice from '../reducers/selectedProductSlice'
 
 
 
@@ -17,9 +19,10 @@ import loadCarousel from './Related/RelatedFunc.js'
 const Related = () => {
 
   const selectedProduct = useSelector((state) => state.selectedProductReducer.selectedProduct)
+  const yourOutfitLoad = useSelector((state) => state.selectedProductReducer.yourOutfitLoad)
 
   const [product, setProduct] = useState([]);
-  const [outfit, setOutfit] = useState([]);
+  const [outfit, setOutfit] = useState([])
 
   useEffect(() => {
     // console.log('what going inside the then', selectedProduct.id)
@@ -46,7 +49,9 @@ const Related = () => {
   }, [selectedProduct]);
 
   var maxleftstart = 0
-  const [outfitLength, setOutfitLength] = useState(1)
+
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // console.log('insde the local storage', { ...localStorage })
@@ -58,12 +63,11 @@ const Related = () => {
         yourOutfit.push(JSON.parse(localStorage[key]))
     }
     }
-    setOutfitLength(yourOutfit.length)
     setOutfit(yourOutfit)
   }
   loadOutfit()
 
-  }, []);
+  }, [yourOutfitLoad]);
 
   const carouselRef = useRef(null);
   const carouselRef2 = useRef(null);
@@ -140,6 +144,9 @@ const Related = () => {
     }
     // console.log(showleft2, 'SHOW ME THE TRUTH')
   }, [scroll]);
+
+
+
 
 
   return (

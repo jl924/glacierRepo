@@ -1,14 +1,7 @@
-let loadOutfit = () => {
-  var yourOutfit = []
-  for (var key in localStorage) {
-    if(Number(key)) {
-      yourOutfit.push(JSON.parse(localStorage[key]))
-  }
-  }
+import React, { useState } from 'react';
 
-  return yourOutfit
+function MyComponent() {
+  const [outfit, setOutfit] = useState(0);
 }
 
-
-
-export default loadOutfit;
+export default MyComponent;
