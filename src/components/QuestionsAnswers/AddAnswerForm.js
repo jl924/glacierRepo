@@ -11,7 +11,6 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     return state.questionsAnswersReducer.answeringQuestion;
   });
 
-  console.log('ANSWERING QUESTION', answeringQuestion);
   const token = process.env.API_KEY;
   const headers = {
     'Authorization': token
@@ -58,9 +57,9 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
   return (
     <div>
-      <h1 className='text-center font-bold'>Submit Your Answer
-        <h2>{product.name}: {answeringQuestion.question_body}</h2>
-      </h1>
+      <h2 className='text-center font-bold'>Submit Your Answer
+        <h3>{product.name}: {answeringQuestion.question_body}</h3>
+      </h2>
       <Formik
       initialValues={{
         answer:'',
@@ -76,24 +75,30 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
         }, 400);
       }}
       >
-        <Form className='px-3'>
-          <p className='py-5'>
-            <label htmlFor='answer'>Your Answer: </label>
-            <Field id='answer' name='answer' />
-          </p>
+        <Form>
+          <h2 className='py-20 flex h-full flex-col justify-end'>
+            <label className='label' htmlFor='answer'>
+              <span className='label-text flex flex-row justify-center w-full text-lg'>Answer:</span>
+            </label>
+            <textarea className='textarea rounded-none textarea-primary h-20 bg-base-300' id='answer' name='answer' />
+          </h2>
 
-          <p className='py-5'>
-            <label htmlFor='nickname'>Nickname: </label>
-            <Field id='nickname' name='nickname' placeholder='Example: jack543!' />
+          <h2 className='py-5 text-center'>
+            <label className='label'htmlFor='nickname'>
+              <span className='label-text flex flex-row justify-center w-full text-lg'>Nickname:</span>
+            </label>
+            <input className='input rounded-none input-primary bg-base-300' id='nickname' name='nickname' placeholder='Example: jack543!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
-          </p>
+          </h2>
 
-          <p p className='py-5'>
-            <label htmlFor='email'>Email: </label>
-            <Field id='email' name='email' type='email' placeholder='Example: jack@email.com' />
+          <h2 p className='py-5 text-center'>
+            <label className='label' htmlFor='email'>
+              <span className='label-text flex flex-row justify-center w-full text-lg'>Email:</span>
+            </label>
+            <input className='input rounded-none input-primary bg-base-300' id='email' name='email' type='email' placeholder='Example: jack@email.com' />
             <p p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
-          </p>
-          <div>
+          </h2>
+          <div className='text-center'>
             <p p className='py-2'>
               <button onClick={handlePhotoUpload}>Upload Photos</button>
             </p>
