@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useField } from "formik";
 
 export default function CustomRating({ label, ...props }) {
   const ratings = [0, 1, 2, 3, 4, 5];
   const [field, meta, helpers] = useField(props);
+  const [hovered, setHovered] = useState(undefined);
   const error = meta.touched && meta.error;
 
   const setRating = async (rating) => {
@@ -20,11 +21,25 @@ export default function CustomRating({ label, ...props }) {
             key={rating}
             type="radio"
             name="rating"
+            onMouseEnter={() => setHovered(rating)}
+            onMouseOut={() => setHovered(undefined)}
             className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
             value={rating}
             readOnly={true}
             checked={field.value === rating}
             onChange={() => setRating(rating)}
+            style={{
+              backgroundColor:
+                hovered !== undefined &&
+                ((hovered > field.value &&
+                  rating > field.value &&
+                  rating <= hovered) ||
+                  (hovered < field.value &&
+                    rating <= field.value &&
+                    rating > hovered))
+                  ? "grey"
+                  : "",
+            }}
           />
         ))}
       </div>
