@@ -16,8 +16,8 @@ const QuestionsAnswers = () => {
     'Authorization': token
   };
 
-  var getQuestionsById = (id) => {
-     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${id}`, {headers})
+  var getQuestionsById = (id, moreQuestions) => {
+    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?count=300&product_id=${id}`, {headers})
     .then((response) => {
       return response.data;
     })
@@ -26,6 +26,7 @@ const QuestionsAnswers = () => {
     });
   };
 
+  const [moreQuestions, setMoreQuestions] = useState(true);
   const [loadMore, setLoadMore] = useState(false);
   const [questionForm, setQuestionForm] = useState(false);
   const [answerForm, setAnswerForm] = useState(false);
@@ -47,11 +48,7 @@ const QuestionsAnswers = () => {
 
   //dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
   useEffect(() => {
-    console.log('PRODUCT CHANGED');
     getQuestionsById(product.id).then(response => {
-      response.results.forEach(question => {
-        question.answeringQuestion = question.question_body;
-      });
       dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess(response.results));
     });
   }, [product]);
@@ -60,9 +57,6 @@ const QuestionsAnswers = () => {
     dispatch(questionsAnswersSlice.actions.searchByTerm(searchTerm));
   }, [searchTerm, questions]);
 
-
-  console.log("QUESTIONS", questions);
-  console.log("FILTERED", filteredQuestions);
 
   var onSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -73,18 +67,19 @@ const QuestionsAnswers = () => {
     console.log('adding a question!')
   };
 
-  var handleMoreQuestionsClick = () => {
-
+  var handleMoreQuestionsClick = (e) => {
+    e.preventDefault();
+    setMoreQuestions(!moreQuestions);
   };
 
   const [answeringQuestion, setAnsweringQuestion] = useState('');
   var handleAddAnswer = (e, question) => {
     dispatch(questionsAnswersSlice.actions.answeringQuestion(question))
     setAnswerForm(true);
-    console.log('HANDLE ADD QUESTION', question);
     setAnsweringQuestion(question);
   };
 
+  const MoreOrLessQuestions = moreQuestions ? "More Answered Questions" : "Less Answered Questions";
   return (
     <>
       <div className='text-left bg-white-400 px-4 py-2'>
@@ -95,11 +90,12 @@ const QuestionsAnswers = () => {
           loadMore={loadMore}
           setLoadMore={setLoadMore}
           handleAddAnswer={handleAddAnswer}
-          product={product} />
+          product={product}
+          moreQuestions={moreQuestions} />
         </div>
         <ButtonPair
           buttons={{
-            ["More Answered Questions"]: handleMoreQuestionsClick,
+            [MoreOrLessQuestions]: handleMoreQuestionsClick,
             ["Add A Question"]: handleAddQuestionClick,
           }}
         />
