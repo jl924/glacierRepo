@@ -6,8 +6,13 @@ import {
   toggleModal,
   toggleShowMore,
 } from "../../reducers/ratingsReviewsSlice.js";
-import { useState } from "react";
+import {
+  scrollFromTopSet,
+  reviewListScrollingSet,
+} from "../../reducers/reviewListSlice.js";
+import { useState, useEffect, useRef } from "react";
 import ButtonPair from "../sharedComponents/ButtonPair";
+import ScrollToTop from "./ScrollToTop";
 
 const getReviewListItems = (reviews) => {
   const ret = [];
@@ -21,10 +26,28 @@ const ReviewList = ({}) => {
   const { ratingsReviews, showMore, ratingFilter } = useSelector(
     (s) => s.ratingsReviewsReducer
   );
+  const { scrollFromTop } = useSelector((s) => s.reviewListReducer);
+  const scrollRef = useRef(0);
   const dispatch = useDispatch();
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    if (scrollFromTop === -1) {
+      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      dispatch(reviewListScrollingSet({ scrolling: true }));
+    } else if (scrollFromTop === 0) {
+      dispatch(reviewListScrollingSet({ scrolling: false }));
+    }
+  }, [scrollFromTop]);
 
   return (
-    <div className="mt-10 max-h-[700px] reviewList overflow-y-auto">
+    <div
+      ref={scrollRef}
+      onScroll={(ev) =>
+        dispatch(scrollFromTopSet({ scrollFromTop: ev.target.scrollTop }))
+      }
+      className="mt-10 max-h-[700px] reviewList overflow-y-auto relative"
+    >
       {ratingsReviews
         .filter((review) => {
           if (ratingFilter.length !== 0) {
