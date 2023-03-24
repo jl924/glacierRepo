@@ -6,6 +6,7 @@ export default function CustomRating({ label, ...props }) {
   const [field, meta, helpers] = useField(props);
   const [hovered, setHovered] = useState(undefined);
   const error = meta.touched && meta.error;
+  const ratingTexts = ['Poor', 'Fair', 'Average', 'Good', 'Great']
 
   const setRating = async (rating) => {
     await helpers.setValue(rating);
@@ -14,7 +15,7 @@ export default function CustomRating({ label, ...props }) {
 
   return (
     <div className="flex flex-col">
-      {error && <div className="text-error">{error}</div>}
+      {error && <div className="text-error">{error}</div> || <div>{ratingTexts[field.value - 1]}</div>}
       <div className="rating rating-lg ">
         {ratings.map((rating) => (
           <input

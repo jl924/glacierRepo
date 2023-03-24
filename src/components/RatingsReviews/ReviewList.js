@@ -13,6 +13,11 @@ import {
 import { useState, useEffect, useRef } from "react";
 import ButtonPair from "../sharedComponents/ButtonPair";
 import ScrollToTop from "./ScrollToTop";
+import { apiPutRequest } from "../../helpers/api.js";
+import {
+  incrementHelpfulness,
+  removeResult,
+} from "../../reducers/ratingsReviewsSlice.js";
 
 const getReviewListItems = (reviews) => {
   const ret = [];
@@ -30,6 +35,40 @@ const ReviewList = ({}) => {
   const scrollRef = useRef(0);
   const dispatch = useDispatch();
   const [scrolling, setScrolling] = useState(false);
+  let [loading, setLoading] = useState(false);
+  let [loadingHelpful, setLoadingHelpful] = useState({});
+
+  const handleHelpfulClick = (review_id, ev) => {
+    if (!loadingHelpful[review_id]) {
+      setLoadingHelpful((loadingHelpful) => {
+        return {
+          ...loadingHelpful,
+          [review_id]: true,
+        };
+      });
+      apiPutRequest(`/reviews/${review_id}/helpful`)
+        .then(() => {
+          dispatch(incrementHelpfulness({ review_id: review_id }));
+        })
+        .catch((err) => {
+          console.log("error occured when trying to increase helpfulness", err);
+        });
+    }
+  };
+
+  const handleReportClick = (review_id, ev) => {
+    if (!loading) {
+      setLoading(true);
+      apiPutRequest(`/reviews/${review.review_id}/report`)
+        .then(() => {
+          dispatch(removeResult({ review_id: review.review_id }));
+        })
+        .catch((err) => {
+          console.log("error occured when trying to report review", err);
+        })
+        .finally(() => setLoading(false));
+    }
+  };
 
   useEffect(() => {
     if (scrollFromTop === -1) {
@@ -43,8 +82,15 @@ const ReviewList = ({}) => {
   return (
     <div
       ref={scrollRef}
-      onScroll={(ev) =>
-        dispatch(scrollFromTopSet({ scrollFromTop: ev.target.scrollTop }))
+      onScroll={(ev) =>{
+        if(ev.target.scrollTop === 0) {
+          if(scrollFromTop !== 0) dispatch(scrollFromTopSet({ scrollFromTop: 0 }))
+        } else if (ev.target.scrollTop >= 250) {
+          if(scrollFromTop !== 250) dispatch(scrollFromTopSet({ scrollFromTop: 250 }))
+        } else if (ev.target.scrollTop > 0) {
+          if(scrollFromTop !== 1) dispatch(scrollFromTopSet({ scrollFromTop: 1 }))
+        }
+      }
       }
       className="mt-10 max-h-[700px] reviewList overflow-y-auto relative"
     >
@@ -59,6 +105,9 @@ const ReviewList = ({}) => {
           return [
             <ReviewListItem
               key={review.review_id + "x" + review.helpfulness}
+              handleHelpfulClick={handleHelpfulClick}
+              handleReportClick={handleReportClick}
+              loading={loading}
               review={review}
             />,
             <div

@@ -15,20 +15,19 @@ const ReviewListHeader = ({}) => {
       dispatch(sortingSet({ sorting: ev.target.value }));
     }
   };
+  const options = ['relevance', 'helpfulness', 'newest'];
 
   return (
     <div className="nonHeader">
       <div className="header">
-        <h3 className="font-bold text-lg">
+        <h3 className="text-lg font-bold">
           {meta.numReviews} Reviews, sorted by{" "}
           <select
-            className="underline bg-base-100"
+            className="underline transition-colors duration-300 bg-base-100 hover:cursor-pointer hover:bg-base-200"
             onChange={handleSortingChange}
             value={sorting}
           >
-            <option value="relevant">relevance</option>
-            <option value="helpful">helpfulness</option>
-            <option value="newest">newest</option>
+            {options.map(option => <option key={option} className='' value={option}>{option}</option>)}
           </select>
         </h3>
       </div>
