@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const AddQuestionForm = ({ product }) => {
 
-  const token = process.env.API_TOKEN;
+  const token = process.env.API_KEY;
   const headers = {
     'Authorization': token
   };
@@ -16,6 +16,7 @@ const AddQuestionForm = ({ product }) => {
   const dispatch = useDispatch();
   var handleSubmitQuestion = (values) => {
     console.log('Submit!');
+    console.log(product.id);
 
     if (!loading) {
       setLoading(true);

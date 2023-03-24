@@ -45,10 +45,13 @@ const QuestionsAnswers = () => {
   const dispatch = useDispatch();
 
 
-  dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
+  //dispatch(questionsAnswersSlice.actions.questionsAnswersRequest());
   useEffect(() => {
     console.log('PRODUCT CHANGED');
     getQuestionsById(product.id).then(response => {
+      response.results.forEach(question => {
+        question.answeringQuestion = question.question_body;
+      });
       dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess(response.results));
     });
   }, [product]);
@@ -58,6 +61,8 @@ const QuestionsAnswers = () => {
   }, [searchTerm, questions]);
 
 
+  console.log("QUESTIONS", questions);
+  console.log("FILTERED", filteredQuestions);
 
   var onSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -74,15 +79,16 @@ const QuestionsAnswers = () => {
 
   const [answeringQuestion, setAnsweringQuestion] = useState('');
   var handleAddAnswer = (e, question) => {
+    dispatch(questionsAnswersSlice.actions.answeringQuestion(question))
     setAnswerForm(true);
-    console.log(question);
+    console.log('HANDLE ADD QUESTION', question);
     setAnsweringQuestion(question);
   };
 
   return (
     <>
-      <div className='container mx-auto border text-black-700 text-left bg-white-400 px-4 py-2'>
-        <h4 className='Q&A-heading'>Questions & Answers</h4>
+      <div className='text-left bg-white-400 px-4 py-2'>
+        <h4 className='Q&A-heading font-bold text-2xl'>Questions & Answers</h4>
         <SearchQA searchHandler={onSearch}/>
         <div>
           <Question questions={filteredQuestions}
