@@ -81,7 +81,7 @@ const Selection = ({info, product, setStyle, sty }) => {
 
         {/*------STYLE BUTTONS------*/}
         <div>
-        <div className="flex flex-row flex-wrap justify-start w-[250px] h-[full] ml-[20px]">
+        <div className="flex flex-row flex-wrap justify-start w-[280px] h-[full] ml-[20px]">
           {imgs.map((style, index) =>
             {
               return (
