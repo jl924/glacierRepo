@@ -7,6 +7,11 @@ import axios from 'axios';
 
 const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
+  const answeringQuestion = useSelector(state => {
+    return state.questionsAnswersReducer.answeringQuestion;
+  });
+
+  console.log('ANSWERING QUESTION', answeringQuestion);
   const token = process.env.API_KEY;
   const headers = {
     'Authorization': token
@@ -54,7 +59,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
   return (
     <div>
       <h1 className='text-center font-bold'>Submit Your Answer
-        <h2>{product.name}: {question.question_body}</h2>
+        <h2>{product.name}: {answeringQuestion.question_body}</h2>
       </h1>
       <Formik
       initialValues={{

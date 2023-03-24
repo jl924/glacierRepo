@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;600&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Inter:wght@200;300;600&family=Raleway&display=swap');
 
 
 
@@ -44,4 +46,8 @@ body {
 
 #starbtn {
   z-index: 9;
+}
+
+body{
+  font-family: 'Comfortaa';
 }

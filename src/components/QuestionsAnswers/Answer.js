@@ -5,7 +5,7 @@ import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPutRequest } from "../../helpers/api.js";
 
 
-const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, displayAnswers, loadMoreVisible}) => {
+const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, displayAnswers, loadMoreVisible, index}) => {
   const dispatch = useDispatch();
   let answerId = Object.keys(answers);
 
@@ -25,13 +25,13 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, displayAnsw
     }
   };
 
-  var handleAnswerReportClick = () => {
-
+  var handleAnswerReportClick = (e, answer) => {
+    console.log(answer, 'was reported!');
   };
 
   var handleLoadMoreAnswers = (e) => {
     e.preventDefault();
-    setLoadMore(true);
+    setLoadMore(!loadMore);
   };
 
   return (
@@ -45,7 +45,7 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, displayAnsw
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
-                handleReportClick={handleAnswerReportClick}/>
+                handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}/>
               </div>
             </div>
           );
@@ -59,13 +59,13 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, displayAnsw
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
-                 handleReportClick={handleAnswerReportClick}/>
+                 handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}/>
               </div>
             </div>
           );
         })}
         </h4>}
-        <LoadMoreAnswers handleLoadMoreAnswers={handleLoadMoreAnswers} />
+        {(answerId.length > 2) ? <LoadMoreAnswers handleLoadMoreAnswers={handleLoadMoreAnswers} loadMore={loadMore} /> : null}
     </div>: null}
     </div>
   );
