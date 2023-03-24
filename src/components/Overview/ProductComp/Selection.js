@@ -43,7 +43,7 @@ const Selection = ({info, product, setStyle, sty }) => {
         setRevCount(count)
       })
     }
-  })
+  }, [product])
 
 
   return (
