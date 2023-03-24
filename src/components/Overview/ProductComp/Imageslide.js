@@ -1,6 +1,8 @@
 import React from 'react';
 import { Carousel } from 'daisyui';
 import { useState, useEffect } from 'react'
+import { MdKeyboardArrowDown } from "react-icons/md"
+import { MdKeyboardArrowUp } from "react-icons/md"
 const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
   var thumbCount = 0
@@ -79,7 +81,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
         <div className="absolute flex justify-between right-5">
            <button onClick={() => handleNavigationClick(next)} className="btn btn-circle border-transparent mr-[50px] hover:border-white">❯</button>
         </div>
-        <div className="absolute font-bold text-white flex items-center justify-center right-5 top-5 h-[12px] w-[12px] hover:text-green-800 hover:text-2xl transition-all duration-150">
+        <div className="absolute font-bold text-white flex items-center justify-center right-5 top-5 h-[12px] w-[12px] hover:text-2xl transition-all duration-150">
           <button onClick={() => {setExpanded(false)}} className="mb-[5px]">←</button>
         </div>
       </div>
@@ -180,10 +182,10 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
          <div className="flex flex-col justify-center h-[435px] w-[60px] absolute z-2 mb-[600px] ml-[30px]">
 
-           <button className="relative h-[25px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
+           <button className="relative ml-[20px] h-[25px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
            const carousel = document.querySelector('.thumbnails')
            carousel.scrollTop -= 75
-           }}>△</button>
+           }}><MdKeyboardArrowUp /></button>
 
             <div className={thumbSelection}>
 
@@ -210,11 +212,10 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              ))
             })}
         </div>
-        <button className="relative h-[25px] w-[50px] z-[12]" onClick={() => { // scroll up handler
+        <button className="relative ml-[20px] h-[25px] w-[50px] z-[12]" onClick={() => { // scroll up handler
           const carousel = document.querySelector('.thumbnails')
           carousel.scrollTop += 75
-        }}>▽</button>
-
+        }}><MdKeyboardArrowDown /></button>
 
        </div>
     </div>
