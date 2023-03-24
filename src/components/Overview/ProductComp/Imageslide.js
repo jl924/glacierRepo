@@ -40,14 +40,17 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
   const handleNavigationClick = (newIndex, oldIndex) => {
     setCurrentIndex(newIndex);
     setClickedThumb(newIndex);
-    if (newIndex===0) {
-    carousel.scrollTop -=2000
-    } else if (newIndex===mainImgs.length-1){
-    carousel.scrollTop +=1000
-    } else if(newIndex >= 7) {
-      carousel.scrollTop +=75
-    } else {
-      carousel.scrollTop -=75
+
+    if(carousel) {
+      if (newIndex===0) {
+        carousel.scrollTop -=2000
+        } else if (newIndex===mainImgs.length-1){
+        carousel.scrollTop +=1000
+        } else if(newIndex >= 7) {
+          carousel.scrollTop +=75
+        } else {
+          carousel.scrollTop -=75
+        }
     }
   };
 
@@ -69,13 +72,13 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
       >
         <img onClick={() => { setZoom(true) }} src={img} className="h-full object-cover" />
         <div className="absolute flex justify-between left-5">
-          <button onClick={() => handleNavigationClick(prev)} className="btn btn-circle ml-[50px]">❮</button>
+          <button onClick={() => handleNavigationClick(prev)} className="btn btn-circle ml-[50px] border-transparent hover:border-white">❮</button>
         </div>
         <div className="absolute flex justify-between right-5">
-           <button onClick={() => handleNavigationClick(next)} className="btn btn-circle mr-[50px]">❯</button>
+           <button onClick={() => handleNavigationClick(next)} className="btn btn-circle border-transparent mr-[50px] hover:border-white">❯</button>
         </div>
-        <div className="absolute flex justify-between right-5">
-          <button onClick={() => {setExpanded(false)}} className="mb-[500px]">x</button>
+        <div className="absolute font-bold text-white flex items-center justify-center right-5 top-5 h-[12px] w-[12px] hover:text-green-800 hover:text-2xl transition-all duration-150">
+          <button onClick={() => {setExpanded(false)}} className="mb-[5px]">←</button>
         </div>
       </div>
     );
@@ -83,7 +86,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
 <div className="flex flex-col justify-center w-[60px]">
 
-  <div className="flex flex-col justify-center h-[300px] w-[52px] absolute z-2 ml-[30px]">
+  <div className="flex flex-col justify-center h-[300px] w-[52px] absolute z-2">
 
    <div className={thumbSelection}>
 
@@ -93,16 +96,16 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
     //TODO - UNDERLINE IMAGE THAT IS SELECTED
     return(
      clickedThumb === index ? (
-     <div key={index} className="carousel-item relative flex flex-col mb-[10px]">
+     <div key={index} className="carousel-item relative flex items-center justify-center mb-[10px]">
        <button onClick={() => handleNavigationClick(count-1)} className="">
          <div className="h-[20px] w-[20px] border-[5px] border-gray-700 bg-white rounded-full"></div>
        </button>
      </div>
 
      ) : (
-    <div key={index} className="carousel-item relative mb-[10px]">
+    <div key={index} className="carousel-item relative flex items-center justify-center mb-[10px]">
       <button onClick={() => handleNavigationClick(count-1)} className="">
-        <div className="h-[20px] w-[20px] border-[5px] opacity-30 border-gray-700 bg-white rounded-full"></div>
+        <div className="h-[16px] w-[16px] border-[5px] opacity-30 border-gray-700 bg-white rounded-full hover:h-[20px] hover:w-[20px] transition-all duration-150"></div>
       </button>
     </div>
     ))
@@ -150,9 +153,11 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
             return (
               <div key={index} className={`carousel-item absolute w-full h-full transition duration-500 ${currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
                 <img onClick={() => { setExpanded(true) }} src={img} className="w-full h-full object-cover" />
-                <div className="absolute flex justify-between left-5 right-5 mt-[250px]">
-                  <button onClick={() => handleNavigationClick(prev, index)} className="btn btn-circle ml-[100px]">❮</button>
-                  <button onClick={() => handleNavigationClick(next, index)} className="btn btn-circle ml-[100px]">❯</button>
+                <div className="absolute flex justify-between left-8 mt-[250px] hover:mt-[243px] transition-all duration-100 hover:left-3">
+                  <button onClick={() => handleNavigationClick(prev, index)} className="h-[5px] w-[5px] rounded-full border border-transparent hover:border-white hover:h-[40px] hover:w-[40px] bg-transparent ml-[100px] transition-all duration-100">❮</button>
+                </div>
+                <div className="absolute flex justify-between right-8 mt-[250px] hover:mt-[243px] transition-all duration-100 hover:right-3">
+                  <button onClick={() => handleNavigationClick(next, index)} className="h-[5px] w-[5px] rounded-full border border-transparent hover:border-white hover:h-[40px] hover:w-[40px] bg-transparent transition-all duration-100">❯</button>
                 </div>
               </div>
             )
@@ -161,7 +166,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
         <div className="flex flex-col justify-center w-[60px]">
 
-         <div className="flex flex-col justify-center h-[500px] w-[52px] absolute z-2 mb-[600px] ml-[30px]">
+         <div className="flex flex-col justify-center h-[500px] w-[60px] absolute z-2 mb-[600px] ml-[30px]">
 
            <button className="relative h-[25px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
            const carousel = document.querySelector('.thumbnails')
@@ -176,17 +181,17 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              //TODO - UNDERLINE IMAGE THAT IS SELECTED
              return(
               clickedThumb === index ? (
-              <div key={index} className="carousel-item relative flex flex-col mb-[10px]">
-                <button onClick={() => handleNavigationClick(count-1)} className="h-[50px] w-[50px]">
-                  <img className="h-[50px] w-[50px] mb-[10px] border-2 border-black" src={img} />
+              <div key={index} className="carousel-item relative flex flex-col ml-[3px]">
+                <button onClick={() => handleNavigationClick(count-1)} className="h-[50px] w-[50px] flex items-center justify-center">
+                  <img className="h-[50px] w-[50px] border-2 border-white transition-all duration-300" src={img} />
                 </button>
                 <div className="bg-gray-700 border border-white h-[3px] w-[50px] mt-[2px]"></div>
               </div>
 
               ) : (
-             <div key={index} className="carousel-item relative mb-[10px]">
-               <button onClick={() => handleNavigationClick(count-1)} className="h-[50px] w-[50px]">
-                 <img className="h-[50px] w-[50px] mb-[10px] border-2 border-black" src={img} />
+             <div key={index} className="carousel-item relative">
+               <button onClick={() => handleNavigationClick(count-1)} className="flex items-center justify-center h-[60px] w-[60px]">
+                 <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-white hover:h-[55px] hover:w-[55px] transition-all duration-300" src={img} />
                </button>
              </div>
              ))
