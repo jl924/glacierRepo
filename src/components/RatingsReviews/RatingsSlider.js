@@ -1,17 +1,11 @@
 import React from "react";
 import Slider from "./Slider";
-
-const allLabels = {
-  size: ["Too small", "Perfect", "Too large"],
-  width: ["Too narrow", "Perfect", "Too wide"],
-  comfort: ["Uncomfortable", "Perfect"],
-  quality: ["Poor", "Great"],
-  length: ["Runs short", "Runs long"],
-  fit: ["Runs tight", "Runs baggy"],
-};
+import { useSelector } from "react-redux";
 
 export const RatingsSlider = ({ title = "Comfort", percentage }) => {
-  const labels = allLabels[title.toLowerCase()];
+  const labels = useSelector(
+    (state) => state.ratingsReviewsReducer.characteristicLabels
+  )[title];
   return (
     <div className="relative sliderDisplay">
       <span>{title}</span>

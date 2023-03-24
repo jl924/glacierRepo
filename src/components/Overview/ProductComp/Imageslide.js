@@ -24,6 +24,11 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
   const[clickedThumb, setClickedThumb] = useState(0)
 
+  const[zoom, setZoom] = useState(false)
+
+  const [zoomLevel, setZoomLevel] = useState(1);
+
+
   const handleNavigationClick = (newIndex) => {
     setCurrentIndex(newIndex);
     setClickedThumb(newIndex);
@@ -31,8 +36,8 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
 
   return (
-    expanded ? (
-      <div className="carousel relative w-full h-[550px] hover:cursor-zoom-out">
+    expanded && !zoom ? (
+      <div className="carousel relative w-full h-[550px] hover:cursor-crosshair">
   {mainImgs.map((img, index) => {
     const prev = index === 0 ? mainImgs.length - 1 : index - 1;
     const next = index === mainImgs.length - 1 ? 0 : index + 1;
@@ -45,10 +50,10 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
         }`}
 
       >
-        <img onClick={() => { setExpanded(false) }} src={img} className="h-full object-cover" />
+        <img onClick={() => { setZoom(true) }} src={img} className="h-full object-cover" />
         <div className="absolute flex justify-between left-5 right-5">
           <button onClick={() => handleNavigationClick(prev)} className="btn btn-circle ml-[50px]">❮</button>
-          <button onClick={() => handleNavigationClick(next)} className="btn btn-circle ml-[100px]">❯</button>
+          <button onClick={() => handleNavigationClick(next)} className="btn btn-circle mr-[50px]">❯</button>
         </div>
       </div>
     );
@@ -68,14 +73,14 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
      clickedThumb === index ? (
      <div key={index} className="carousel-item relative flex flex-col mb-[10px]">
        <button onClick={() => handleNavigationClick(count-1)} className="">
-         <div className="h-[20px] w-[20px] border-4 border-white bg-black rounded-full"></div>
+         <div className="h-[20px] w-[20px] border-[5px] border-gray-700 bg-white rounded-full"></div>
        </button>
      </div>
 
      ) : (
     <div key={index} className="carousel-item relative mb-[10px]">
       <button onClick={() => handleNavigationClick(count-1)} className="">
-        <div className="h-[20px] w-[20px] border-2 border-black bg-white rounded-full"></div>
+        <div className="h-[20px] w-[20px] border-[5px] opacity-30 border-gray-700 bg-white rounded-full"></div>
       </button>
     </div>
     ))
@@ -87,6 +92,32 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 </div>
 
 </div>
+    ) : expanded && zoom ? (
+      <div className="carousel relative w-full h-[550px] hover:cursor-minus"
+        >
+          {mainImgs.map((img, index) => {
+            return (
+              <div key={index}
+                className={`carousel-item flex item-center justify-center absolute inset-0 w-[1000px] bg-black ${currentIndex === index ? "opacity-100 z-10 scale-150" : "opacity-0 z-0"}`}
+              >
+                <img
+                onMouseMove={(event) => {
+                  const { left, top, width, height } = event.target.getBoundingClientRect();
+                  const x = -((event.pageX - left) / width - 0.5) * 2 * width / 3;
+                  const y = -((event.pageY - top) / height - 0.5) * 2 * height / 3;
+                  event.target.style.transform = `translate(${x}px, ${y}px) scale(2)`;
+                }}
+                onMouseLeave={(event) => {
+                  event.target.style.transform= "scale(1)"
+                }}
+                className={`transition-transform duration-500 bg-black transfrom-origin-center
+                ${currentIndex === index ? "opacity-100" : "opacity-0"}`}
+                style={{"transition" : "all .3s linear"}}
+                onClick={() => { setZoom(false) }} src={img} className="h-full object-cover" />
+              </div>
+            );
+          })}
+      </div>
     ) : (
       <div className="h-full w-full">
         <div className="carousel relative w-full h-full hover:cursor-zoom-in">
