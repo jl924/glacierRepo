@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 
-const LoadMoreAnswers = ({handleLoadMoreAnswers, loadMoreVisible}) => {
+const LoadMoreAnswers = ({handleLoadMoreAnswers, loadMoreVisible, loadMore}) => {
 
   return (
     <span className='font-bold px-4'>
-      <a onClick={handleLoadMoreAnswers} href=''>Load More Answers</a>
+      {loadMore ? <a onClick={handleLoadMoreAnswers} href=''>See Less Answers</a> : <a onClick={handleLoadMoreAnswers} href=''>See More Answers</a>}
     </span>
   );
 };

@@ -9,9 +9,12 @@ import axios from 'axios';
 
 // Question component to house:
 // Answer and HelpfulStatus components
-const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) => {
+const Question = ({loadMore, setLoadMore, handleAddAnswer, product}) => {
 
-  const [displayAnswers, setDisplayAnswers] = useState();
+  const filteredQuestions = useSelector((state) => state.questionsAnswersReducer.filteredQuestions);
+
+  const [displayAnswers, setDisplayAnswers] = useState(true);
+  const [clickedQuestionIndex, setClickedQuestionIndex] = useState(null);
   let [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -22,6 +25,7 @@ const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) 
   }
 
   let handleHelpfulCount = (question) => {
+    console.log("HELPFULNESS", question.question_helpfulness)
     return {
       helpfulCount: question.question_helpfulness
     };
@@ -57,32 +61,34 @@ const Question = ({questions, loadMore, setLoadMore, handleAddAnswer, product}) 
 
   var handleQuestionDisplay = (e, index) => {
     e.preventDefault();
-    setDisplayAnswers(!displayAnswers);
+    // setDisplayAnswers(!displayAnswers);
+    setClickedQuestionIndex(clickedQuestionIndex === index ? null: index);
     setLoadMore(false);
   };
 
   return (
     <div>
-      {questions.map((question, index) => {
+      {filteredQuestions.map((question, index) => {
+        console.log('QUESTION', question);
         return (
-          <div key={index + 10} className='question py-10'>
+          <div key={question.question_id + '/' + question.question_helpfulness} className='question py-10 max-h-[600px] overflow-y-auto'>
             <h3>
-              <span className='QAheader'>Q: </span>
-              <a key={index} className ='questionHeader' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
+              <span className='QAheader text-lg'>Q: </span>
+              <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
-                handleHelpfulClick={(e) => handleQuestionHelpfulClick(e, question)}
-                data={handleHelpfulCount(question)}
-                handleAddAnswer={handleAddAnswer}
-                question={question} />
+                  handleHelpfulClick={(e) => handleQuestionHelpfulClick(e, question)}
+                  data={handleHelpfulCount(question)}
+                  handleAddAnswer={handleAddAnswer}
+                  question={question} />
               </span>
-             </h3>
-              <Answer answers={question.answers}
+            </h3>
+            <Answer answers={question.answers}
               QaStatus={QaStatus}
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              displayAnswers={displayAnswers} />
+              displayAnswers={displayAnswers && clickedQuestionIndex === index} />
           </div>
         )
       })}

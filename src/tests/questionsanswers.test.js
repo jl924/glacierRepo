@@ -42,7 +42,7 @@ describe('Questions Component', function () {
     const handleLoadMoreAnswersSpy = jest.fn();
 
     const {getByText} = render(<LoadMoreAnswers handleLoadMoreAnswers={handleLoadMoreAnswersSpy}/>);
-    fireEvent.click(getByText('Load More Answers'));
+    fireEvent.click(getByText('See More Answers'));
 
     expect(handleLoadMoreAnswersSpy).toHaveBeenCalled();
 
