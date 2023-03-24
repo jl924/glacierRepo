@@ -8,10 +8,12 @@ import {
   removeResult,
 } from "../../reducers/ratingsReviewsSlice.js";
 import { useDispatch } from "react-redux";
+import RecommendedWidget from "./RecommendedWidget";
 
 const ReviewListItem = ({ review }) => {
   const dispatch = useDispatch();
   let [loading, setLoading] = useState(false);
+  const [capBody, setCap] = useState(true);
 
   const handleHelpfulClick = (ev) => {
     if (!loading) {
@@ -44,8 +46,21 @@ const ReviewListItem = ({ review }) => {
   return (
     <div className="review">
       <ReviewHeader review={review} />
-      <h3 className="bold">{review.summary}</h3>
-      <p>{review.body}</p>
+      <h3 className="bold">{review.summary.slice(0, 60)}</h3>
+      <p>{review.summary.slice(60)}</p>
+      <p>{review.body.slice(0, capBody ? 250 : undefined)}</p>
+      {review.body && review.body.length > 250 && (
+        <div className="w-full showMore">
+          <a
+            className="underline cursor-pointer"
+            onClick={() => setCap(!capBody)}
+          >
+            {capBody ? "Show More" : "Show Less"}
+          </a>
+        </div>
+      )}
+      {review && review.recommend && <RecommendedWidget />}
+      {/* response from seller */}
       <HelpfulStatus
         handleHelpfulClick={handleHelpfulClick}
         handleReportClick={handleReportClick}
