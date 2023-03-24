@@ -8,6 +8,7 @@ import axios from 'axios'
 import selectedProductSlice from '../../reducers/selectedProductSlice'
 import { useDispatch } from 'react-redux';
 import loadCarousel from './RelatedFunc.js'
+import RatingView from '../sharedComponents/RatingView'
 
 
 const RelatedCard = ({products}) => {
@@ -34,6 +35,7 @@ const RelatedCard = ({products}) => {
     // console.log("getProductById", getProductById)
 
 
+
   return (
     <div className="relative">
         <input type="checkbox" id={products.product_id} className="modal-toggle" />
@@ -47,7 +49,7 @@ const RelatedCard = ({products}) => {
     <label id='compareBtn' htmlFor={products.product_id} className="btn" >☆</label>
   <figure id='cardImgContainter'><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
  ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" }/></figure>
-  <div className="card-body" id={products.product_id} onClick={
+  <div className="card-body hover:cursor-pointer" id={products.product_id} onClick={
       ()=>getProductById(products.product_id)
       .then((response)=> {
         // console.log('then response after req',response)
@@ -55,8 +57,8 @@ const RelatedCard = ({products}) => {
       })}>
   <small>{products.extra.category || " "}</small>
     <h2 id="titleCard" className="card-title">{products.extra.name}</h2>
-    <small>{products.extra.default_price}</small>
-    <small><AiFillStar/></small>
+    <small>{products.results[0].sale_price ? 'it exists'  : products.extra.default_price}</small>
+    <RatingView width={108} rating={products.ratings}/>
     <div className="card-actions justify-end">
     <small></small>
     </div>

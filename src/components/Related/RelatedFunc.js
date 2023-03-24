@@ -35,9 +35,21 @@ let getInfoByIdRelated = (id) => {
     })
 }
 
+let getInfoByIdRating = (id) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${id}`, { headers })
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+
 let loadCarousel = (id) => {
   var styles = []
   var products = []
+  var ratings = []
 
   let getInfoByIdRelated = (id) => {
     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/related`, { headers })
@@ -48,8 +60,11 @@ let loadCarousel = (id) => {
           styles.push(getProductById(response.data[i]))
 
           products.push(getInfoById(response.data[i]))
+
+          ratings.push(getInfoByIdRating(response.data[i]))
+
         }
-        return Promise.all([Promise.all(styles), Promise.all(products)])
+        return Promise.all([Promise.all(styles), Promise.all(products), Promise.all(ratings)])
       })
       .then((result) => {
         return result;
