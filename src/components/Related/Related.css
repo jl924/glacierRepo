@@ -1,5 +1,5 @@
 #titleCard {
-  color: blue;
+  color: darkgray;
 }
 
 #starbtn {
@@ -102,4 +102,22 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.card1 {
+  width: 900px;
+  height: 420px;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.cardStar {
+  position: absolute;
+  right: 0rem;
 }
