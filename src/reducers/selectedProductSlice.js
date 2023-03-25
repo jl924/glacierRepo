@@ -22,8 +22,10 @@ const initialState = {
             "value": "Brass"
         }
     ]
-  }
+  },
+  yourOutfitLoad : []
 };
+
 
 const selectedProductSlice = createSlice({
   name: "selectedProduct",
@@ -35,6 +37,9 @@ const selectedProductSlice = createSlice({
     selectedProductRequestSuccess(state, action) {
       state.selectedProduct = action.payload
       state.isLoading = false;
+    },
+    yourOutfitLoadRequestSuccess(state, action) {
+      state.yourOutfitLoad = action.payload
     },
   },
 });
