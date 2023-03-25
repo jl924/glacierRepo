@@ -8,7 +8,7 @@ const initialState = {
   reviewsLoading: false,
   metaLoading: false,
   ratingFilter: [],
-  meta: [],
+  meta: {},
   characteristicLabels: {
     Size: ["Too small", "Perfect", "Too large"],
     Width: ["Too narrow", "Perfect", "Too wide"],

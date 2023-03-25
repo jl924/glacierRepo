@@ -10,7 +10,7 @@ export default function ScrollToTop() {
         ev.preventDefault();
         dispatch(scrollFromTopSet({ scrollFromTop: -1 }));
       }}
-      className=" underline cursor-pointer text-center relative w-full z-10 top-[4rem] bg-base-100"
+      className=" underline cursor-pointer text-center relative w-full z-10 top-[4rem] from-base-200 to-base-100 bg-gradient-to-t h-[30px]"
     >
       Scroll To Top
     </div>

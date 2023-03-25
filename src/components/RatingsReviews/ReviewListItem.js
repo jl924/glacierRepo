@@ -2,46 +2,18 @@ import React, { useState } from "react";
 import ReviewHeader from "./ReviewHeader.js";
 import HelpfulStatus from "../sharedComponents/HelpfulStatus";
 import QaStatus from "../sharedComponents/QaStatus";
-import { apiPutRequest } from "../../helpers/api.js";
-import {
-  incrementHelpfulness,
-  removeResult,
-} from "../../reducers/ratingsReviewsSlice.js";
 import { useDispatch } from "react-redux";
 import RecommendedWidget from "./RecommendedWidget";
+import ResponseFromSeller from "./ResponseFromSeller";
 
-const ReviewListItem = ({ review }) => {
+const ReviewListItem = ({
+  review,
+  handleHelpfulClick,
+  handleReportClick,
+  loading,
+}) => {
   const dispatch = useDispatch();
-  let [loading, setLoading] = useState(false);
   const [capBody, setCap] = useState(true);
-
-  const handleHelpfulClick = (ev) => {
-    if (!loading) {
-      setLoading(true);
-      apiPutRequest(`/reviews/${review.review_id}/helpful`)
-        .then(() => {
-          dispatch(incrementHelpfulness({ review_id: review.review_id }));
-        })
-        .catch((err) => {
-          console.log("error occured when trying to increase helpfulness", err);
-        })
-        .finally(() => setLoading(false));
-    }
-  };
-
-  const handleReportClick = (ev) => {
-    if (!loading) {
-      setLoading(true);
-      apiPutRequest(`/reviews/${review.review_id}/report`)
-        .then(() => {
-          dispatch(removeResult({ review_id: review.review_id }));
-        })
-        .catch((err) => {
-          console.log("error occured when trying to report review", err);
-        })
-        .finally(() => setLoading(false));
-    }
-  };
 
   return (
     <div className="review">
@@ -60,10 +32,12 @@ const ReviewListItem = ({ review }) => {
         </div>
       )}
       {review && review.recommend && <RecommendedWidget />}
-      {/* response from seller */}
+      {review && review.response && (
+        <ResponseFromSeller response={review.response} />
+      )}
       <HelpfulStatus
-        handleHelpfulClick={handleHelpfulClick}
-        handleReportClick={handleReportClick}
+        handleHelpfulClick={handleHelpfulClick.bind(null, review.review_id)}
+        handleReportClick={handleReportClick.bind(null, review.review_id)}
         messageType={"review"}
         data={{ helpfulCount: review.helpfulness }}
         loading={loading}

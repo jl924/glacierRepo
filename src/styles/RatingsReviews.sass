@@ -1,3 +1,22 @@
+@mixin animate($animation,$duration,$method,$times)
+  animation: $animation $duration $method $times
+
+@mixin keyframes($name)
+  @keyframes #{$name}
+    @content
+
+@keyframes colorShift
+  0%
+    background-color: 'red' !important,
+  25%
+    background-color: 'yellow' !important,
+  50%
+    background-color: 'blue' !important,
+  75%
+    background-color: 'green' !important,
+  100%
+    background-color: 'red' !important,
+
 .circle
   border-radius: 50%
 .hidden
@@ -74,6 +93,8 @@
     overflow-y: auto
     max-height: 90%
     padding: 30px 0
+    div.text-error:first-letter
+      text-transform: capitalize
     input[type='range']::-webkit-slider-thumb
       background-color: #565656
     input[type='range']
@@ -98,11 +119,27 @@
       background-color: lightgrey
     .recommendedButton:active
       background-color: grey
+    textarea::-webkit-scrollbar
+      display: none
 .graph
   h2
     margin-bottom: 15px
-  div
-    transition: background-color 0.5s ease-in
+  div.filledBar
+    transition: background-color 0.25s ease-in
+    @include keyframes(shiftCol)
+      0%
+        background-color: black
+      25%
+        background-color: lightgrey
+      50%
+        background-color: grey
+      75%
+        background-color: darkgrey
+      100%
+        background-color: black
+  div.filledBar.animating, div.filledBar.selected
+    //@include animate(shiftCol, 1s, linear, infinite)
+    background-color: black
 .sliderDisplay > *
   margin-bottom: 5px
 .userDateCheck
