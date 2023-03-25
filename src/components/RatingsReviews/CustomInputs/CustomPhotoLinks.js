@@ -21,7 +21,7 @@ export default function CustomPhotoLinks({ label, ...props }) {
         {label}
       </label>
       <textarea
-        className="w-[450px] textarea textarea-primary bg-base-200"
+        className="rounded-none w-[450px] textarea textarea-primary bg-base-200"
         onChange={handleChange}
         value={field.value.join("\n")}
         name={props.name}
