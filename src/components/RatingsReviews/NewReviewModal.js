@@ -50,8 +50,8 @@ export default function NewReviewModal({ checked, name, hidden }) {
           (!showModal ? "" : " active")
         }
       >
-        <h3 className="font-bold text-2xl text-center">Write Your Review</h3>
-        <h4 className="font-bold text-xl text-center">About the {name}</h4>
+        <h3 className="text-2xl font-bold text-center">Write Your Review</h3>
+        <h4 className="text-xl font-bold text-center">About the {name}</h4>
         <NewReviewForm />
       </section>
     </div>,
