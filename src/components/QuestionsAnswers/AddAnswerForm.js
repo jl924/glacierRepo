@@ -18,38 +18,48 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
   let [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  var handleAnswerSubmit = (values) => {
+
+  const [newAnswer, setNewAnswer] = useState({
+    body: '',
+    name: '',
+    email: '',
+    photos: []
+  });
+
+  var handleAnswerSubmit = () => {
     setAnswerForm(false);
-    console.log(values);
+    console.log(newAnswer);
     console.log('Submit!');
-    let newAnswer = {
-      body: values.answer,
-      name: values.nickname,
-      email: values.email,
-      photos: []
-    };
 
     if (!loading) {
       setLoading(true);
-      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`, {
-        body: values.answer,
-        name: values.nickname,
-        email: values.email,
-        photos: []
-      }, {headers})
-      .then(response => console.log(response))
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`, newAnswer, {headers})
+      .then((response) => {
+        if (response.status === 201) {
+          dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswer}));
+        }
+      })
       .catch(err => {
         console.log(err);
       })
       .finally(() => {
         setLoading(false)
-
       });
-      // .then(() => {
-      //   dispatch(questionsAnswersSlice.actions.questionsAnswersRequestSuccess())
-      // })
     }
   };
+
+  const onAnswerChange = (e) => {
+    setNewAnswer(prevState => ({ ...prevState, body: e.target.value }));
+  };
+
+  const onNicknameChange = (e) => {
+    setNewAnswer(prevState => ({ ...prevState, name: e.target.value }));
+  };
+
+  const onEmailChange = (e) => {
+    setNewAnswer(prevState => ({ ...prevState, email: e.target.value }));
+  };
+
 
   var handlePhotoUpload = (e) => {
     e.preventDefault();
@@ -71,7 +81,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          handleAnswerSubmit(values);
+          handleAnswerSubmit();
         }, 400);
       }}
       >
@@ -80,14 +90,14 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
             <label className='label' htmlFor='answer'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Answer:</span>
             </label>
-            <textarea className='textarea rounded-none textarea-primary h-20 bg-base-300' id='answer' name='answer' />
+            <textarea onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='answer' name='answer' />
           </h2>
 
           <h2 className='py-5 text-center'>
             <label className='label'htmlFor='nickname'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Nickname:</span>
             </label>
-            <input className='input rounded-none input-primary bg-base-300' id='nickname' name='nickname' placeholder='Example: jack543!' />
+            <input onChange={onNicknameChange} className='input rounded-none input-primary bg-base-300' id='nickname' name='nickname' placeholder='Example: jack543!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
           </h2>
 
@@ -95,7 +105,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
             <label className='label' htmlFor='email'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Email:</span>
             </label>
-            <input className='input rounded-none input-primary bg-base-300' id='email' name='email' type='email' placeholder='Example: jack@email.com' />
+            <input onChange={onEmailChange} className='input rounded-none input-primary bg-base-300' id='email' name='email' type='email' placeholder='Example: jack@email.com' />
             <p p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
           </h2>
           <div className='text-center'>

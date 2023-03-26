@@ -41,7 +41,6 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
   var handleQuestionHelpfulClick = (e, question) => {
 
     let id = question.question_id;
-    console.log(id, question)
 
     if (!loading) {
       setLoading(true);
@@ -90,7 +89,8 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              displayAnswers={displayAnswers && clickedQuestionIndex === index} />
+              hideClicked={clickedQuestionIndex === index}
+              clickedQuestionIndex={clickedQuestionIndex} />
           </div>
         )
       })}
@@ -116,7 +116,8 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              displayAnswers={displayAnswers && clickedQuestionIndex === index} />
+              hideClicked={clickedQuestionIndex === index}
+              clickedQuestionIndex={clickedQuestionIndex} />
           </div>
         )
       })}
