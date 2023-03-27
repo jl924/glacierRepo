@@ -4,18 +4,36 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const upload = multer();
+const { uploadFiles } = require("./helpers/cloudinary");
+const { apiPostRequest } = require("../src/helpers/api");
 
 const app = express();
 
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 
 app.use(express.static(path.join(__dirname, "../public")));
-app.post("/reviews", async (req, res, next) => {
-  console.log(req.body.photos);
-
-  res.json({ message: "wip" });
+app.post("/reviews", upload.array("photos", 5), async (req, res, next) => {
+  try {
+    const photoUrls = await uploadFiles(req.files);
+    let newBody = {};
+    Object.keys(req.body).forEach((key) => {
+      console.log(key, req.body[key]);
+      newBody[key] = JSON.parse(req.body[key]);
+    });
+    newBody.photos = photoUrls;
+    const response = await apiPostRequest("/reviews", newBody);
+    if (response.data === "Created") {
+      await res.status(201).json({ message: "Successfully created." });
+    } else {
+      throw new Error("Failed to upload to api.");
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "An error was encountered", err });
+  }
 });
 
 module.exports = app;

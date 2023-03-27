@@ -1,6 +1,6 @@
 const apiKey = process.env.API_KEY;
 const headers = { Authorization: apiKey };
-import axios from "axios";
+const axios = require("axios");
 
 const buildUrl = (endPoint = "/", queryParams = {}, start) => {
   let url = start + endPoint;
@@ -101,7 +101,7 @@ const apiPutRequest = (
   });
 };
 
-export {
+module.exports = {
   buildUrl,
   apiGetRequest,
   apiPostRequest,
