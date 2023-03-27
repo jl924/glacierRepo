@@ -90,14 +90,18 @@ const Form = ({ sty }) => {
             </>
           )}
         </select>
-        <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
-          {formData.size.length ? (
+
+        {formData.size.length ? (
+          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
             <>
               {mapQtys()}
             </>
-          ) : (<option>-</option>)}
-        </select>
-
+          </select>
+        ) : (
+          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2" disabled>
+            <option>-</option>
+          </select>
+        )}
       </div>
 
       <div className="flex flex-row mt-[10px] font-bold">
