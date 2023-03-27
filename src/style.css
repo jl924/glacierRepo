@@ -63,22 +63,6 @@ body{
 
 .closePhotoModal {
   background-color: white;
-  position: absolute;
   float:right;
 
-}
-
-#btn3 {
-  display: inline-flex;
-  position: absolute;
-  right: 0.5rem;
-  bottom: 50rem;
-  background-color: transparent;
-}
-
-.container1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
