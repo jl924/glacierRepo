@@ -5,17 +5,17 @@
   @keyframes #{$name}
     @content
 
-@keyframes colorShift
-  0%
-    background-color: 'red' !important,
-  25%
-    background-color: 'yellow' !important,
-  50%
-    background-color: 'blue' !important,
-  75%
-    background-color: 'green' !important,
-  100%
-    background-color: 'red' !important,
+// @keyframes colorShift
+//   0%
+//     background-color: 'red' !important,
+//   25%
+//     background-color: 'yellow' !important,
+//   50%
+//     background-color: 'blue' !important,
+//   75%
+//     background-color: 'green' !important,
+//   100%
+//     background-color: 'red' !important,
 
 .circle
   border-radius: 50%
@@ -126,7 +126,7 @@
     margin-bottom: 15px
   div.filledBar
     transition: background-color 0.25s ease-in
-    @include keyframes(shiftCol)
+    +keyframes(shiftCol)
       0%
         background-color: black
       25%
@@ -137,8 +137,8 @@
         background-color: darkgrey
       100%
         background-color: black
-  div.filledBar.animating, div.filledBar.selected
-    //@include animate(shiftCol, 1s, linear, infinite)
+  div.filledBar.animating
+    +animate(shiftCol, 1s, linear, infinite)
     background-color: black
 .sliderDisplay > *
   margin-bottom: 5px

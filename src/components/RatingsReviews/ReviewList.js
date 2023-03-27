@@ -59,9 +59,9 @@ const ReviewList = ({}) => {
   const handleReportClick = (review_id, ev) => {
     if (!loading) {
       setLoading(true);
-      apiPutRequest(`/reviews/${review.review_id}/report`)
+      apiPutRequest(`/reviews/${review_id}/report`)
         .then(() => {
-          dispatch(removeResult({ review_id: review.review_id }));
+          dispatch(removeResult({ review_id: review_id }));
         })
         .catch((err) => {
           console.log("error occured when trying to report review", err);
@@ -82,16 +82,18 @@ const ReviewList = ({}) => {
   return (
     <div
       ref={scrollRef}
-      onScroll={(ev) =>{
-        if(ev.target.scrollTop === 0) {
-          if(scrollFromTop !== 0) dispatch(scrollFromTopSet({ scrollFromTop: 0 }))
+      onScroll={(ev) => {
+        if (ev.target.scrollTop === 0) {
+          if (scrollFromTop !== 0)
+            dispatch(scrollFromTopSet({ scrollFromTop: 0 }));
         } else if (ev.target.scrollTop >= 250) {
-          if(scrollFromTop !== 250) dispatch(scrollFromTopSet({ scrollFromTop: 250 }))
+          if (scrollFromTop !== 250)
+            dispatch(scrollFromTopSet({ scrollFromTop: 250 }));
         } else if (ev.target.scrollTop > 0) {
-          if(scrollFromTop !== 1) dispatch(scrollFromTopSet({ scrollFromTop: 1 }))
+          if (scrollFromTop !== 1)
+            dispatch(scrollFromTopSet({ scrollFromTop: 1 }));
         }
-      }
-      }
+      }}
       className="mt-10 max-h-[700px] reviewList overflow-y-auto relative"
     >
       {ratingsReviews

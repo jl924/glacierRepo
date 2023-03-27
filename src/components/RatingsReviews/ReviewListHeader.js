@@ -15,7 +15,7 @@ const ReviewListHeader = ({}) => {
       dispatch(sortingSet({ sorting: ev.target.value }));
     }
   };
-  const options = ['relevance', 'helpfulness', 'newest'];
+  const options = ["relevance", "helpfulness", "newest"];
 
   return (
     <div className="nonHeader">
@@ -27,7 +27,11 @@ const ReviewListHeader = ({}) => {
             onChange={handleSortingChange}
             value={sorting}
           >
-            {options.map(option => <option key={option} className='' value={option}>{option}</option>)}
+            {options.map((option) => (
+              <option key={option} className="" value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </h3>
       </div>
