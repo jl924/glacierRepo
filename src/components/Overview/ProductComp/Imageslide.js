@@ -214,7 +214,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              return(
               clickedThumb === index ? (
               <div key={index} className="carousel-item relative flex flex-col items-center h-[55px] mt-[10px]">
-                  <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:h-[55px] hover:w-[55px] hover:mb-[5px] transition-all duration-200" src={img} />
+                  <img className="h-[50px] w-[50px] border-2 border-black transition-all duration-200" src={img} />
                 <div className="bg-black h-[1px] w-[50px] mb-[2px] mt-[2px]"></div>
                 <div className="bg-black h-[1px] w-[35px]"></div>
               </div>

@@ -11,7 +11,7 @@ import CustomCharacteristics from "./CustomInputs/CustomCharacteristics";
 import { useSelector, useDispatch } from "react-redux";
 import CustomBody from "./CustomInputs/CustomBody";
 import CustomPhotoLinks from "./CustomInputs/CustomPhotoLinks";
-import { apiPostRequest } from "../../helpers/api.js";
+import { apiLocalPostRequest } from "../../helpers/api.js";
 import {
   toggleModal,
   sortingSet,
@@ -26,7 +26,7 @@ let reviewSchema = object().shape({
   characteristics: object(),
   name: string().required(),
   email: string().email().required(),
-  photos: array().of(
+  photos: mixed() /* array().of(
     string().url(
       (val) =>
         `Photo link #${
@@ -35,7 +35,7 @@ let reviewSchema = object().shape({
           ) + 1
         } is not a valid url.`
     )
-  ),
+  ) */,
 });
 
 const NewReviewForm = () => {
@@ -68,6 +68,8 @@ const NewReviewForm = () => {
         validationSchema={reviewSchema}
         initialValues={initialValues}
         onSubmit={(values, { errors, setSubmitting, resetForm }) => {
+          console.log(values.photos);
+
           setSubmitting(true);
           const newValues = { ...values };
           const newCharacteristics = {};
@@ -77,8 +79,27 @@ const NewReviewForm = () => {
           });
           newValues.characteristics = newCharacteristics;
           newValues.product_id = product.id;
-          apiPostRequest("/reviews", newValues)
+          //newValues.photos = Array.from(newValues.photos).map((f) => f);
+          const formData = new FormData();
+          Array.from(newValues.photos).forEach((photo) =>
+            formData.append("photos", photo)
+          );
+          delete newValues.photos;
+          Object.keys(newValues).forEach((key) => {
+            console.log(key, newValues[key]);
+            formData.append(key, JSON.stringify(newValues[key]));
+          });
+          /* Object.keys(newValues.characteristics).forEach((key) =>
+            formData.append("characteristics", {
+              key: newValues.characteristics[key],
+            })
+          ); */
+          Array.from(formData).forEach((val) =>
+            console.log(val, formData[val])
+          );
+          apiLocalPostRequest("/reviews", formData)
             .then(async (res) => {
+              console.log(res);
               if (res.status === 201) {
                 resetForm();
                 dispatch(toggleModal());
@@ -125,7 +146,7 @@ const NewReviewForm = () => {
               label="Characteristics: "
               name={"characteristics"}
             />
-            <CustomPhotoLinks
+            <CustomPhotos
               label="Photos (URLs, separate by a new line):"
               name="photos"
             />
