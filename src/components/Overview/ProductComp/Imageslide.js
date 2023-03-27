@@ -139,7 +139,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                     const { left, top, width, height } = event.target.getBoundingClientRect();
                     const x = -((event.pageX - left) / width - 0.5) * 2 * width / 3;
                     const y = -((event.pageY - top) / height - 0.5) * 2 * height / 3;
-                    event.target.style.transform = `translate(${x}px, ${y}px) scale(2.3)`;
+                    event.target.style.transform = `translate(${x}px, ${y}px) scale(2.5)`;
                     setEntered(true)
                   }
                 }}
@@ -147,7 +147,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                   const { left, top, width, height } = event.target.getBoundingClientRect();
                   const x = -((event.pageX - left) / width - 0.5) * 2 * width / 3;
                   const y = -((event.pageY - top) / height - 0.5) * 2 * height / 3;
-                  event.target.style.transform = `translate(${x}px, ${y}px) scale(2.3)`;
+                  event.target.style.transform = `translate(${x}px, ${y}px) scale(2.5)`;
                 }}
                 onMouseLeave={(event) => {
                   //event.target.style.transform= "scale(1)"
@@ -171,10 +171,18 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
               <div key={index} className={`carousel-item absolute w-full h-full transition duration-500 ${currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
                 <img onClick={() => { setExpanded(true) }} src={img} className="w-full h-full object-cover" />
                 <div className="absolute flex justify-center items-center left-20 mt-[250px] h-[50px] w-[50px]">
-                  <button onClick={() => handleNavigationClick(prev, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300">❮</button>
+                  {index === 0 ? (
+                    <p></p>
+                  ) : (
+                    <button onClick={() => handleNavigationClick(prev, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300 text-black">❮</button>
+                  )}
                 </div>
                 <div className="absolute flex justify-center items-center right-8 mt-[250px] h-[50px] w-[50px]">
-                  <button onClick={() => handleNavigationClick(next, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300">❯</button>
+                  {index === mainImgs.length-1 ? (
+                    <p></p>
+                  ) : (
+                    <button onClick={() => handleNavigationClick(next, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300 text-black">❯</button>
+                  )}
                 </div>
               </div>
             )
@@ -185,15 +193,18 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
          <div className="flex flex-col justify-center h-[435px] w-[60px] absolute z-2 mb-[600px] ml-[30px]">
 
-           <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
-           const carousel = document.querySelector('.thumbnails')
-           carousel.scrollTop -= 75
-           }}><MdKeyboardArrowUp className="text-black transition-all duration-300"
-                                   size={size1}
-                                   onMouseEnter={() => {setSize1(30)}}
-                                   onMouseLeave={() => {setSize1(20)}}
-           /></button>
-
+            {thumbImgs.length <= 7 ? (
+              <p></p>
+            ) : (
+              <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
+                const carousel = document.querySelector('.thumbnails')
+                carousel.scrollTop -= 75
+                }}><MdKeyboardArrowUp className="text-black transition-all duration-300"
+                                        size={size1}
+                                        onMouseEnter={() => {setSize1(30)}}
+                                        onMouseLeave={() => {setSize1(20)}}
+              /></button>
+            )}
             <div className={thumbSelection}>
 
             {thumbImgs.map((img, index) => {
@@ -203,7 +214,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              return(
               clickedThumb === index ? (
               <div key={index} className="carousel-item relative flex flex-col items-center h-[55px] mt-[10px]">
-                  <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:ring-0 hover:h-[55px] hover:w-[55px] hover:mb-[5px] transition-all duration-200" src={img} />
+                  <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:h-[55px] hover:w-[55px] hover:mb-[5px] transition-all duration-200" src={img} />
                 <div className="bg-black h-[1px] w-[50px] mb-[2px] mt-[2px]"></div>
                 <div className="bg-black h-[1px] w-[35px]"></div>
               </div>
@@ -211,22 +222,25 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
               ) : (
              <div key={index} className="carousel-item relative h-[55px] hover:animate-pulse">
                <button onClick={() => handleNavigationClick(count-1)} className="flex items-center justify-center h-[60px] w-[60px]">
-                 <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:ring-0 hover:h-[55px] hover:w-[55px] transition-all duration-200" src={img} />
+                 <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:h-[55px] hover:w-[55px] transition-all duration-200" src={img} />
                </button>
              </div>
              ))
             })}
         </div>
-        <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] z-[12]" onClick={() => { // scroll up handler
-          const carousel = document.querySelector('.thumbnails')
-          carousel.scrollTop += 75
-        }}><MdKeyboardArrowDown className="text-black transition-all duration-300"
-                                size={size2}
-                                onMouseEnter={() => {setSize2(30)}}
-                                onMouseLeave={() => {setSize2(20)}}
-                                />
-         </button>
-
+        {thumbImgs.length < 7 ? (
+          <p></p>
+        ) : (
+          <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] z-[12]" onClick={() => { // scroll up handler
+            const carousel = document.querySelector('.thumbnails')
+            carousel.scrollTop += 75
+          }}><MdKeyboardArrowDown className="text-black transition-all duration-300"
+                                  size={size2}
+                                  onMouseEnter={() => {setSize2(30)}}
+                                  onMouseLeave={() => {setSize2(20)}}
+                                  />
+           </button>
+        )}
        </div>
     </div>
   </div>
