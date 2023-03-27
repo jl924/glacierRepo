@@ -83,11 +83,24 @@ const NewReviewForm = () => {
           });
           newValues.characteristics = newCharacteristics;
           newValues.product_id = product.id;
-          newValues.photos = Array.from(newValues.photos).map((f) => f);
+          //newValues.photos = Array.from(newValues.photos).map((f) => f);
           const formData = new FormData();
-          for (var key in newValues) {
-            formData.append(key, newValues[key]);
-          }
+          Array.from(newValues.photos).forEach((photo) =>
+            formData.append("photos", photo)
+          );
+          delete newValues.photos;
+          Object.keys(newValues).forEach((key) => {
+            console.log(key, newValues[key]);
+            formData.append(key, JSON.stringify(newValues[key]));
+          });
+          /* Object.keys(newValues.characteristics).forEach((key) =>
+            formData.append("characteristics", {
+              key: newValues.characteristics[key],
+            })
+          ); */
+          Array.from(formData).forEach((val) =>
+            console.log(val, formData[val])
+          );
           apiLocalPostRequest("/reviews", formData)
             .then(async (res) => {
               console.log(res);
