@@ -215,7 +215,7 @@ const questionsAnswersSlice = createSlice({
         question.answers[answerId].helpfulness++;
       }
 
-      state.reRender = true;
+      // state.reRender = true;
     },
     answeringQuestion (state, action) {
       state.answeringQuestion = action.payload;

@@ -26,6 +26,14 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     photos: []
   });
 
+  const newAnswerRender = {
+    body: newAnswer.body,
+    date: Date.now(),
+    answerer_name: newAnswer.name,
+    helpfulness: 0,
+    photos: []
+  };
+
 
   var handleAnswerSubmit = () => {
     setAnswerForm(false);
@@ -37,7 +45,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
       axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`, newAnswer, {headers})
       .then((response) => {
         if (response.status === 201) {
-          dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswer}));
+          dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswerRender}));
         }
       })
       .catch(err => {
