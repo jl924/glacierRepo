@@ -42,12 +42,17 @@ const RatingsReviews = () => {
   }
 
   return (
-    <div className="mainRatings grid mx-auto">
-      <div className="leftReviews left flex flex-col align-top">
+    <div className="grid mx-auto mainRatings">
+      <div className="flex flex-col align-top leftReviews left">
         <h4>Ratings & Reviews</h4>
         <div className="averageAndStars flex items-start h-[80px]">
           <h1 className="leading-[54px]">{meta.averageReviews}</h1>
-          <RatingView width={108} rating={meta.averageReviews} numStars={5} />
+          <RatingView
+            animateOnHover={true}
+            width={108}
+            rating={meta.averageReviews}
+            numStars={5}
+          />
         </div>
         <RatingsDistributionGraph reviews={reviews} />
         {meta.characteristics &&
@@ -59,7 +64,7 @@ const RatingsReviews = () => {
             />
           ))}
       </div>
-      <div className="rightReviews right flex flex-col">
+      <div className="flex flex-col rightReviews right">
         <ReviewListHeader />
         <ReviewList />
         <NewReviewModal
