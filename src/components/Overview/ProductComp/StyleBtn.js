@@ -12,13 +12,13 @@ const StyleBtn = ({sty, handleStyleClick, selectedId}) => {
           <p className="text-xs ml-[1px] mb-[1px] font-light text-black">✓</p>
         </div>
         <button onClick={() => handleStyleClick(sty.id)} className="flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100">
-          <img name="testing" src={sty.img} className="w-full h-full object-cover rounded-full border border-black hover:border-2" />
+          <img module="styleBtn|Overview" src={sty.img} className="w-full h-full object-cover rounded-full border border-black hover:border-2" />
         </button>
       </div>
     ) : (
       <div className="flex items-center justify-center mr-[10px] w-[60px] h-[60px] hover:animate-pulse">
       <button onClick={() => handleStyleClick(sty.id)} className={buttonClass}>
-        <img name="testing" src={sty.img} className="w-full h-full object-cover rounded-full border border-black hover:border-2" />
+        <img module="styleBtn|Overview" name="styleBtn|Overview" src={sty.img} className="w-full h-full object-cover rounded-full border border-black hover:border-2" />
       </button>
       </div>
     )
