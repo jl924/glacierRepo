@@ -26,11 +26,7 @@ let reviewSchema = object().shape({
   characteristics: object(),
   name: string().required(),
   email: string().email().required(),
-  photos: mixed().test(
-    "required",
-    "Please select a file",
-    (files) => files?.length > 0
-  ) /* array().of(
+  photos: mixed() /* array().of(
     string().url(
       (val) =>
         `Photo link #${
