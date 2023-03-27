@@ -221,14 +221,21 @@ const questionsAnswersSlice = createSlice({
       state.answeringQuestion = action.payload;
     },
     addQuestion (state, action) {
-      let copyOfStateFormat = state.questionsAnswers.slice();
-      let addedQuestion = copyOfStateFormat[0];
-      addedQuestion.question_body  = action.payload.body;
-      addedQuestion.date = Date.now();
-      addedQuestion.asker_name = action.payload.name;
-      addedQuestion.question_helpfulness = 0;
-      addedQuestion.answers = {};
-      state.questionsAnswers.push(addedQuestion);
+      const { body, name } = action.payload;
+      console.log(body, name)
+      const newQuestion = {
+        question_id: state.questionsAnswers.length + 1,
+        question_body: body,
+        date: Date.now(),
+        asker_name: name,
+        question_helpfulness: 0,
+        answers: {}
+      };
+
+      return {
+        ...state,
+        questionsAnswers: [...state.questionsAnswers, newQuestion]
+      };
     },
     reRenderRequest(state) {
       state.reRender = true;

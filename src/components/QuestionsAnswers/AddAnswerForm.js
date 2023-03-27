@@ -26,6 +26,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     photos: []
   });
 
+
   var handleAnswerSubmit = () => {
     setAnswerForm(false);
     console.log(newAnswer);

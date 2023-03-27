@@ -49,6 +49,7 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
     newQuestion.email = e.target.value;
   };
 
+
   return (
     <div>
       <div className='text-center font-bold text-2xl'>Ask a question
