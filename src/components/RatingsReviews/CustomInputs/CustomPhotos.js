@@ -11,7 +11,7 @@ export default function CustomPhotos({ label, ...props }) {
   };
 
   return (
-    <div className="flex flex-row w-full justify-around">
+    <div className="flex flex-row justify-around w-full">
       {error && meta.touched && <div className="text-error">{error}</div>}
       <label htmlFor={props.name}>{label}</label>
       <input
@@ -24,7 +24,7 @@ export default function CustomPhotos({ label, ...props }) {
         onBlur={field.onBlur}
       />
       <label
-        for="files"
+        htmlFor="files"
         className="file-input w-[200px] h-[32px] leading-8 text-center bg-base-400 text-primary align-center"
       >
         {field.value.length === 0

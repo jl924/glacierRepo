@@ -115,6 +115,7 @@ const ReviewList = ({}) => {
 
   return [
     <div
+      key="uniqueio"
       ref={scrollRef}
       onScroll={handleScroll}
       className="max-h-[700px] reviewList overflow-y-auto relative"

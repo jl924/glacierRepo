@@ -2,8 +2,7 @@ const apiKey = process.env.API_KEY;
 const headers = { Authorization: apiKey };
 import axios from "axios";
 
-const buildUrl = (endPoint = "/", queryParams = {}) => {
-  const start = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe";
+const buildUrl = (endPoint = "/", queryParams = {}, start) => {
   let url = start + endPoint;
   let keys = Object.keys(queryParams);
   if (keys.length > 0) {
@@ -16,8 +15,15 @@ const buildUrl = (endPoint = "/", queryParams = {}) => {
   return url;
 };
 
-const axiosRequest = ({ method, data, headers, endPoint, queryParams }) => {
-  const url = buildUrl(endPoint, queryParams);
+const axiosRequest = ({
+  method,
+  data,
+  headers,
+  endPoint,
+  queryParams,
+  start = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe",
+}) => {
+  const url = buildUrl(endPoint, queryParams, start);
   return axios({
     url,
     method,
@@ -64,6 +70,21 @@ const apiPostRequest = (
   });
 };
 
+const apiLocalPostRequest = (
+  endPoint = "/reviews",
+  body = {},
+  queryParams = {}
+) => {
+  return axiosRequest({
+    method: "POST",
+    data: body,
+    headers,
+    queryParams,
+    endPoint,
+    start: "http://localhost:3000",
+  });
+};
+
 const apiPutRequest = (
   endPoint = "/",
   body = {},
@@ -80,4 +101,10 @@ const apiPutRequest = (
   });
 };
 
-export { buildUrl, apiGetRequest, apiPostRequest, apiPutRequest };
+export {
+  buildUrl,
+  apiGetRequest,
+  apiPostRequest,
+  apiPutRequest,
+  apiLocalPostRequest,
+};
