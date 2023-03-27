@@ -6,6 +6,7 @@ const RatingView = ({
   numStars = 5,
   width = 200,
   size = "lg",
+  animateOnHover = false,
 }) => {
   rating =
     Math.floor(rating) +
@@ -51,7 +52,7 @@ const RatingView = ({
   };
 
   return (
-    <div className="ratingView relative" style={sharedDims}>
+    <div className="relative ratingView" style={sharedDims}>
       <div
         className={"rating ratingBackground rating-" + size}
         style={sharedStyle}
@@ -77,7 +78,11 @@ const RatingView = ({
             <input
               key={rating}
               type="radio"
-              className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
+              className={
+                ((rating !== 0 && "bottom-0 relative transition-all ") || "") +
+                (rating === 0 ? "rating-hidden" : "mask mask-star 2") +
+                ((rating !== 0 && animateOnHover && " hover:bottom-4") || "")
+              }
               readOnly={true}
               style={starStyle(rating)}
               checked={rating === numStars}
