@@ -15,9 +15,13 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
   let [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  var newQuestion = {
+  const [newQuestion, setNewQuestion] = useState({
+    body: '',
+    name: '',
+    email: '',
     product_id: product.id
-  };
+  });
+
   var handleSubmitQuestion = (values) => {
     setQuestionForm(false);
     console.log('Submit!');
@@ -25,6 +29,7 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
 
     if (!loading) {
       setLoading(true);
+      console.log(newQuestion);
       axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', newQuestion, {headers})
       .then(response => {
         console.log(response);
@@ -39,14 +44,16 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
     }
   };
 
-  var onAnswerChange = (e) => {
-    newQuestion.body = e.target.value;
+  const onQuestionChange = (e) => {
+    setNewQuestion(prevState => ({ ...prevState, body: e.target.value }));
   };
-  var onNicknameChange = (e) => {
-    newQuestion.name = e.target.value;
+
+  const onNicknameChange = (e) => {
+    setNewQuestion(prevState => ({ ...prevState, name: e.target.value }));
   };
-  var onEmailChange = (e) => {
-    newQuestion.email = e.target.value;
+
+  const onEmailChange = (e) => {
+    setNewQuestion(prevState => ({ ...prevState, email: e.target.value }));
   };
 
 
@@ -75,7 +82,7 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
             <label className='label' htmlFor='question'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Question:</span>
             </label>
-            <textarea onChange={onAnswerChange} className='textarea rounded-none textarea-primary bg-base-300' id='question' name='question' />
+            <textarea onChange={onQuestionChange} className='textarea rounded-none textarea-primary bg-base-300' id='question' name='question' />
           </h2>
 
           <h2 className='py-5 text-center'>
