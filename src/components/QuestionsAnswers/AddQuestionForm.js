@@ -5,7 +5,7 @@ import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPostRequest } from "../../helpers/api.js";
 import axios from 'axios';
 
-const AddQuestionForm = ({ product }) => {
+const AddQuestionForm = ({ product, setQuestionForm }) => {
 
   const token = process.env.API_KEY;
   const headers = {
@@ -14,19 +14,22 @@ const AddQuestionForm = ({ product }) => {
 
   let [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
+  var newQuestion = {
+    product_id: product.id
+  };
   var handleSubmitQuestion = (values) => {
+    setQuestionForm(false);
     console.log('Submit!');
     console.log(product.id);
 
     if (!loading) {
       setLoading(true);
-      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
-        body: values.question,
-        name: values.nickname,
-        email: values.email,
-        product_id: product.id
-      }, {headers})
-      .then(response => console.log(response))
+      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', newQuestion, {headers})
+      .then(response => {
+        console.log(response);
+        dispatch(questionsAnswersSlice.actions.addQuestion(newQuestion));
+      })
       .catch(err => {
         console.log(err);
       })
@@ -35,6 +38,17 @@ const AddQuestionForm = ({ product }) => {
       });
     }
   };
+
+  var onAnswerChange = (e) => {
+    newQuestion.body = e.target.value;
+  };
+  var onNicknameChange = (e) => {
+    newQuestion.name = e.target.value;
+  };
+  var onEmailChange = (e) => {
+    newQuestion.email = e.target.value;
+  };
+
 
   return (
     <div>
@@ -61,14 +75,14 @@ const AddQuestionForm = ({ product }) => {
             <label className='label' htmlFor='question'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Question:</span>
             </label>
-            <textarea className='textarea rounded-none textarea-primary bg-base-300' id='question' name='question' />
+            <textarea onChange={onAnswerChange} className='textarea rounded-none textarea-primary bg-base-300' id='question' name='question' />
           </h2>
 
           <h2 className='py-5 text-center'>
             <label className='label' htmlFor='nickname'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Nickname:</span>
             </label>
-            <input className='input rounded-none input-primary bg-base-300' id='nickname' name='nickname' placeholder='Example: jackson11!' />
+            <input onChange={onNicknameChange} className='input rounded-none input-primary bg-base-300' id='nickname' name='nickname' placeholder='Example: jackson11!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
           </h2>
 
@@ -76,7 +90,7 @@ const AddQuestionForm = ({ product }) => {
             <label className='label' htmlFor='email'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Email:</span>
             </label>
-            <input className='input rounded-none input-primary w-full bg-base-300' id='email' name='email' type='email' placeholder='Why did you like the product or not?' />
+            <input onChange={onEmailChange} className='input rounded-none input-primary w-full bg-base-300' id='email' name='email' type='email' placeholder='Why did you like the product or not?' />
             <p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
           </h2>
 
