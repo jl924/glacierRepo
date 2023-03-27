@@ -68,4 +68,12 @@ body{
 .closePhotoModal {
   background-color: white;
   position: absolute;
+  float:right;
+
+}
+
+#btn3 {
+  position: absolute;
+  right: 17rem;
+  background-color: transparent;
 }
