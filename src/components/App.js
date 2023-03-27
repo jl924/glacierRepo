@@ -84,10 +84,10 @@ let switchTheme = () => {
   return (
 
     <div className="app text-primary" data-theme={theme}>
-      <Overview />
-      <div className='container container1'>
+      <div className='container container2'>
       <button id="btn3" className="btn btn-active btn-ghost" onClick={switchTheme}>{icon}</button>
       </div>
+      <Overview />
       <Related />
       <QuestionsAnswers />
       <RatingsReviews />
