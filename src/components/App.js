@@ -72,11 +72,20 @@ useEffect(()=>{
     }
 },[theme]);
 
+useEffect(()=>{
+  if(localStorage.getItem("theme")){
+  const localTheme = localStorage.getItem("theme");
+  setTheme(localTheme)
+  }
+},[]);
+
 let switchTheme = () => {
   if (theme === 'lightTheme') {
+    localStorage.setItem("theme", "darkTheme");
     setTheme('darkTheme')
     }
   if (theme === 'darkTheme') {
+    localStorage.setItem("theme", "lightTheme");
       setTheme('lightTheme')
       }
 }
