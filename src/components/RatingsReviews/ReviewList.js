@@ -28,7 +28,7 @@ const getReviewListItems = (reviews) => {
 };
 
 const ReviewList = ({}) => {
-  const { ratingsReviews, showMore, ratingFilter } = useSelector(
+  const { ratingsReviews, showMore, ratingFilter, textFilter } = useSelector(
     (s) => s.ratingsReviewsReducer
   );
   const { scrollFromTop } = useSelector((s) => s.reviewListReducer);
@@ -37,6 +37,36 @@ const ReviewList = ({}) => {
   const [scrolling, setScrolling] = useState(false);
   let [loading, setLoading] = useState(false);
   let [loadingHelpful, setLoadingHelpful] = useState({});
+
+  useEffect(() => {
+    if (scrollFromTop === -1) {
+      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      dispatch(reviewListScrollingSet({ scrolling: true }));
+    } else if (scrollFromTop === 0) {
+      dispatch(reviewListScrollingSet({ scrolling: false }));
+    }
+  }, [scrollFromTop]);
+
+  function handleMoreClick(ev) {
+    ev.preventDefault();
+    dispatch(toggleShowMore());
+  }
+
+  function handleAddClick(ev) {
+    ev.preventDefault();
+    dispatch(toggleModal());
+  }
+
+  function handleScroll(ev) {
+    if (ev.target.scrollTop === 0) {
+      if (scrollFromTop !== 0) dispatch(scrollFromTopSet({ scrollFromTop: 0 }));
+    } else if (ev.target.scrollTop >= 250) {
+      if (scrollFromTop !== 250)
+        dispatch(scrollFromTopSet({ scrollFromTop: 250 }));
+    } else if (ev.target.scrollTop > 0) {
+      if (scrollFromTop !== 1) dispatch(scrollFromTopSet({ scrollFromTop: 1 }));
+    }
+  }
 
   const handleHelpfulClick = (review_id, ev) => {
     if (!loadingHelpful[review_id]) {
@@ -70,38 +100,26 @@ const ReviewList = ({}) => {
     }
   };
 
-  useEffect(() => {
-    if (scrollFromTop === -1) {
-      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
-      dispatch(reviewListScrollingSet({ scrolling: true }));
-    } else if (scrollFromTop === 0) {
-      dispatch(reviewListScrollingSet({ scrolling: false }));
-    }
-  }, [scrollFromTop]);
+  let filteredReviews = ratingsReviews.filter((review) => {
+    let tempTextFilter = textFilter.length > 3 ? textFilter.toLowerCase() : "";
+    const foundText =
+      review.body.toLowerCase().includes(tempTextFilter) ||
+      review.summary.toLowerCase().includes(tempTextFilter);
+    let tempRatingFilter =
+      ratingFilter.length === 0
+        ? ["1", "2", "3", "4", "5"]
+        : ratingFilter.slice();
 
-  return (
+    return foundText && tempRatingFilter.includes(review.rating + "");
+  });
+
+  return [
     <div
       ref={scrollRef}
-      onScroll={(ev) => {
-        if (ev.target.scrollTop === 0) {
-          if (scrollFromTop !== 0)
-            dispatch(scrollFromTopSet({ scrollFromTop: 0 }));
-        } else if (ev.target.scrollTop >= 250) {
-          if (scrollFromTop !== 250)
-            dispatch(scrollFromTopSet({ scrollFromTop: 250 }));
-        } else if (ev.target.scrollTop > 0) {
-          if (scrollFromTop !== 1)
-            dispatch(scrollFromTopSet({ scrollFromTop: 1 }));
-        }
-      }}
-      className="mt-10 max-h-[700px] reviewList overflow-y-auto relative"
+      onScroll={handleScroll}
+      className="max-h-[700px] reviewList overflow-y-auto relative"
     >
-      {ratingsReviews
-        .filter((review) => {
-          if (ratingFilter.length !== 0) {
-            return ratingFilter.includes(review.rating + "");
-          } else return true;
-        })
+      {filteredReviews
         .slice(0, showMore ? undefined : 2)
         .map((review, i) => {
           return [
@@ -119,8 +137,17 @@ const ReviewList = ({}) => {
           ];
         })
         .flat()}
-    </div>
-  );
+    </div>,
+
+    <ButtonPair
+      key={"unique"}
+      buttons={{
+        [showMore ? "Less Reviews" : "More Reviews"]: handleMoreClick,
+        ["Add a Review"]: handleAddClick,
+      }}
+      showFirst={filteredReviews.length > 2}
+    />,
+  ];
 };
 
 export default ReviewList;
