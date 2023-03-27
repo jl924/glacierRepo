@@ -139,7 +139,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                     const { left, top, width, height } = event.target.getBoundingClientRect();
                     const x = -((event.pageX - left) / width - 0.5) * 2 * width / 3;
                     const y = -((event.pageY - top) / height - 0.5) * 2 * height / 3;
-                    event.target.style.transform = `translate(${x}px, ${y}px) scale(2.3)`;
+                    event.target.style.transform = `translate(${x}px, ${y}px) scale(2.5)`;
                     setEntered(true)
                   }
                 }}
@@ -147,7 +147,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
                   const { left, top, width, height } = event.target.getBoundingClientRect();
                   const x = -((event.pageX - left) / width - 0.5) * 2 * width / 3;
                   const y = -((event.pageY - top) / height - 0.5) * 2 * height / 3;
-                  event.target.style.transform = `translate(${x}px, ${y}px) scale(2.3)`;
+                  event.target.style.transform = `translate(${x}px, ${y}px) scale(2.5)`;
                 }}
                 onMouseLeave={(event) => {
                   //event.target.style.transform= "scale(1)"
