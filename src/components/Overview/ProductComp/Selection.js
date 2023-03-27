@@ -52,7 +52,7 @@ const Selection = ({info, product, setStyle, sty }) => {
 
         <div className="flex mb-[5px] items-center ml-[12px]">
           <RatingView width={80} numStars={5} rating={rating} />
-          <a onClick={() => {window.scrollTo({
+          <a module="reviews|Overview" onClick={() => {window.scrollTo({
             top: 10000,
             behavior: 'smooth'
           })}} className="text-gray-400 underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {rev} reviews</a>

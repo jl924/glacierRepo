@@ -82,7 +82,7 @@ const Form = ({ sty }) => {
     <form onSubmit={handleSubmit}>
 
       <div className="flex flex-row h-[50px]">
-        <select id="size" value={formData.size} onChange={handleChange} name="size" className="border border-black font-bold w-[160px] hover:cursor-pointer hover:border-2">
+        <select module="sizeSelect|Overview" id="size" value={formData.size} onChange={handleChange} name="size" className="border border-black font-bold w-[160px] hover:cursor-pointer hover:border-2">
           {outOfStock ? (<option>OUT OF STOCK!</option>) : (
             <>
             <option>Select Size</option>
@@ -90,7 +90,7 @@ const Form = ({ sty }) => {
             </>
           )}
         </select>
-        <select id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
+        <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
           {formData.size.length ? (
             <>
               {mapQtys()}
@@ -102,16 +102,16 @@ const Form = ({ sty }) => {
 
       <div className="flex flex-row mt-[10px] font-bold">
         {outOfStock ? (<p></p>) : (
-          <button onClick={handleSubmit} className="flex items-center h-[50px] border border-black w-[210px] mr-[20px] hover:cursor-pointer hover:border-2">
+          <button module="styleBtn|Overview" onClick={handleSubmit} className="flex items-center h-[50px] border border-black w-[210px] mr-[20px] hover:cursor-pointer hover:border-2">
             <p className="w-[180px] pr-[70px]">ADD TO BAG</p>
             <p className="font-light text-2xl mb-[4px]">+</p>
           </button>
         )}
-        <button className="flex flex-row justify-center items-center border w-[50px] h-[50px] bg-white border border-solid border-black hover:cursor-pointer hover:border-2" onClick={handleFavoriteClick}>
+        <button module="styleBtn|Overview" className="flex flex-row justify-center items-center border w-[50px] h-[50px] bg-white border border-solid border-black hover:cursor-pointer hover:border-2" onClick={handleFavoriteClick}>
           {starFill ? (
-            <AiFillStar className="text-yellow-500 fill-current" />
+            <AiFillStar module="styleBtn|Overview" className="text-yellow-500 fill-current" />
           ) : (
-            <AiOutlineStar className="text-gray-500 fill-current" />
+            <AiOutlineStar module="styleBtn|Overview" className="text-gray-500 fill-current" />
           )}
         </button>
 
