@@ -24,10 +24,6 @@ body {
   justify-content: center;
 }
 
-#root > * > * {
-  margin-bottom: 55px;
-}
-
 #titleCard {
   color: #525252;
 }

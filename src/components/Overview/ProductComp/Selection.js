@@ -6,6 +6,11 @@ import StyleBtn from './StyleBtn'
 import Form from './Form'
 import RatingView from '../../../components/sharedComponents/RatingView'
 import helpers from '../reqHelpers'
+import { FacebookShareButton } from 'react-share';
+import { TwitterShareButton } from 'react-share';
+import { PinterestShareButton } from 'react-share';
+
+
 const getRatingById = helpers.getRatingById
 const Selection = ({info, product, setStyle, sty }) => {
 
@@ -97,8 +102,18 @@ const Selection = ({info, product, setStyle, sty }) => {
         <Form sty={sty}/>
         </div>
       </div>
+      <div className="flex items-center justify-center mt-[15px]">
+        <FacebookShareButton url={"http://localhost:3000/"} quote={"quote"}>
+          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" /></button>
+        </FacebookShareButton>
+        <TwitterShareButton url={"http://localhost:3000/"} quote={"quote"}>
+          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" /></button>
+        </TwitterShareButton>
+        <PinterestShareButton url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
+          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" /></button>
+        </PinterestShareButton>
+      </div>
     </div>
   );
 }
-
 export default Selection;

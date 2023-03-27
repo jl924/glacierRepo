@@ -111,7 +111,7 @@ const Form = ({ sty }) => {
             <p className="font-light text-2xl mb-[4px]">+</p>
           </button>
         )}
-        <button module="styleBtn|Overview" className="flex flex-row justify-center items-center border w-[50px] h-[50px] bg-white border border-solid border-black hover:cursor-pointer hover:border-2" onClick={handleFavoriteClick}>
+        <button module="styleBtn|Overview" className="flex flex-row justify-center items-center w-[50px] h-[50px] border border-solid border-black hover:cursor-pointer hover:border-2" onClick={handleFavoriteClick}>
           {starFill ? (
             <AiFillStar module="styleBtn|Overview" className="text-yellow-500 fill-current" />
           ) : (
