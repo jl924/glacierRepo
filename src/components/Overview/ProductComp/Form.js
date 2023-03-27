@@ -22,7 +22,6 @@ const Form = ({ sty }) => {
   const handleChange = (event) => {
     const {name, value} = event.target
     setFormData({...formData, [name]: value})
-    console.log(formData)
   }
 
   const handleFavoriteClick = (e) => {
@@ -68,9 +67,18 @@ const Form = ({ sty }) => {
 
   let handleSubmit = (e) => {
     e.preventDefault()
-    var item = {Style: sty, Size: formData.size, Qty: formData.qty}
+    var item = {Style: sty.name, Size: formData.size, Qty: formData.qty}
     if (formData.size.length) {
       dispatch(addItem(item))
+      if(localStorage.getItem("cart") === null) {
+        var cart = JSON.stringify([item])
+        localStorage.setItem("cart", cart)
+      } else {
+        var cart = JSON.parse(localStorage.getItem("cart"))
+        cart.push(item)
+        cart = JSON.stringify(cart)
+        localStorage.setItem("cart", cart)
+      }
     } else {
       alert("Please Select a Size!")
     }
