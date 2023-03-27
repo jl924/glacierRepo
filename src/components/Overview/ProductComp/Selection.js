@@ -59,10 +59,11 @@ const Selection = ({info, product, setStyle, sty }) => {
         </div>
         <div className="ml-[20px]">
         <p className="text-gray-400">{info ? (info.category) : (<p></p>)}</p>
-        <p className="text-4xl text-gray-500 mb-[5px]">{info ? (info.name) : (<p></p>)}</p>
+        <p className="text-4xl text-gray-500 mb-[8px]">{info ? (info.name) : (<p></p>)}</p>
         {sty.sale_price ? (
           <div className="flex">
-            <p className="line-through">${sty.original_price}</p>  <p className="text-red-400">&nbsp; {sty.sale_price}</p>
+            <p className="text-red-400 mr-[10px]">${sty.sale_price}</p>
+            <p className="line-through">${sty.original_price}</p>
           </div>
         ) : (
             <p>${sty.original_price}</p>
