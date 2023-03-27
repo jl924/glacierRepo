@@ -214,7 +214,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              return(
               clickedThumb === index ? (
               <div key={index} className="carousel-item relative flex flex-col items-center h-[55px] mt-[10px]">
-                  <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:ring-0 hover:h-[55px] hover:w-[55px] hover:mb-[5px] transition-all duration-200" src={img} />
+                  <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:h-[55px] hover:w-[55px] hover:mb-[5px] transition-all duration-200" src={img} />
                 <div className="bg-black h-[1px] w-[50px] mb-[2px] mt-[2px]"></div>
                 <div className="bg-black h-[1px] w-[35px]"></div>
               </div>
@@ -222,13 +222,13 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
               ) : (
              <div key={index} className="carousel-item relative h-[55px] hover:animate-pulse">
                <button onClick={() => handleNavigationClick(count-1)} className="flex items-center justify-center h-[60px] w-[60px]">
-                 <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:ring-0 hover:h-[55px] hover:w-[55px] transition-all duration-200" src={img} />
+                 <img className="h-[50px] w-[50px] border-2 border-black hover:rounded hover:border-black hover:h-[55px] hover:w-[55px] transition-all duration-200" src={img} />
                </button>
              </div>
              ))
             })}
         </div>
-        {thumbImgs.length <= 7 ? (
+        {thumbImgs.length < 7 ? (
           <p></p>
         ) : (
           <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] z-[12]" onClick={() => { // scroll up handler
