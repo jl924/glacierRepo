@@ -65,19 +65,22 @@ body{
   background-color: white;
   position: absolute;
   float:right;
+
 }
 
 #btn3 {
   display: inline-flex;
-  position: absolute;
-  right: 0.5rem;
-  bottom: 50rem;
+  position: relative;
+  left: 29.5rem;
+  top: 1.7rem;
   background-color: transparent;
 }
 
-.container1 {
+.container2 {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  margin: 0%;
+  height: 0%;
 }

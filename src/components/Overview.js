@@ -24,7 +24,7 @@ const Overview = (store) => {
 
   return (
     <div className="flex flex-col items-center">
-      <Header id="header"/>
+      <Header id="header" />
       <Product productId={productId} info={selectedProduct}/>
       <Description className="" info={selectedProduct}/>
     </div>
