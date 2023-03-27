@@ -55,8 +55,15 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
     }
   };
 
-  var handleQuestionReportClick = () => {
-
+  var handleQuestionReportClick = (e, question) => {
+    // report question
+    apiPutRequest(`/qa/questions/${question.question_id}/report`)
+    .then(() => {
+      dispatch(questionsAnswersSlice.actions.removeQuestion({question_id: question.question_id}))
+    }).catch((err) => {
+      console.log('An err occured trying to report this question', err);
+    });
+    // update report button to read Thanks!
   };
 
   var handleQuestionDisplay = (e, index) => {
@@ -71,14 +78,14 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
       {moreQuestions ?
       <div>
       {firstFour.map((question, index) => {
-        console.log(question);
         return (
-          <div key={question.question_id + '/' + question.question_helpfulness} className='question py-10 max-h-[600px] overflow-y-auto'>
+          <div key={question.question_id + '/' + question.question_helpfulness} className='question py-7 max-h-[600px] overflow-y-auto'>
             <h3>
               <span className='QAheader text-lg'>Q: </span>
               <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
+                  handleQuestionReportClick={(e) => handleQuestionReportClick(e, question)}
                   handleHelpfulClick={(e) => handleQuestionHelpfulClick(e, question)}
                   data={handleHelpfulCount(question)}
                   handleAddAnswer={handleAddAnswer}
@@ -106,6 +113,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
+                  handleQuestionReportClick={(e) => handleQuestionReportClick(e, question)}
                   handleHelpfulClick={(e) => handleQuestionHelpfulClick(e, question)}
                   data={handleHelpfulCount(question)}
                   handleAddAnswer={handleAddAnswer}

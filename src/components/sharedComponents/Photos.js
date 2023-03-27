@@ -11,7 +11,7 @@ const Photos = ({ photos }) => {
     <div className='py-3 px-5'>
       {photos.map((photoUrl, index) => {
         return (
-          <img key={index} onClick ={(e) => setClickedPhoto(e.target.src)} key='photoUrl' src={photoUrl} width={150} height={150} alt='' />
+          <img className='cursor-pointer' key={photoUrl + index} onClick ={(e) => setClickedPhoto(e.target.src)} key='photoUrl' src={photoUrl} width={150} height={150} alt='' />
         );
       })}
       <PhotoModal clickedPhoto={clickedPhoto} setClickedPhoto={setClickedPhoto} />
