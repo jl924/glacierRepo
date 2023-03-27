@@ -1,11 +1,7 @@
 import React from "react";
 import NewReviewForm from "./NewReviewForm.js";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  toggleModal,
-  toggleShowMore,
-} from "../../reducers/ratingsReviewsSlice.js";
-import ButtonPair from "../sharedComponents/ButtonPair";
+import { toggleModal } from "../../reducers/ratingsReviewsSlice.js";
 
 export default function NewReviewModal({ checked, name, hidden }) {
   const dispatch = useDispatch();
@@ -13,24 +9,7 @@ export default function NewReviewModal({ checked, name, hidden }) {
     (state) => state.ratingsReviewsReducer
   );
 
-  function handleMoreClick(ev) {
-    ev.preventDefault();
-    dispatch(toggleShowMore());
-  }
-
-  function handleAddClick(ev) {
-    ev.preventDefault();
-    dispatch(toggleModal());
-  }
-
-  return [
-    <ButtonPair
-      key={"unique"}
-      buttons={{
-        [showMore ? "Less Reviews" : "More Reviews"]: handleMoreClick,
-        ["Add a Review"]: handleAddClick,
-      }}
-    />,
+  return (
     <div
       className={
         "flex justify-center items-center newReviewModal" +
@@ -54,6 +33,6 @@ export default function NewReviewModal({ checked, name, hidden }) {
         <h4 className="text-xl font-bold text-center">About the {name}</h4>
         <NewReviewForm />
       </section>
-    </div>,
-  ];
+    </div>
+  );
 }

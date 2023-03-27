@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useField } from "formik";
+import MinimumReached from "../MinimumReached";
 
 export default function CustomBody({ label, ...props }) {
   const [field, meta, helpers] = useField(props);
@@ -42,24 +43,14 @@ export default function CustomBody({ label, ...props }) {
             What made this purchase absolutely delightful or{" "}
           </span>
           <button
-            class="ml-1 btn btn-secondary btn-xs btn-square text-xs w-[50px] z-20"
+            className="ml-1 btn btn-secondary btn-xs btn-square text-xs w-[50px] z-20"
             onClick={() => console.log("doom")}
           >
             {"not :(?"}
           </button>
         </div>
       </div>
-      <div className="flex flex-row justify-end w-full h-8 mt-4 bg-base-200">
-        {field.value.length < 50 ? (
-          <span className="text-sm bold">
-            {"Minimum required characters left: [" +
-              (50 - field.value.length) +
-              "]"}
-          </span>
-        ) : (
-          <span className="text-sm bold">Minimum reached.</span>
-        )}
-      </div>
+      <MinimumReached text={field.value} />
     </div>
   );
 }
