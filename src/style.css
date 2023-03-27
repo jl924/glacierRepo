@@ -63,6 +63,7 @@ body{
 
 .closePhotoModal {
   background-color: white;
+  position: absolute;
   float:right;
 
 }

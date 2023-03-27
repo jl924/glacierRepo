@@ -3,7 +3,15 @@ import {Formik, Field, Form} from 'formik';
 import {useSelector, useDispatch} from 'react-redux';
 import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPostRequest } from "../../helpers/api.js";
+import { object, string, number, mixed, boolean, array } from "yup";
 import axios from 'axios';
+
+let newAnswerSchema = object().shape({
+  body: string().required('Required').min(1).max(1000),
+  name: string().required().max(60),
+  email: string().email().required().max(60),
+
+});
 
 const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
@@ -57,6 +65,11 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     }
   };
 
+  // validate functions
+  var validateAnswer = () => {
+
+  };
+
   const onAnswerChange = (e) => {
     setNewAnswer(prevState => ({ ...prevState, body: e.target.value }));
   };
@@ -86,6 +99,8 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
         email: '',
       }}
 
+      validationSchema={newAnswerSchema}
+
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -99,7 +114,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
             <label className='label' htmlFor='answer'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Answer:</span>
             </label>
-            <textarea onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='answer' name='answer' />
+            <Field onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='answer' name='answer' />
           </h2>
 
           <h2 className='py-5 text-center'>
