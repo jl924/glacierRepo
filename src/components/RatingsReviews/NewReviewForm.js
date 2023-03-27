@@ -63,7 +63,7 @@ const NewReviewForm = () => {
   //document.querySelector('input[name="rate"]:checked').value;
 
   return (
-    <div className="newReviewForm flex flex-column justify-center">
+    <div className="flex justify-center newReviewForm flex-column">
       <Formik
         validationSchema={reviewSchema}
         initialValues={initialValues}

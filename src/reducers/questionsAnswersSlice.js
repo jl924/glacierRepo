@@ -155,6 +155,7 @@ const initialState = {
     }
   ],
   filteredQuestions: [],
+  reRender: false,
   answeringQuestion: {
     question_id: 0,
     question_body: ''
@@ -205,19 +206,49 @@ const questionsAnswersSlice = createSlice({
       question.question_helpfulness++;
       state.questionsAnswers.splice(i, 1, JSON.parse(JSON.stringify(question)));
     },
-    incrementAHelpfulness(state, action) {
-      var i;
-      const question = state.questionsAnswers.filter((question, index) => {
-        if (question.answers.answerId === action.payload.answers) {
-          i = index;
-          return true
-        }
-      })[0];
-      question.question_helpfulness++;
-      state.questionsAnswers.splice(i, 1, JSON.parse(JSON.stringify(question)));
+    incrementAnswerHelpfulness(state, action) {
+      const {answerId} = action.payload;
+
+      const question = Object.values(state.questionsAnswers).find((q) => q.answers[answerId]);
+
+      if (question) {
+        question.answers[answerId].helpfulness++;
+      }
+
+      // state.reRender = true;
     },
     answeringQuestion (state, action) {
       state.answeringQuestion = action.payload;
+    },
+    addQuestion (state, action) {
+      const { body, name } = action.payload;
+      console.log(body, name)
+      const newQuestion = {
+        question_id: state.questionsAnswers.length + 1,
+        question_body: body,
+        date: Date.now(),
+        asker_name: name,
+        question_helpfulness: 0,
+        answers: {}
+      };
+
+      return {
+        ...state,
+        questionsAnswers: [...state.questionsAnswers, newQuestion]
+      };
+    },
+    reRenderRequest(state) {
+      state.reRender = true;
+    },
+    reRenderSuccess(state) {
+      state.reRender = false;
+    },
+    addAnswer(state, action) {
+      const {questionId, answer} = action.payload;
+      const question = state.questionsAnswers.find((q) => q.question_id === questionId);
+      if (question) {
+        question.answers[answer.answerid] = answer;
+      }
     }
   }
 });
