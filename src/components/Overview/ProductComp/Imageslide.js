@@ -171,10 +171,18 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
               <div key={index} className={`carousel-item absolute w-full h-full transition duration-500 ${currentIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
                 <img onClick={() => { setExpanded(true) }} src={img} className="w-full h-full object-cover" />
                 <div className="absolute flex justify-center items-center left-20 mt-[250px] h-[50px] w-[50px]">
-                  <button onClick={() => handleNavigationClick(prev, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300">❮</button>
+                  {index === 0 ? (
+                    <p></p>
+                  ) : (
+                    <button onClick={() => handleNavigationClick(prev, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300 text-black">❮</button>
+                  )}
                 </div>
                 <div className="absolute flex justify-center items-center right-8 mt-[250px] h-[50px] w-[50px]">
-                  <button onClick={() => handleNavigationClick(next, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300">❯</button>
+                  {index === mainImgs.length-1 ? (
+                    <p></p>
+                  ) : (
+                    <button onClick={() => handleNavigationClick(next, index)} className="flex items-center justify-center hover:text-xl transition-all duration-300 text-black">❯</button>
+                  )}
                 </div>
               </div>
             )
