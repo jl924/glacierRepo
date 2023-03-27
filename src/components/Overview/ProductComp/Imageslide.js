@@ -193,15 +193,18 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
 
          <div className="flex flex-col justify-center h-[435px] w-[60px] absolute z-2 mb-[600px] ml-[30px]">
 
-           <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
-           const carousel = document.querySelector('.thumbnails')
-           carousel.scrollTop -= 75
-           }}><MdKeyboardArrowUp className="text-black transition-all duration-300"
-                                   size={size1}
-                                   onMouseEnter={() => {setSize1(30)}}
-                                   onMouseLeave={() => {setSize1(20)}}
-           /></button>
-
+            {thumbImgs.length <= 7 ? (
+              <p></p>
+            ) : (
+              <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] text-black z-[12]" onClick={() => { // scroll up handler
+                const carousel = document.querySelector('.thumbnails')
+                carousel.scrollTop -= 75
+                }}><MdKeyboardArrowUp className="text-black transition-all duration-300"
+                                        size={size1}
+                                        onMouseEnter={() => {setSize1(30)}}
+                                        onMouseLeave={() => {setSize1(20)}}
+              /></button>
+            )}
             <div className={thumbSelection}>
 
             {thumbImgs.map((img, index) => {
@@ -225,16 +228,19 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              ))
             })}
         </div>
-        <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] z-[12]" onClick={() => { // scroll up handler
-          const carousel = document.querySelector('.thumbnails')
-          carousel.scrollTop += 75
-        }}><MdKeyboardArrowDown className="text-black transition-all duration-300"
-                                size={size2}
-                                onMouseEnter={() => {setSize2(30)}}
-                                onMouseLeave={() => {setSize2(20)}}
-                                />
-         </button>
-
+        {thumbImgs.length <= 7 ? (
+          <p></p>
+        ) : (
+          <button className="relative flex items-center justify-center ml-[3px] h-[20px] w-[50px] z-[12]" onClick={() => { // scroll up handler
+            const carousel = document.querySelector('.thumbnails')
+            carousel.scrollTop += 75
+          }}><MdKeyboardArrowDown className="text-black transition-all duration-300"
+                                  size={size2}
+                                  onMouseEnter={() => {setSize2(30)}}
+                                  onMouseLeave={() => {setSize2(20)}}
+                                  />
+           </button>
+        )}
        </div>
     </div>
   </div>
