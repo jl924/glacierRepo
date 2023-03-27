@@ -3,7 +3,7 @@ import Overview from "./Overview.js";
 import QuestionsAnswers from "./QuestionsAnswers.js";
 import Related from "./Related.js";
 import RatingsReviews from "./RatingsReviews";
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addClick } from '../reducers/clickSlice'
 
@@ -53,11 +53,41 @@ const App = () => {
     return () => {
       window.removeEventListener("click", handleTracking);
     };
+
+    // document.querySelector('body').style.backgroundColor = 'red'
+    // document.body.style.background = "red"
+
   }, []);
 
+  const [theme, setTheme] = useState('lightTheme')
+  const [icon, setIcon] = useState('D')
+useEffect(()=>{
+  if (theme === 'darkTheme') {
+  document.body.style.backgroundColor = "#191D24";
+  setIcon('🔆')
+  }
+  if (theme === 'lightTheme') {
+    document.body.style.backgroundColor = "white";
+    setIcon('🌙')
+    }
+},[theme]);
+
+let switchTheme = () => {
+  if (theme === 'lightTheme') {
+    setTheme('darkTheme')
+    }
+  if (theme === 'darkTheme') {
+      setTheme('lightTheme')
+      }
+}
+
   return (
-    <div className="app text-primary" data-theme="lightTheme">
+
+    <div className="app text-primary" data-theme={theme}>
       <Overview />
+      <div className='container container1'>
+      <button id="btn3" className="btn btn-active btn-ghost" onClick={switchTheme}>{icon}</button>
+      </div>
       <Related />
       <QuestionsAnswers />
       <RatingsReviews />

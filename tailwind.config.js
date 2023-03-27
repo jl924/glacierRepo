@@ -13,6 +13,17 @@ module.exports = {
           accent: "#000000",
         },
       },
+      {
+        darkTheme: {
+          "base-100": "#191D24",
+          "base-200": "#FFFFFF",
+          "base-300": "#E6E6E6",
+          "base-400": "#D0D0D0",
+          primary: "#C6CFDE",
+          secondary: "#A9A9A9",
+          accent: "#000000",
+        },
+      },
     ],
   },
   theme: {
