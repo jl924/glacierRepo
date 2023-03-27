@@ -249,6 +249,16 @@ const questionsAnswersSlice = createSlice({
       if (question) {
         question.answers[answer.answerid] = answer;
       }
+    },
+    removeQuestion (state, action) {
+      var i;
+      const question = state.questionsAnswers.filter((question, index) => {
+        if (question.question_id === action.payload.question_id) {
+          i = index;
+          return true
+        }
+      })[0];
+      state.questionsAnswers.splice(i, 1);
     }
   }
 });
