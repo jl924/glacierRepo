@@ -14,7 +14,7 @@ const PhotoModal = ({ clickedPhoto, setClickedPhoto }) => {
       {clickedPhoto && (
         <div className='PhotoModal'>
           <div className='PhotoModalContent' onClick={handleClose}>
-            <span className='closePhotoModal'><AiOutlineCloseSquare className='closePhotoButton'/></span>
+            <span className='closePhotoModal'><AiOutlineCloseSquare className='closePhotoButton cursor-pointer'/></span>
             <img src={clickedPhoto} />
           </div>
         </div>

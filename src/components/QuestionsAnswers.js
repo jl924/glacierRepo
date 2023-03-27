@@ -82,8 +82,8 @@ const QuestionsAnswers = () => {
   const MoreOrLessQuestions = moreQuestions ? "More Answered Questions" : "Less Answered Questions";
   return (
     <>
-      <div className='text-left bg-white-400 px-4 py-2'>
-        <h4 className='Q&A-heading font-bold text-2xl'>Questions & Answers</h4>
+      <div className='text-left bg-white-400 py-2'>
+        <h4 className='Q&A-heading'>Questions & Answers</h4>
         <SearchQA searchHandler={onSearch}/>
         <div>
           <Question questions={filteredQuestions}
