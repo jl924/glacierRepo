@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import LoadMoreAnswers from './LoadMoreAnswers.js';
+import Photos from '../sharedComponents/Photos.js';
 import {useSelector, useDispatch} from 'react-redux';
 import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPutRequest } from "../../helpers/api.js";
@@ -46,6 +47,7 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, hideClicked
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
               <p><span className='QAheader'>A: </span>{answers[id].body}</p>
+              <Photos photos={answers[id].photos} />
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
@@ -60,6 +62,7 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, hideClicked
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
               <p><span className='QAheader'>A: </span>{answers[id].body}</p>
+              <Photos photos={answers[id].photos} />
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
