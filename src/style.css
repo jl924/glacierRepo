@@ -24,10 +24,6 @@ body {
   justify-content: center;
 }
 
-#root > * > * {
-  margin-bottom: 55px;
-}
-
 #titleCard {
   color: #525252;
 }
@@ -67,9 +63,7 @@ body{
 
 .closePhotoModal {
   background-color: white;
-  position: absolute;
   float:right;
-
 }
 
 #btn3 {
