@@ -67,8 +67,36 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
   // validate functions
   var validateAnswer = () => {
+    const errors = {};
 
+    try {
+      newAnswerSchema.validateSync(newAnswer, { abortEarly: false });
+    } catch (validationErrors) {
+      validationErrors.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+    }
+
+    if (!newAnswer.body) {
+      errors.body = 'Required';
+    }
+    if (!newAnswer.name) {
+      errors.name = 'Required';
+    }
+    if (!newAnswer.email) {
+      errors.email = 'Required';
+    }
+
+    if (newAnswer.name !== undefined) {
+      if (newAnswer.name.length > 60) {
+        errors.nameLength = 'Your nickname must be shorter than 60 characters';
+      }
+    }
+
+    return errors;
   };
+
+  console.log(validateAnswer());
 
   const onAnswerChange = (e) => {
     setNewAnswer(prevState => ({ ...prevState, body: e.target.value }));
@@ -94,30 +122,34 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
       </h2>
       <Formik
       initialValues={{
-        answer:'',
+        body:'',
         nickname: '',
         email: '',
       }}
 
-      validationSchema={newAnswerSchema}
+      validate={validateAnswer}
 
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
+          validateAnswer()
           handleAnswerSubmit();
         }, 400);
       }}
       >
         <Form>
           <h2 className='py-20 flex h-full flex-col justify-end'>
-            <label className='label' htmlFor='answer'>
+          {(validateAnswer().body) ? <small className='text-center text-red-500'>An answer is required</small>: null}
+            <label className='label' htmlFor='body'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Answer:</span>
             </label>
-            <Field onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='answer' name='answer' />
+            <textarea onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='body' name='body' />
           </h2>
 
           <h2 className='py-5 text-center'>
+          {(validateAnswer().name) ? <small className='text-center text-red-500'>A nickname is required</small>: null}
+          {(validateAnswer().nameLength) ? <small className='text-center text-red-500'>Nickname must be less than 60 characters</small>: null}
             <label className='label'htmlFor='nickname'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Nickname:</span>
             </label>
@@ -126,6 +158,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
           </h2>
 
           <h2 p className='py-5 text-center'>
+          {(validateAnswer().email) ? <small className='text-center text-red-500'>An email is required</small>: null}
             <label className='label' htmlFor='email'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Email:</span>
             </label>
