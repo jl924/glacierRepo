@@ -7,6 +7,7 @@ const initialState = {
   reRender: false,
   reviewsLoading: false,
   metaLoading: false,
+  textFilter: "",
   ratingFilter: [],
   meta: {},
   characteristicLabels: {
@@ -157,6 +158,9 @@ const ratingsReviewsSlice = createSlice({
       const index = state.ratingFilter.indexOf(action.payload.rating);
       if (index !== -1) state.ratingFilter.splice(index, 1);
     },
+    setTextFilter(state, action) {
+      state.textFilter = action.payload.textFilter;
+    },
   },
 });
 
@@ -174,5 +178,6 @@ export const {
   toggleShowMore,
   addRatingFilter,
   removeRatingFilter,
+  setTextFilter,
 } = ratingsReviewsSlice.actions;
 export default ratingsReviewsSlice.reducer;
