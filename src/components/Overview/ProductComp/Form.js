@@ -82,7 +82,7 @@ const Form = ({ sty }) => {
     <form onSubmit={handleSubmit}>
 
       <div className="flex flex-row h-[50px]">
-        <select module="sizeSelect|Overview" id="size" value={formData.size} onChange={handleChange} name="size" className="border border-black font-bold w-[160px] hover:cursor-pointer hover:border-2">
+        <select module="sizeSelect|Overview" id="size" value={formData.size} onChange={handleChange} name="size" className="border bg-inherit border-black font-bold w-[160px] hover:cursor-pointer hover:border-2">
           {outOfStock ? (<option>OUT OF STOCK!</option>) : (
             <>
             <option>Select Size</option>
@@ -92,13 +92,13 @@ const Form = ({ sty }) => {
         </select>
 
         {formData.size.length ? (
-          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
+          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border bg-inherit border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
             <>
               {mapQtys()}
             </>
           </select>
         ) : (
-          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2" disabled>
+          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border bg-inherit border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2" disabled>
             <option>-</option>
           </select>
         )}
