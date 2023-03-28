@@ -67,7 +67,6 @@ const ReviewList = ({}) => {
 
       return foundText && tempRatingFilter.includes(review.rating + "");
     });
-    console.log(setFilteredReviews);
     dispatch(setFilteredReviews({ filteredReviews }));
     dispatch(
       setFilteredResultsNum({ filteredResultsNum: filteredReviews.length })
