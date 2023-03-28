@@ -15,7 +15,7 @@ export default function CustomInput({ label, type = "text", ...props }) {
       {error && meta.touched && <div className="text-error">{error}</div>}
       <label htmlFor={props.name}>{label}</label>
       <input
-        className="rounded-none w-[450px] input input-sm bg-base-200 border-1 border-primary"
+        className="rounded-none w-[450px] input input-sm bg-base-300 border-1 border-primary"
         onChange={handleChange}
         value={field.value}
         type={type}
