@@ -68,7 +68,9 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     if (!loading) {
       apiLocalPostRequest('/answers', formData)
     .then(async (res) => {
-      console.log(res);
+      let images = res.data.photos;
+      newAnswerRender.photos = images;
+      console.log(newAnswerRender);
       if (res.status === 201) {
         dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswerRender}));
       }
