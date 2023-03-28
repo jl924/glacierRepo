@@ -102,15 +102,15 @@ const Selection = ({info, product, setStyle, sty }) => {
         <Form sty={sty}/>
         </div>
       </div>
-      <div className="flex items-center justify-center mt-[15px]">
-        <FacebookShareButton url={"http://localhost:3000/"} quote={"quote"}>
-          <img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
+      <div className="flex items-center justify-evenly mt-[40px] w-[200px] ml-[18%]">
+        <FacebookShareButton className="flex items-center justify-center h-[60px] w-[60px]" url={"http://localhost:3000/"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
         </FacebookShareButton>
-        <TwitterShareButton url={"http://localhost:3000/"} quote={"quote"}>
-          <img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" />
+        <TwitterShareButton className="flex items-center justify-center h-[60px] w-[60px]" url={"http://localhost:3000/"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" />
         </TwitterShareButton>
-        <PinterestShareButton url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
-          <img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" />
+        <PinterestShareButton className="flex items-center justify-center h-[60px] w-[60px]" url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" />
         </PinterestShareButton>
       </div>
     </div>
