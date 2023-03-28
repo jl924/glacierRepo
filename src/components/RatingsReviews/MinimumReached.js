@@ -6,7 +6,11 @@ export default function MinimumReached({
   minimum = 50,
 }) {
   return (
-    <div className={"flex flex-row justify-end w-full h-8 mt-4 bg-" + bg}>
+    <div
+      className={
+        "flex bg-inherit flex-row justify-end w-full h-8 mt-4 bg-" + bg
+      }
+    >
       {text.length < minimum ? (
         <span className="text-sm bold">
           {"Minimum required characters left: [" +
