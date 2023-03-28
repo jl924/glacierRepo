@@ -3,6 +3,7 @@ import {Formik, Field, Form} from 'formik';
 import {useSelector, useDispatch} from 'react-redux';
 import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPostRequest } from "../../helpers/api.js";
+import { apiLocalPostRequest } from '../../helpers/api.js';
 import { object, string, number, mixed, boolean, array } from "yup";
 import axios from 'axios';
 
@@ -31,7 +32,8 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     body: '',
     name: '',
     email: '',
-    photos: []
+    photos: [],
+    questionId: question.question_id
   });
 
   const newAnswerRender = {
@@ -39,30 +41,57 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
     date: Date.now(),
     answerer_name: newAnswer.name,
     helpfulness: 0,
-    photos: []
+    photos: [],
   };
 
 
   var handleAnswerSubmit = () => {
+    console.log(newAnswer);
+    const formData = new FormData();
+    Array.from(newAnswer.photos).forEach((photo) =>
+      formData.append('photos', photo)
+    );
+    delete newAnswer.photos;
+    Object.keys(newAnswer).forEach((key) => {
+      console.log('KEY', key);
+      formData.append(key, JSON.stringify(newAnswer[key]));
+    });
+
+    Array.from(formData).forEach((val) =>
+      console.log(val, formData[val])
+    );
+
     setAnswerForm(false);
     console.log(newAnswer);
     console.log('Submit!');
 
     if (!loading) {
-      setLoading(true);
-      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`, newAnswer, {headers})
-      .then((response) => {
-        if (response.status === 201) {
-          dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswerRender}));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false)
-      });
+      apiLocalPostRequest('/answers', formData)
+    .then(async (res) => {
+      console.log(res);
+      if (res.status === 201) {
+        dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswerRender}));
+      }
+    }).catch((err) => {
+      console.log('error occured when try to add a new answer', err);
+    }).finally(() => setLoading(false));
     }
+
+    // if (!loading) {
+    //   setLoading(true);
+    //   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`, newAnswer, {headers})
+    //   .then((response) => {
+    //     if (response.status === 201) {
+    //       dispatch(questionsAnswersSlice.actions.addAnswer({ questionId: question.question_id, answer: newAnswerRender}));
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false)
+    //   });
+    // }
   };
 
   // validate functions
@@ -112,7 +141,13 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
 
 
   var handlePhotoUpload = (e) => {
-    e.preventDefault();
+    if (e.target.files) {
+      let photo = e.target.files[0];
+      newAnswer.photos.push(photo);
+      console.log(newAnswer.photos);
+    } else {
+      return;
+    }
   };
 
   return (
@@ -167,7 +202,11 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
           </h2>
           <div className='text-center'>
             <p p className='py-2'>
-              <button onClick={handlePhotoUpload}>Upload Photos</button>
+              <label className='hover:cursor-pointer' htmlFor='files'>Upload Photos</label>
+              <input className="w-[350px] hidden" type='file' id='files' onChange={handlePhotoUpload} multiple={true} />
+              <p>
+                {(newAnswer.photos.length > 0) ? <small>{newAnswer.photos.length} selected</small> : <small>No Photos Attached</small>}
+              </p>
             </p>
             <button>Submit</button>
           </div>
