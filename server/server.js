@@ -37,6 +37,7 @@ app.post("/reviews", upload.array("photos", 5), async (req, res, next) => {
     });
     newBody.photos = photoUrls;
     const response = await apiPostRequest("/reviews", newBody);
+    console.log(response);
     if (response.data === "Created") {
       await res.status(201).json({ message: "Successfully created." });
     } else {
