@@ -22,7 +22,6 @@ const Form = ({ sty }) => {
   const handleChange = (event) => {
     const {name, value} = event.target
     setFormData({...formData, [name]: value})
-    console.log(formData)
   }
 
   const handleFavoriteClick = (e) => {
@@ -68,9 +67,18 @@ const Form = ({ sty }) => {
 
   let handleSubmit = (e) => {
     e.preventDefault()
-    var item = {Style: sty, Size: formData.size, Qty: formData.qty}
+    var item = {Style: sty.name, Size: formData.size, Qty: formData.qty}
     if (formData.size.length) {
       dispatch(addItem(item))
+      if(localStorage.getItem("cart") === null) {
+        var cart = JSON.stringify([item])
+        localStorage.setItem("cart", cart)
+      } else {
+        var cart = JSON.parse(localStorage.getItem("cart"))
+        cart.push(item)
+        cart = JSON.stringify(cart)
+        localStorage.setItem("cart", cart)
+      }
     } else {
       alert("Please Select a Size!")
     }
@@ -82,7 +90,7 @@ const Form = ({ sty }) => {
     <form onSubmit={handleSubmit}>
 
       <div className="flex flex-row h-[50px]">
-        <select id="size" value={formData.size} onChange={handleChange} name="size" className="border border-black font-bold w-[160px]">
+        <select module="sizeSelect|Overview" id="size" value={formData.size} onChange={handleChange} name="size" className="border bg-inherit border-black font-bold w-[160px] hover:cursor-pointer hover:border-2">
           {outOfStock ? (<option>OUT OF STOCK!</option>) : (
             <>
             <option>Select Size</option>
@@ -90,28 +98,32 @@ const Form = ({ sty }) => {
             </>
           )}
         </select>
-        <select id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border border-black ml-[20px] font-bold w-[100px]">
-          {formData.size.length ? (
+
+        {formData.size.length ? (
+          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border bg-inherit border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2">
             <>
               {mapQtys()}
             </>
-          ) : (<option>-</option>)}
-        </select>
-
+          </select>
+        ) : (
+          <select module="qtySelect|Overview" id="qty" value={formData.qty} onChange={handleChange} name="qty" className="border bg-inherit border-black ml-[20px] font-bold w-[100px] hover:cursor-pointer hover:border-2" disabled>
+            <option>-</option>
+          </select>
+        )}
       </div>
 
       <div className="flex flex-row mt-[10px] font-bold">
         {outOfStock ? (<p></p>) : (
-          <button onClick={handleSubmit} className="flex items-center h-[50px] border border-black w-[210px] mr-[20px]">
+          <button module="styleBtn|Overview" onClick={handleSubmit} className="flex items-center h-[50px] border border-black w-[210px] mr-[20px] hover:cursor-pointer hover:border-2">
             <p className="w-[180px] pr-[70px]">ADD TO BAG</p>
             <p className="font-light text-2xl mb-[4px]">+</p>
           </button>
         )}
-        <button className="flex flex-row justify-center items-center border w-[50px] h-[50px] bg-white border border-solid border-black" onClick={handleFavoriteClick}>
+        <button module="styleBtn|Overview" className="flex flex-row justify-center items-center w-[50px] h-[50px] border border-solid border-black hover:cursor-pointer hover:border-2" onClick={handleFavoriteClick}>
           {starFill ? (
-            <AiFillStar className="text-yellow-500 fill-current" />
+            <AiFillStar module="styleBtn|Overview" className="text-yellow-500 fill-current" />
           ) : (
-            <AiOutlineStar className="text-gray-500 fill-current" />
+            <AiOutlineStar module="styleBtn|Overview" className="text-gray-500 fill-current" />
           )}
         </button>
 

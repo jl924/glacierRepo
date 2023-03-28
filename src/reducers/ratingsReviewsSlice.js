@@ -7,8 +7,17 @@ const initialState = {
   reRender: false,
   reviewsLoading: false,
   metaLoading: false,
+  textFilter: "",
   ratingFilter: [],
-  meta: [],
+  meta: {},
+  characteristicLabels: {
+    Size: ["Too small", "Perfect", "Too large"],
+    Width: ["Too narrow", "Perfect", "Too wide"],
+    Comfort: ["Uncomfortable", "Perfect"],
+    Quality: ["Poor", "Great"],
+    Length: ["Runs short", "Perfect", "Runs long"],
+    Fit: ["Runs tight", "Perfect", "Runs baggy"],
+  },
   ratingsReviews: [
     {
       review_id: 1277405,
@@ -149,6 +158,9 @@ const ratingsReviewsSlice = createSlice({
       const index = state.ratingFilter.indexOf(action.payload.rating);
       if (index !== -1) state.ratingFilter.splice(index, 1);
     },
+    setTextFilter(state, action) {
+      state.textFilter = action.payload.textFilter;
+    },
   },
 });
 
@@ -166,5 +178,6 @@ export const {
   toggleShowMore,
   addRatingFilter,
   removeRatingFilter,
+  setTextFilter,
 } = ratingsReviewsSlice.actions;
 export default ratingsReviewsSlice.reducer;

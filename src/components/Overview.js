@@ -19,29 +19,14 @@ const Overview = (store) => {
     productId = selectedProduct.id
   }
 
-
-
-  const[info, setInfo] = useState([])
-
   const cartItems = useSelector((state) => state.cartReducer.cart)
   const id = useSelector((state) => state)
 
-  useEffect(() => {
-    getInfoById(productId)
-      .then(info => {
-        setInfo(info)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [productId])
-
-
   return (
     <div className="flex flex-col items-center">
-      <Header id="header"/>
-      <Product productId={productId} info={info}/>
-      <Description info={info}/>
+      <Header id="header" />
+      <Product productId={productId} info={selectedProduct}/>
+      <Description className="" info={selectedProduct}/>
     </div>
   );
 }

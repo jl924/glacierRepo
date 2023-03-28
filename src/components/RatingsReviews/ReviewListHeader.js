@@ -1,9 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sortingSet } from "../../reducers/ratingsReviewsSlice";
+import ScrollToTop from "./ScrollToTop";
+import ReviewListSearchBar from "./ReviewListSearchBar";
+import OpaqueHeader from "./OpaqueHeader";
 
 const ReviewListHeader = ({}) => {
-  const { meta } = useSelector((state) => state.ratingsReviewsReducer);
+  const { meta, sorting } = useSelector((state) => state.ratingsReviewsReducer);
+  const { scrollFromTop, reviewListScrolling } = useSelector(
+    (s) => s.reviewListReducer
+  );
   const dispatch = useDispatch();
 
   const handleSortingChange = (ev) => {
@@ -11,20 +17,29 @@ const ReviewListHeader = ({}) => {
       dispatch(sortingSet({ sorting: ev.target.value }));
     }
   };
+  const options = ["relevance", "helpfulness", "newest"];
 
   return (
-    <div className="header">
-      <h3>
-        {meta.numReviews} Reviews, sorted by{" "}
-        <select
-          className="underline bg-base-100"
-          onChange={handleSortingChange}
-        >
-          <option value="relevant">relevance</option>
-          <option value="helpful">helpfulness</option>
-          <option value="newest">newest</option>
-        </select>
-      </h3>
+    <div className="relative nonHeader">
+      <div className="header">
+        <h3 className="text-lg font-bold">
+          {meta.numReviews} reviews, sorted by{" "}
+          <select
+            className="underline transition-colors duration-300 bg-base-100 hover:cursor-pointer hover:bg-base-200"
+            onChange={handleSortingChange}
+            value={sorting}
+          >
+            {options.map((option) => (
+              <option key={option} className="" value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </h3>
+      </div>
+      <ReviewListSearchBar />
+      {scrollFromTop > 200 && !reviewListScrolling && <ScrollToTop />}
+      {scrollFromTop > 200 && !reviewListScrolling && <OpaqueHeader />}
     </div>
   );
 };

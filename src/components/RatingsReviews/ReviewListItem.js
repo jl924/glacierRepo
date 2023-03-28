@@ -2,53 +2,95 @@ import React, { useState } from "react";
 import ReviewHeader from "./ReviewHeader.js";
 import HelpfulStatus from "../sharedComponents/HelpfulStatus";
 import QaStatus from "../sharedComponents/QaStatus";
-import { apiPutRequest } from "../../helpers/api.js";
-import {
-  incrementHelpfulness,
-  removeResult,
-} from "../../reducers/ratingsReviewsSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import RecommendedWidget from "./RecommendedWidget";
+import ResponseFromSeller from "./ResponseFromSeller";
 
-const ReviewListItem = ({ review }) => {
+const forEachReplaceAll = (text, textFilterLen, regexp) => {
+  let textArr = text.split("");
+  let i = 0;
+  while (i < textArr.length - textFilterLen + 1) {
+    const textSlice = textArr.slice(i, i + textFilterLen).join("");
+    if (regexp.test(textSlice)) {
+      textArr.splice(
+        i,
+        textFilterLen,
+        `<mark className="text-yellow-300">${textSlice}</mark>`
+      );
+      textArr = textArr.join("").split("");
+      const tempStr = textArr.join("");
+      const indexOfMark = tempStr.indexOf("</mark>", i);
+      i = indexOfMark + 5;
+    }
+    i++;
+  }
+  return textArr.join("");
+};
+
+const ReviewListItem = ({
+  review,
+  handleHelpfulClick,
+  handleReportClick,
+  loading,
+}) => {
   const dispatch = useDispatch();
-  let [loading, setLoading] = useState(false);
+  const [capBody, setCap] = useState(true);
+  const textFilter = useSelector(
+    (state) => state.ratingsReviewsReducer.textFilter
+  );
 
-  const handleHelpfulClick = (ev) => {
-    if (!loading) {
-      setLoading(true);
-      apiPutRequest(`/reviews/${review.review_id}/helpful`)
-        .then(() => {
-          dispatch(incrementHelpfulness({ review_id: review.review_id }));
-        })
-        .catch((err) => {
-          console.log("error occured when trying to increase helpfulness", err);
-        })
-        .finally(() => setLoading(false));
-    }
-  };
+  let textFilterRegex = new RegExp(
+    textFilter
+      .split("")
+      .map((val) => {
+        return "[" + val.toUpperCase() + val.toLowerCase() + "]";
+      })
+      .join("")
+  ); //[Tt][Hh]
 
-  const handleReportClick = (ev) => {
-    if (!loading) {
-      setLoading(true);
-      apiPutRequest(`/reviews/${review.review_id}/report`)
-        .then(() => {
-          dispatch(removeResult({ review_id: review.review_id }));
-        })
-        .catch((err) => {
-          console.log("error occured when trying to report review", err);
-        })
-        .finally(() => setLoading(false));
-    }
-  };
+  let summary = review.summary; //.replaceAll;
+  let body = review.body;
+
+  if (textFilter.length > 3) {
+    summary = forEachReplaceAll(summary, textFilter.length, textFilterRegex);
+    body = forEachReplaceAll(body, textFilter.length, textFilterRegex);
+  }
+
+  const firstMarkInBody = body.indexOf("<mark");
+  let capLen =
+    firstMarkInBody < 260 && firstMarkInBody >= 240 ? firstMarkInBody : 250;
 
   return (
     <div className="review">
       <ReviewHeader review={review} />
-      <h3 className="bold">{review.summary}</h3>
-      <p>{review.body}</p>
+      <h3 className="bold" dangerouslySetInnerHTML={{ __html: summary }}>
+        {/*.slice(0, 60)*/}
+      </h3>
+      {/*<p>{displayedSummary.slice(60)}</p>*/}
+      <p
+        dangerouslySetInnerHTML={{
+          __html: body.slice(0, capBody ? capLen : undefined),
+        }}
+      >
+        {}
+      </p>
+      {body && body.length > capLen && (
+        <div className="w-full showMore">
+          <a
+            className="underline cursor-pointer"
+            onClick={() => setCap(!capBody)}
+          >
+            {capBody ? "Show More" : "Show Less"}
+          </a>
+        </div>
+      )}
+      {review && review.recommend && <RecommendedWidget />}
+      {review && review.response && (
+        <ResponseFromSeller response={review.response} />
+      )}
       <HelpfulStatus
-        handleHelpfulClick={handleHelpfulClick}
-        handleReportClick={handleReportClick}
+        handleHelpfulClick={handleHelpfulClick.bind(null, review.review_id)}
+        handleReportClick={handleReportClick.bind(null, review.review_id)}
         messageType={"review"}
         data={{ helpfulCount: review.helpfulness }}
         loading={loading}
@@ -57,4 +99,5 @@ const ReviewListItem = ({ review }) => {
   );
 };
 
+export { forEachReplaceAll };
 export default ReviewListItem;

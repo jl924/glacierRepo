@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import AddAnswerForm from './AddAnswerForm.js';
 import AddQuestionForm from './AddQuestionForm.js';
+import {AiOutlineCloseSquare} from 'react-icons/ai';
 import './QACss/QAModal.css';
 
-const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, product, exampleQuestion}) => {
-
-  let question = exampleQuestion.results[0].question_body;
+const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, product, question}) => {
 
   var handleClosingModal = (e) => {
     e.preventDefault();
@@ -15,10 +14,10 @@ const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, p
 
   return (
     <div className='QAmodal'>
-      <div className='QAmodalcontent container mx-auto py-3'>
-        <a href='' className='float-right' onClick={handleClosingModal}>&times;</a>
-        {answerForm ? <AddAnswerForm product={product} question={question} /> : null}
-        {questionForm ? <AddQuestionForm product={product} /> : null}
+      <div className='QAmodalcontent bg-base-300 flex h-[800px] w-[500px] flex-col items-center justify-center'>
+        <a href='' className='flex flex-row justify-end w-full mr-[10px]' onClick={handleClosingModal}><AiOutlineCloseSquare/></a>
+        {answerForm ? <AddAnswerForm className='flex flex-row justify-end mr-[10px] w-full h-full' product={product} question={question} setAnswerForm={setAnswerForm}/> : null}
+        {questionForm ? <AddQuestionForm className='flex flex-row justify-end mr-[10px] w-full h-full' product={product} setQuestionForm={setQuestionForm} /> : null}
       </div>
     </div>
   );

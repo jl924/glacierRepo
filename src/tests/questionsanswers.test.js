@@ -11,9 +11,6 @@ import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import App from "../components/App.js";
 
-const {handleLoadMoreAnswers} = require('../components/QuestionsAnswers.js');
-const {handleQuestionDisplay} = require('../components/QuestionsAnswers/Question.js');
-
 //Review jest-dom test functions like toBeInTheDocument(). Currently not working.
 let getByText, queryAllByText, container;
 describe('Questions Component', function () {
@@ -45,7 +42,7 @@ describe('Questions Component', function () {
     const handleLoadMoreAnswersSpy = jest.fn();
 
     const {getByText} = render(<LoadMoreAnswers handleLoadMoreAnswers={handleLoadMoreAnswersSpy}/>);
-    fireEvent.click(getByText('Load More Answers'));
+    fireEvent.click(getByText('See More Answers'));
 
     expect(handleLoadMoreAnswersSpy).toHaveBeenCalled();
 
