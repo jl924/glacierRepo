@@ -9,7 +9,8 @@
     "build": "webpack",
     "b": "webpack --watch",
     "testJest": "jest",
-    "ds": "nodemon ./server/index.js"
+    "ds": "nodemon ./server/index.js",
+    "start": "node ./server/index.js"
   },
   "repository": {
     "type": "git",
