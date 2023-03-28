@@ -70,7 +70,7 @@ app.post('/answers', upload.array('photos', 5), async (req, res, next) => {
     // const response = await apiPostRequest(`/questions/${id}/answers`, newBody)
     const response = await axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/answers`, newBody, {headers})
     if (response.data === 'Created') {
-      await res.status(201).json({message: 'Successfully created.'});
+      await res.status(201).json({message: 'Successfully created.', photos: newBody.photos});
     } else {
       throw new Error('Failed to upload photo to api.');
     }
