@@ -4,7 +4,7 @@ const LoadMoreAnswers = ({handleLoadMoreAnswers, loadMoreVisible, loadMore}) => 
 
   return (
     <span className='font-bold px-4'>
-      {loadMore ? <a onClick={handleLoadMoreAnswers} href=''>See Less Answers</a> : <a onClick={handleLoadMoreAnswers} href=''>See More Answers</a>}
+      {loadMore ? <a module='seeMoreAnswers|seeMore' onClick={handleLoadMoreAnswers} href=''>See Less Answers</a> : <a module='seeLessAnswers|seeLess' onClick={handleLoadMoreAnswers} href=''>See More Answers</a>}
     </span>
   );
 };
