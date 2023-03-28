@@ -21,7 +21,7 @@ const App = () => {
   // Format  - module="<eventName>|<yourModule>" (ex. <div module="styleBtn|Overview">)
 
   // uncomment to test clicks -> logs click count object
-  //console.log(clickObject)
+  console.log(clickObject)
 
   useEffect(() => {
     function handleTracking(event) {

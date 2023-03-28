@@ -104,13 +104,13 @@ const Selection = ({info, product, setStyle, sty }) => {
       </div>
       <div className="flex items-center justify-center mt-[15px]">
         <FacebookShareButton url={"http://localhost:3000/"} quote={"quote"}>
-          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" /></button>
+          <img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
         </FacebookShareButton>
         <TwitterShareButton url={"http://localhost:3000/"} quote={"quote"}>
-          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" /></button>
+          <img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" />
         </TwitterShareButton>
         <PinterestShareButton url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
-          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" /></button>
+          <img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" />
         </PinterestShareButton>
       </div>
     </div>

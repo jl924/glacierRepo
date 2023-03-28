@@ -32,7 +32,7 @@ const RelatedCard = ({products}) => {
           console.log(err)
         })
     }
-    // console.log("getProductById", getProductById)
+    // console.log("getProductById", getProductById )
 
 if (products.results[0].sale_price) {
   return (
@@ -45,13 +45,13 @@ if (products.results[0].sale_price) {
 </label>
       <div className="carousel-item container w-[250px]">
     <div id={products.product_id} className="card card1 w-[250px] card-bordered rounded border-grey">
-    <label id='compareBtn' htmlFor={products.product_id} className="btn" >☆</label>
+    <label id='compareBtn' htmlFor={products.product_id} className="btn"  >☆</label>
   <figure id='cardImgContainter'><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
- ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" }/></figure>
+ ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" } /></figure>
   <div className="card-body hover:cursor-pointer" id={products.product_id} onClick={
       ()=>getProductById(products.product_id)
       .then((response)=> {
-        // console.log('then response after req',response)
+        // console.log('then response after reqqq',response)
         dispatch(selectedProductSlice.actions.selectedProductRequestSuccess(response))
       })}>
   <small>{products.extra.category || " "}</small>
