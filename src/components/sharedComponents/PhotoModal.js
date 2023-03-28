@@ -15,8 +15,8 @@ const PhotoModal = () => {
 
   useEffect(() => {
     window.addEventListener("keyup", (ev) => {
-      if (ev.key === "Escape" && clickedPhoto !== "") {
-        setClickedPhoto("");
+      if (ev.key === "Escape" && clickedPhoto === "") {
+        dispatch(setClickedPhoto({ clickedPhoto: "" }));
       }
     });
   }, []);
@@ -27,7 +27,7 @@ const PhotoModal = () => {
         className="fixed top-0 w-full h-full p-10 PhotoModal hover:cursor-pointer"
         onClick={handleClose}
       >
-        <div className="PhotoModalContent hover:cursor-default">
+        <div className="m-10 PhotoModalContent hover:cursor-default">
           <span className="fixed closePhotoModal ">
             <AiOutlineCloseSquare className="fixed w-[25px] h-[25px] hover:cursor-pointer closePhotoButton top-2 right-2 bg-base-100" />
           </span>
