@@ -146,10 +146,7 @@ const NewReviewForm = () => {
               label="Characteristics: "
               name={"characteristics"}
             />
-            <CustomPhotos
-              label="Photos (URLs, separate by a new line):"
-              name="photos"
-            />
+            <CustomPhotos label="Photos:" name="photos" />
             <CustomInput label="Nickname: " name="name" />
             <CustomInput label="Email:" type="email" name="email" />
             <BigButton
