@@ -32,7 +32,7 @@ const RelatedCard = ({products}) => {
           console.log(err)
         })
     }
-    // console.log("getProductById", getProductById)
+    // console.log("getProductById", getProductById )
 
 if (products.results[0].sale_price) {
   return (
