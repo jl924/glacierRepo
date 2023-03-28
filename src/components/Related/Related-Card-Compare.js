@@ -11,7 +11,7 @@ function RelatedCompare({compare}) {
 
   return (
     <>
-    <div>
+    <div className="compareModal">
     <div className="stats w-full">
 
     <div className="stat place-items-center">
