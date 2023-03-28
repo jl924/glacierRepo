@@ -45,6 +45,7 @@ export default function CustomBody({ label, ...props }) {
           <button
             className="ml-1 btn btn-secondary btn-xs btn-square text-xs w-[50px] z-20"
             onClick={() => console.log("doom")}
+            type="button"
           >
             {"not :(?"}
           </button>
