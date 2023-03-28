@@ -34,8 +34,7 @@ const RelatedCard = ({products}) => {
     }
     // console.log("getProductById", getProductById)
 
-
-
+if (products.results[0].sale_price) {
   return (
     <div className="relative">
         <input type="checkbox" id={products.product_id} className="modal-toggle" />
@@ -57,8 +56,11 @@ const RelatedCard = ({products}) => {
       })}>
   <small>{products.extra.category || " "}</small>
     <h2 id="titleCard" className="card-title">{products.extra.name}</h2>
-    <small>{products.results[0].sale_price ? 'it exists'  : products.extra.default_price}</small>
+    <small style={{textDecoration: 'line-through'}}>{products.extra.default_price}</small>
+    <small style={{color:'red'}}>{products.results[0].sale_price}</small>
+    <div id='relatedRating'>
     <RatingView width={108} rating={products.ratings}/>
+    </div>
     <div className="card-actions justify-end">
     <small></small>
     </div>
@@ -66,10 +68,45 @@ const RelatedCard = ({products}) => {
 </div>
 </div>
 </div>
-
-
-
   );
+
+
+    } else {
+      return (
+        <div className="relative">
+            <input type="checkbox" id={products.product_id} className="modal-toggle" />
+    <label id={products.product_id} htmlFor={products.product_id} className="modal cursor-pointer">
+      <label id={products.product_id} className="modal-box relative max-w-2xl w-full">
+        <RelatedCompare compare={products} />
+      </label>
+    </label>
+          <div className="carousel-item container w-[250px]">
+        <div id={products.product_id} className="card card1 w-[250px] card-bordered rounded border-grey">
+        <label id='compareBtn' htmlFor={products.product_id} className="btn" >☆</label>
+      <figure id='cardImgContainter'><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
+     ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" }/></figure>
+      <div className="card-body hover:cursor-pointer" id={products.product_id} onClick={
+          ()=>getProductById(products.product_id)
+          .then((response)=> {
+            // console.log('then response after req',response)
+            dispatch(selectedProductSlice.actions.selectedProductRequestSuccess(response))
+          })}>
+      <small>{products.extra.category || " "}</small>
+        <h2 id="titleCard" className="card-title">{products.extra.name}</h2>
+        <small>{products.extra.default_price}</small>
+        <div id='relatedRating'>
+        <RatingView width={108} rating={products.ratings}/>
+        </div>
+        <div className="card-actions justify-end">
+        <small></small>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+      );
+
+    }
 }
 
 export default RelatedCard
