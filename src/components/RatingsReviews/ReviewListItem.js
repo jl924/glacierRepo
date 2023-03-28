@@ -5,6 +5,7 @@ import QaStatus from "../sharedComponents/QaStatus";
 import { useDispatch, useSelector } from "react-redux";
 import RecommendedWidget from "./RecommendedWidget";
 import ResponseFromSeller from "./ResponseFromSeller";
+import Photos from "../sharedComponents/Photos";
 
 const forEachReplaceAll = (text, textFilterLen, regexp) => {
   let textArr = text.split("");
@@ -88,13 +89,23 @@ const ReviewListItem = ({
       {review && review.response && (
         <ResponseFromSeller response={review.response} />
       )}
-      <HelpfulStatus
-        handleHelpfulClick={handleHelpfulClick.bind(null, review.review_id)}
-        handleReportClick={handleReportClick.bind(null, review.review_id)}
-        messageType={"review"}
-        data={{ helpfulCount: review.helpfulness }}
-        loading={loading}
-      />
+      <div className="flex flex-row justify-between helpfulAndImage">
+        <HelpfulStatus
+          handleHelpfulClick={handleHelpfulClick.bind(null, review.review_id)}
+          handleReportClick={handleReportClick.bind(null, review.review_id)}
+          messageType={"review"}
+          data={{ helpfulCount: review.helpfulness }}
+          loading={loading}
+        />
+        {review.photos.length > 0 && (
+          <Photos
+            width={50}
+            height={50}
+            custom={true}
+            photos={review.photos.map((p) => p.url)}
+          />
+        )}
+      </div>
     </div>
   );
 };

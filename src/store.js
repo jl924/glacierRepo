@@ -5,6 +5,7 @@ import ratingsReviewsReducer from "./reducers/ratingsReviewsSlice.js";
 import selectedProductSlice from "./reducers/selectedProductSlice.js";
 import reviewListReducer from "./reducers/reviewListSlice.js";
 import clickSlice from "./reducers/clickSlice.js";
+import photoModalReducer from "./reducers/photoModalSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const clickReducer = clickSlice.reducer;
@@ -20,7 +21,8 @@ const store = configureStore({
     ratingsReviewsReducer,
     selectedProductReducer,
     reviewListReducer,
-    clickReducer
+    clickReducer,
+    photoModalReducer,
   },
   devTools: true,
 });
