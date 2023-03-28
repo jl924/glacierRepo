@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   toggleModal,
   toggleShowMore,
+  setFilteredResultsNum,
+  setFilteredReviews,
 } from "../../reducers/ratingsReviewsSlice.js";
 import {
   scrollFromTopSet,
@@ -28,9 +30,13 @@ const getReviewListItems = (reviews) => {
 };
 
 const ReviewList = ({}) => {
-  const { ratingsReviews, showMore, ratingFilter, textFilter } = useSelector(
-    (s) => s.ratingsReviewsReducer
-  );
+  const {
+    ratingsReviews,
+    showMore,
+    ratingFilter,
+    textFilter,
+    filteredReviews,
+  } = useSelector((s) => s.ratingsReviewsReducer);
   const { scrollFromTop } = useSelector((s) => s.reviewListReducer);
   const scrollRef = useRef(0);
   const dispatch = useDispatch();
@@ -46,6 +52,27 @@ const ReviewList = ({}) => {
       dispatch(reviewListScrollingSet({ scrolling: false }));
     }
   }, [scrollFromTop]);
+
+  useEffect(() => {
+    let filteredReviews = ratingsReviews.filter((review) => {
+      let tempTextFilter =
+        textFilter.length > 3 ? textFilter.toLowerCase() : "";
+      const foundText =
+        review.body.toLowerCase().includes(tempTextFilter) ||
+        review.summary.toLowerCase().includes(tempTextFilter);
+      let tempRatingFilter =
+        ratingFilter.length === 0
+          ? ["1", "2", "3", "4", "5"]
+          : ratingFilter.slice();
+
+      return foundText && tempRatingFilter.includes(review.rating + "");
+    });
+    console.log(setFilteredReviews);
+    dispatch(setFilteredReviews({ filteredReviews }));
+    dispatch(
+      setFilteredResultsNum({ filteredResultsNum: filteredReviews.length })
+    );
+  }, [ratingsReviews, ratingFilter, textFilter]);
 
   function handleMoreClick(ev) {
     ev.preventDefault();
@@ -99,19 +126,6 @@ const ReviewList = ({}) => {
         .finally(() => setLoading(false));
     }
   };
-
-  let filteredReviews = ratingsReviews.filter((review) => {
-    let tempTextFilter = textFilter.length > 3 ? textFilter.toLowerCase() : "";
-    const foundText =
-      review.body.toLowerCase().includes(tempTextFilter) ||
-      review.summary.toLowerCase().includes(tempTextFilter);
-    let tempRatingFilter =
-      ratingFilter.length === 0
-        ? ["1", "2", "3", "4", "5"]
-        : ratingFilter.slice();
-
-    return foundText && tempRatingFilter.includes(review.rating + "");
-  });
 
   return [
     <div

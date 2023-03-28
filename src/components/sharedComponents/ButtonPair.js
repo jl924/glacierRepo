@@ -1,7 +1,11 @@
 import React from "react";
 import BigButton from "./BigButton";
 
-export default function ButtonPair({ buttons, showFirst = true }) {
+export default function ButtonPair({
+  buttons,
+  showFirst = true,
+  className = "mt-10",
+}) {
   const buttonKeys = Object.keys(buttons);
   const plusButtonWhitelist = ["Add a Review", "Add A Question"];
   const buttonElements = [];
@@ -19,5 +23,5 @@ export default function ButtonPair({ buttons, showFirst = true }) {
     }
   }
 
-  return <div className="mt-10 buttonPair">{buttonElements}</div>;
+  return <div className={className + " buttonPair"}>{buttonElements}</div>;
 }

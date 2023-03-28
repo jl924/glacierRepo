@@ -25,7 +25,7 @@ export default function CustomPhotos({ label, ...props }) {
       />
       <label
         htmlFor="files"
-        className="file-input w-[200px] h-[32px] leading-8 text-center bg-base-400 text-primary align-center"
+        className="file-input w-[200px] h-[32px] leading-8 text-center text-primary align-center hover:bg-base-300 hover:cursor-pointer btn btn-base-100"
       >
         {field.value.length === 0
           ? "Select photos"
