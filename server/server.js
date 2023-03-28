@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+var compression = require("compression");
 const multer = require("multer");
 const upload = multer();
 const { uploadFiles } = require("./helpers/cloudinary");
@@ -13,6 +14,17 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.text());
+app.use(compression({ filter: shouldCompress }));
+
+function shouldCompress(req, res) {
+  if (req.headers["x-no-compression"]) {
+    // don't compress responses with this request header
+    return false;
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.post("/reviews", upload.array("photos", 5), async (req, res, next) => {
