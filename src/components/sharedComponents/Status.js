@@ -17,7 +17,11 @@ const Status = ({ children, sharedClasses, className }) => {
   const [childrenArr, setChildrenArr] = useState(
     createChildrenArr(children, sharedClasses)
   );
-  return <div className={className + " flex flex-row"}>{childrenArr}</div>;
+  return (
+    <div className={className + " flex flex-row items-center"}>
+      {childrenArr}
+    </div>
+  );
 };
 
 export default Status;
