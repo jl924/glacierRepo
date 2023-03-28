@@ -42,7 +42,7 @@ const Related = () => {
         productList[i].ratings = (add/count);
 
       }
-      // console.log(productList)
+      console.log(productList)
       setProduct(productList)
     })
 
@@ -64,9 +64,13 @@ const Related = () => {
     }
     }
     setOutfit(yourOutfit)
+    if (yourOutfit.length > 2) {
+      setMaximum2(true)
+    } else {
+      setMaximum2(false)
+    }
   }
   loadOutfit()
-
   }, [yourOutfitLoad]);
 
   const carouselRef = useRef(null);
@@ -91,7 +95,7 @@ const Related = () => {
   // console.log(maxleftstart,'maxleftstart')
   // console.log(outfitLength,'outfitLength')
 
-  const [maxLeft2, setMaxLeft2] = useState(1)
+  const [maxLeft2, setMaxLeft2] = useState(0)
   function checkCarouselPosition2() {
     const carouselElement2 = carouselRef2.current;
     const scrollPosition2 = carouselElement2.scrollLeft;

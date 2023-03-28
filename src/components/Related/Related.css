@@ -106,3 +106,14 @@
   position: absolute;
   right: 0rem;
 }
+
+#relatedRating {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+}
+
+#compareModal {
+  box-sizing: border-box;
+  padding: 10px;
+}
