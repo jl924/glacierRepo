@@ -1,0 +1,3 @@
+.hideQAScroll::-webkit-scrollbar {
+  display: none;
+}

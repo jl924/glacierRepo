@@ -5,6 +5,7 @@ import HelpfulQA from './HelpfulQA.js';
 import {useSelector, useDispatch} from 'react-redux';
 import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPutRequest } from "../../helpers/api.js";
+import './QACss/QAScrollbar.css';
 import axios from 'axios';
 
 // Question component to house:
@@ -74,7 +75,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
   };
 
   return (
-    <div className='max-h-[700px] overflow-y-auto'>
+    <div className='max-h-[700px] overflow-y-auto hideQAScroll'>
       {moreQuestions ?
       <div>
       {firstFour.map((question, index) => {
