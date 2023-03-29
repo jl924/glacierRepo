@@ -6,7 +6,9 @@ import RatingsReviews from "./RatingsReviews";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addClick } from "../reducers/clickSlice";
+import { closeTopMostModal } from "../reducers/modalSlice";
 import PhotoModal from "./sharedComponents/PhotoModal";
+import SupportModal from "./RatingsReviews/SupportModal";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const App = () => {
   // Format  - module="<eventName>|<yourModule>" (ex. <div module="styleBtn|Overview">)
 
   // uncomment to test clicks -> logs click count object
-  console.log(clickObject)
+  console.log(clickObject);
 
   useEffect(() => {
     function handleTracking(event) {
@@ -77,6 +79,13 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener(
+      "keyup",
+      (ev) => ev.key === "Escape" && dispatch(closeTopMostModal())
+    );
+  }, []);
+
   let switchTheme = () => {
     if (theme === "lightTheme") {
       localStorage.setItem("theme", "darkTheme");
@@ -104,6 +113,7 @@ const App = () => {
       <QuestionsAnswers />
       <RatingsReviews />
       <PhotoModal />
+      <SupportModal />
     </div>
   );
 };

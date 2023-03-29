@@ -1,23 +1,22 @@
 import React from "react";
 import NewReviewForm from "./NewReviewForm.js";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleModal } from "../../reducers/ratingsReviewsSlice.js";
+import { toggleReviewModal } from "../../reducers/modalSlice.js";
 
 export default function NewReviewModal({ checked, name, hidden }) {
   const dispatch = useDispatch();
-  const { showModal, showMore } = useSelector(
-    (state) => state.ratingsReviewsReducer
-  );
+  const { showMore } = useSelector((state) => state.ratingsReviewsReducer);
+  const { isShown } = useSelector((state) => state.modalReducer.newReview);
 
   return (
     <div
       className={
         "flex justify-center items-center newReviewModal" +
-        (!showModal ? " hidden" : "")
+        (!isShown ? " hidden" : "")
       }
       onClick={(ev) => {
         if (Array.from(ev.target.classList).includes("newReviewModal")) {
-          dispatch(toggleModal());
+          dispatch(toggleReviewModal());
         }
       }}
       key={100000000}
@@ -26,7 +25,7 @@ export default function NewReviewModal({ checked, name, hidden }) {
         role="dialog"
         className={
           "modalBox bg-base-300 max-w-[800px] min-w-[600px] min-h-2/3" +
-          (!showModal ? "" : " active")
+          (!isShown ? "" : " active")
         }
       >
         <h3 className="text-2xl font-bold text-center">Write Your Review</h3>

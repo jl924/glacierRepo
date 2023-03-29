@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sorting: "relevant",
-  showModal: false,
   showMore: false,
   reRender: false,
   reviewsLoading: false,
@@ -130,9 +129,6 @@ const ratingsReviewsSlice = createSlice({
     toggleShowMore(state) {
       state.showMore = !state.showMore;
     },
-    toggleModal(state) {
-      state.showModal = !state.showModal;
-    },
     incrementHelpfulness(state, action) {
       var i;
       const review = state.ratingsReviews.filter((review, index) => {
@@ -185,7 +181,6 @@ export const {
   reRenderRequest,
   incrementHelpfulness,
   removeResult,
-  toggleModal,
   toggleShowMore,
   addRatingFilter,
   removeRatingFilter,
