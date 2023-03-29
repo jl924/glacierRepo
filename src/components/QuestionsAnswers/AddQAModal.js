@@ -14,7 +14,7 @@ const AddQAModal = ({setAnswerForm, setQuestionForm, answerForm, questionForm, p
 
   return (
     <div className='QAmodal'>
-      <div className='QAmodalcontent bg-base-300 flex h-[800px] w-[500px] flex-col items-center justify-center'>
+      <div className='QAmodalcontent bg-base-300 flex h-[900px] w-[500px] flex-col items-center justify-center'>
         <a href='' className='flex flex-row justify-end w-full mr-[10px]' onClick={handleClosingModal}><AiOutlineCloseSquare/></a>
         {answerForm ? <AddAnswerForm className='flex flex-row justify-end mr-[10px] w-full h-full' product={product} question={question} setAnswerForm={setAnswerForm}/> : null}
         {questionForm ? <AddQuestionForm className='flex flex-row justify-end mr-[10px] w-full h-full' product={product} setQuestionForm={setQuestionForm} /> : null}
