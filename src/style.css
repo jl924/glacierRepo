@@ -8,21 +8,15 @@
 
 #root {
   display: flex;
-  justify-content: center;
-  min-width: 400px;
+  margin: 0 auto;
+  min-width: 600px;
   max-width: 1000px;
-  width: 1000px;
 }
 
 #root > * {
   flex-grow: 1;
   flex-basis: 0;
   width: 100%;
-}
-
-body {
-  display: flex;
-  justify-content: center;
 }
 
 #titleCard {

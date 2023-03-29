@@ -1,7 +1,7 @@
 import React from "react";
 import { BsFillTriangleFill } from "react-icons/bs";
 
-export default function Slider({ numBlocks = 3, percentage }) {
+export default function Slider({ numBlocks = 3, title, percentage }) {
   const maxWidth = 220;
   const eachWidth = maxWidth / numBlocks;
   return (
@@ -10,14 +10,18 @@ export default function Slider({ numBlocks = 3, percentage }) {
         <div
           key={i * eachWidth}
           style={{ width: eachWidth + "px" }}
-          className="bg-base-200 h-full"
+          className="h-full bg-base-200"
         ></div>
       ))}
       <div
         className="absolute"
         style={{ left: percentage * (maxWidth + 20) - 7 + "px" }}
       >
-        <BsFillTriangleFill />
+        <BsFillTriangleFill
+          title={
+            Math.floor(percentage * 100) + "% for characteristic: " + title
+          }
+        />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import RatingsReviews from "../components/RatingsReviews";
 import { render } from "@testing-library/react";
 import { render as rtlRender, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import App from "../components/App.js";
@@ -11,6 +12,7 @@ import { Provider } from "react-redux";
 import { act } from "react-dom/test-utils";
 import "./style.css";
 import "./style.sass";
+import AppLoader from "../components/AppLoader";
 
 let queryAllByText, container;
 describe("RatingsReview", function () {
@@ -22,7 +24,7 @@ describe("RatingsReview", function () {
     act(() => {
       createRoot(container).render(
         <Provider store={store}>
-          <App />
+          <AppLoader />
         </Provider>
       );
     });
