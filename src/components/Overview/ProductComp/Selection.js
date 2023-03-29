@@ -36,26 +36,23 @@ const Selection = ({info, product, setStyle, sty }) => {
     }
   }, [product])
 
-  //const reviews = useSelector(
-  //  (state) => state.ratingsReviewsReducer
- //);
+  const reviews = useSelector(
+    (state) => state.ratingsReviewsReducer.ratingsReviews
+  );
 
-  //console.log(reviews)
   useEffect(() => {
-    if(product) {
-      getRatingById(product.product_id)
-      .then((res) => {
-        var count = 0
-        var rating = 0
-        res.results.forEach((review) => {
-          count++
-          rating += review.rating
-        })
-        setRating(rating/count)
-        setRevCount(count)
+    if(reviews) {
+      var count = 0
+      var rating = 0
+      reviews.forEach((review) => {
+        count++
+        rating += review.rating
       })
+      setRating(rating/count)
+      setRevCount(count)
+
     }
-  }, [product])
+  }, [reviews])
 
 
   return (
