@@ -2,7 +2,7 @@ import React from "react";
 import PhotoModal from "./PhotoModal.js";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setClickedPhoto } from "../../reducers/photoModalSlice";
+import { setClickedPhoto } from "../../reducers/modalSlice";
 import "../../style.css";
 
 const Photos = ({ photos, width = 150, height = 150, custom = false }) => {

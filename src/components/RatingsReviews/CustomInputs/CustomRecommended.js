@@ -16,7 +16,7 @@ export default function CustomRecommended({ label, ...props }) {
     <div className="flex flex-col">
       {error && meta.touched && <div className="text-error">{error}</div>}
       <button
-        className="flex flex-row items-center border border-secondary p-3 recommendedButton"
+        className="flex flex-row items-center p-3 border border-secondary recommendedButton bg-base-100 hover:bg-base-300 active:bg-secondary"
         onClick={handleChange}
         type="text"
         name={props.name}

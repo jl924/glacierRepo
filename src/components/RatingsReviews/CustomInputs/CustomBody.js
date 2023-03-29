@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { useField } from "formik";
 import MinimumReached from "../MinimumReached";
+import { useDispatch } from "react-redux";
+import {
+  toggleReviewModal,
+  setSupportShown,
+} from "../../../reducers/modalSlice";
 
 export default function CustomBody({ label, ...props }) {
   const [field, meta, helpers] = useField(props);
   const error = meta.touched && meta.error;
   const [hidden, setHidden] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = async (ev) => {
     await helpers.setValue(ev.target.value);
     await helpers.setTouched(true);
+  };
+
+  const handleSupportClick = (ev) => {
+    dispatch(setSupportShown(true));
   };
 
   return (
@@ -44,7 +54,7 @@ export default function CustomBody({ label, ...props }) {
           </span>
           <button
             className="ml-1 btn btn-secondary btn-xs btn-square text-xs w-[50px] z-20"
-            onClick={() => console.log("doom")}
+            onClick={handleSupportClick}
             type="button"
           >
             {"not :(?"}
