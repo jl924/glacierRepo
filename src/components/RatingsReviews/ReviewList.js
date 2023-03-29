@@ -2,11 +2,13 @@ import React from "react";
 import ReviewListItem from "./ReviewListItem.js";
 import ReviewListHeader from "./ReviewListHeader.js";
 import { useSelector, useDispatch } from "react-redux";
+import { toggleReviewModal } from "../../reducers/modalSlice.js";
 import {
-  toggleModal,
   toggleShowMore,
   setFilteredResultsNum,
   setFilteredReviews,
+  incrementHelpfulness,
+  removeResult,
 } from "../../reducers/ratingsReviewsSlice.js";
 import {
   scrollFromTopSet,
@@ -16,10 +18,6 @@ import { useState, useEffect, useRef } from "react";
 import ButtonPair from "../sharedComponents/ButtonPair";
 import ScrollToTop from "./ScrollToTop";
 import { apiPutRequest } from "../../helpers/api.js";
-import {
-  incrementHelpfulness,
-  removeResult,
-} from "../../reducers/ratingsReviewsSlice.js";
 
 const getReviewListItems = (reviews) => {
   const ret = [];
@@ -80,7 +78,7 @@ const ReviewList = ({}) => {
 
   function handleAddClick(ev) {
     ev.preventDefault();
-    dispatch(toggleModal());
+    dispatch(toggleReviewModal());
   }
 
   function handleScroll(ev) {
