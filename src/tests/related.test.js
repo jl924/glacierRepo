@@ -30,7 +30,4 @@ describe('Questions Component', function () {
     let element = getByText('Related Items');
     expect(element).toBeTruthy();
   });
-
-
-
 });

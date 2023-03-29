@@ -9,6 +9,7 @@ import { addClick } from "../reducers/clickSlice";
 import { closeTopMostModal } from "../reducers/modalSlice";
 import PhotoModal from "./sharedComponents/PhotoModal";
 import SupportModal from "./RatingsReviews/SupportModal";
+import LoadingScreen from "./LoadingScreen";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -96,8 +97,20 @@ const App = () => {
     }
   };
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   return (
-    <div className="app text-primary" data-theme={theme}>
+    <>
+    {isLoading ? (
+      <LoadingScreen />
+    ) : (
+      <div className="app text-primary" data-theme={theme}>
       <div className="container container2">
         <button
           id="btn3"
@@ -114,6 +127,8 @@ const App = () => {
       <PhotoModal />
       <SupportModal />
     </div>
+    )}
+    </>
   );
 };
 
