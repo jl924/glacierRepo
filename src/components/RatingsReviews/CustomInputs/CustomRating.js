@@ -20,7 +20,9 @@ export default function CustomRating({ label, ...props }) {
       )}
       <div className="rating rating-lg ">
         {ratings.map((rating) => [
-          <label htmlFor="rating">{rating}</label>,
+          <label key={rating + " label"} htmlFor="rating">
+            {rating}
+          </label>,
           <input
             key={rating}
             type="radio"

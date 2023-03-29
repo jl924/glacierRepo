@@ -9,7 +9,11 @@ export const RatingsSlider = ({ title = "Comfort", percentage }) => {
   return (
     <div className="relative sliderDisplay">
       <span>{title}</span>
-      <Slider numBlocks={labels.length === 3 ? 3 : 4} percentage={percentage} />
+      <Slider
+        numBlocks={labels.length === 3 ? 3 : 4}
+        title={title}
+        percentage={percentage}
+      />
       <div className="w-[240px] flex justify-between">
         {labels.map((label) => (
           <span key={label} className="text-sm">
