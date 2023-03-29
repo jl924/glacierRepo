@@ -92,7 +92,9 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
                   handleAddAnswer={handleAddAnswer}
                   question={question} />
               </span>
+              {console.log(question)}
             </h3>
+            { (Object.keys(question.answers).length > 0) ?
             <Answer answers={question.answers}
               QaStatus={QaStatus}
               loadMore={loadMore}
@@ -100,6 +102,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               setLoadMore={setLoadMore}
               hideClicked={clickedQuestionIndex === index}
               clickedQuestionIndex={clickedQuestionIndex} />
+            : <small className='px-5'>No answers, be the first!</small>}
           </div>
         )
       })}
@@ -121,6 +124,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
                   question={question} />
               </span>
             </h3>
+            { (Object.keys(question.answers).length > 0) ?
             <Answer answers={question.answers}
               QaStatus={QaStatus}
               loadMore={loadMore}
@@ -128,6 +132,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               setLoadMore={setLoadMore}
               hideClicked={clickedQuestionIndex === index}
               clickedQuestionIndex={clickedQuestionIndex} />
+            : <small className='px-5'>No answers, be the first!</small>}
           </div>
         )
       })}

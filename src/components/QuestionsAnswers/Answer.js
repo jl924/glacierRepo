@@ -66,7 +66,8 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, hideClicked
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
-                 handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}/>
+                 handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}
+                 messageType='answer'/>
               </div>
             </div>
           );
