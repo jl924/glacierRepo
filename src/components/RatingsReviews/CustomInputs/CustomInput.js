@@ -1,7 +1,13 @@
 import React from "react";
 import { useField } from "formik";
 
-export default function CustomInput({ label, type = "text", ...props }) {
+export default function CustomInput({
+  label,
+  type = "text",
+  placeholder = "",
+  privacy = "",
+  ...props
+}) {
   const [field, meta, helpers] = useField(props);
   const error = meta.touched && meta.error;
 
@@ -21,7 +27,9 @@ export default function CustomInput({ label, type = "text", ...props }) {
         type={type}
         name={props.name}
         onBlur={field.onBlur}
+        placeholder={placeholder}
       />
+      {privacy !== "" && <h3>{privacy}</h3>}
     </div>
   );
 }
