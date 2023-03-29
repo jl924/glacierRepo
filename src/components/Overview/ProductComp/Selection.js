@@ -9,10 +9,12 @@ import helpers from '../reqHelpers'
 import { FacebookShareButton } from 'react-share';
 import { TwitterShareButton } from 'react-share';
 import { PinterestShareButton } from 'react-share';
+import { useSelector } from 'react-redux'
 
 
 const getRatingById = helpers.getRatingById
 const Selection = ({info, product, setStyle, sty }) => {
+
 
   const[imgs, setImgs] = useState([])
   const[rating, setRating] = useState([])
@@ -34,6 +36,11 @@ const Selection = ({info, product, setStyle, sty }) => {
     }
   }, [product])
 
+  //const reviews = useSelector(
+  //  (state) => state.ratingsReviewsReducer
+ //);
+
+  //console.log(reviews)
   useEffect(() => {
     if(product) {
       getRatingById(product.product_id)

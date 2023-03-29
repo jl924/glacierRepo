@@ -1,11 +1,9 @@
 import React from 'react';
-
 const Header = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center w-full bg-gray-600 h-[50px]">
-        <p className="text-white ml-[10px]">BENJ</p>
-        <p className="text-white underline text-[10px] ml-[2px]">by BENJ</p>
+        <img className=" absolute h-[70px] mt-[10px]" src={"https://i.imgur.com/beNiCcN.jpg"} />
       </div>
       <div className="flex justify-center items-center w-full text-gray-400 h-[35px]">
         <p className="italic">SITE-WIDE ANNOUNCEMENT MESSAGE! &nbsp;</p>-- SALE/DISCOUNT
