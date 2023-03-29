@@ -44,7 +44,7 @@ const RatingsReviews = () => {
   return (
     <div className="grid mx-auto mainRatings">
       <div className="flex flex-col align-top leftReviews left">
-        <h4>Ratings & Reviews</h4>
+        <h4>views</h4>
         <div className="averageAndStars flex items-start h-[80px]">
           <h1 className="leading-[54px]">{meta.averageReviews}</h1>
           <RatingView
