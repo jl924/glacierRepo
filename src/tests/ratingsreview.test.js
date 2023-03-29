@@ -35,7 +35,7 @@ describe("RatingsReview", function () {
     container = null;
   });
 
-  it("should render 2 reviews by default", (done) => {
+  it("should render 2 reviews by default", () => {
     expect(container.querySelectorAll(".review").length).toBe(2);
   });
 
