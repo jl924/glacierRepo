@@ -3,7 +3,7 @@ const Header = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center w-full bg-gray-600 h-[50px]">
-        <img className=" absolute h-[70px] mt-[10px]" src={"https://i.imgur.com/beNiCcN.jpg"} />
+        <img className=" absolute h-[70px] mt-[10px]" src="https://i.imgur.com/beNiCcN.jpg" alt="Benj logo" />
       </div>
       <div className="flex justify-center items-center w-full text-gray-400 h-[35px]">
         <p className="italic">SITE-WIDE ANNOUNCEMENT MESSAGE! &nbsp;</p>-- SALE/DISCOUNT
