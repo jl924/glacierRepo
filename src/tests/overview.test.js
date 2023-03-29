@@ -1,11 +1,12 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Header from '../components/Overview/Header';
 
+test('renders company name and logo correctly', function () {
+  render(<Header />);
 
 
-test('renders company name correctly', function () {
-  const {getByText} = render(<Header />);
-  let element = getByText('BENJ');
-  expect(element).toBeTruthy();
+  // Check if the image with alt text "Benj logo" is rendered
+  const logoElement = screen.getByAltText('Benj logo');
+  expect(logoElement).toBeInTheDocument();
 });
