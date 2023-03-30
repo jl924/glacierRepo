@@ -80,7 +80,7 @@ const headers = {
   return (
     <div className="relative">
     <div className="carousel-item container w-[220px]">
-    <div id="addCard" className="card w-96 bg-base-100 shadow-xl image-full rounded border-grey">
+    <div id="addCard" className="card w-96 bg-base-100 shadow-xl image-full rounded border-grey" module={"addCard " + selectedProduct.id + "|related"}>
   <figure><img className='w-full' src={addImage || "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" } /></figure>
   <div className="card-body">
   <label onClick={() => addToOutfit()} id='plus' className="btn">+</label>

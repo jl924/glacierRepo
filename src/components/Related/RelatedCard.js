@@ -39,13 +39,13 @@ if (products.results[0].sale_price) {
     <div className="relative">
         <input type="checkbox" id={products.product_id} className="modal-toggle" />
 <label id={products.product_id} htmlFor={products.product_id} className="modal cursor-pointer">
-  <label id={products.product_id} className="modal-box relative max-w-2xl w-full">
+  <label id={products.product_id} className="modal-box relative max-w-7xl w-full">
     <RelatedCompare compare={products} />
   </label>
 </label>
-      <div className="carousel-item container w-[250px]">
+      <div className="carousel-item container w-[250px]" >
     <div id={products.product_id} className="card card1 w-[250px] card-bordered rounded border-grey">
-    <label id='compareBtn' htmlFor={products.product_id} className="btn"  >☆</label>
+    <label id='compareBtn' htmlFor={products.product_id} className="btn" >☆</label>
   <figure id='cardImgContainter'><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
  ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" } /></figure>
   <div className="card-body hover:cursor-pointer" id={products.product_id} onClick={
@@ -82,15 +82,15 @@ if (products.results[0].sale_price) {
     </label>
           <div className="carousel-item container w-[250px]">
         <div id={products.product_id} className="card card1 w-[250px] card-bordered rounded border-grey">
-        <label id='compareBtn' htmlFor={products.product_id} className="btn" >☆</label>
-      <figure id='cardImgContainter'><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
+        <label id='compareBtn' htmlFor={products.product_id} className="btn" module={"relatedCardCompare " + products.product_id + "|related"}>☆</label>
+      <figure id='cardImgContainter' module={"relatedCardImg " + products.product_id + "|related"}><img className='cardImg' src={products.results[0].photos[0].thumbnail_url
      ||"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" }/></figure>
       <div className="card-body hover:cursor-pointer" id={products.product_id} onClick={
           ()=>getProductById(products.product_id)
           .then((response)=> {
             // console.log('then response after req',response)
             dispatch(selectedProductSlice.actions.selectedProductRequestSuccess(response))
-          })}>
+          })} module={"relatedCardBody " + products.product_id + "|related"}>
       <small>{products.extra.category || " "}</small>
         <h2 id="titleCard" className="card-title">{products.extra.name}</h2>
         <small>{products.extra.default_price}</small>
