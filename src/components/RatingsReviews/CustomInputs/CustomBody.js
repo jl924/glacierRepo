@@ -30,7 +30,7 @@ export default function CustomBody({ label, ...props }) {
       </label>
       <div className="relative">
         <textarea
-          className="rounded-none w-[450px] z-10 bg-transparent relative textarea textarea-primary bg-base-200"
+          className="rounded-none w-[450px] z-10 relative textarea textarea-primary bg-base-100"
           onChange={handleChange}
           value={field.value}
           name={props.name}

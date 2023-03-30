@@ -24,6 +24,39 @@ module.exports = {
           accent: "#000000",
         },
       },
+      {
+        darkCherryTheme: {
+          "base-100": "#101020",
+          "base-200": "#191D24",
+          "base-300": "#232933",
+          "base-400": "#D0D0D0",
+          primary: "#ec275f",
+          secondary: "#f25477",
+          accent: "#000000",
+        },
+      },
+      {
+        cherryTheme: {
+          "base-100": "#FFFFFF",
+          "base-200": "#d4e0ee",
+          "base-300": "#ffdbdb",
+          "base-400": "#D0D0D0",
+          primary: "#ec275f",
+          secondary: "#f25477",
+          accent: "#000000",
+        },
+      },
+      {
+        orangeTheme: {
+          "base-100": "#191D24",
+          "base-200": "#040506",
+          "base-300": "#191D24",
+          "base-400": "#D0D0D0",
+          primary: "#ffa600",
+          secondary: "#d9ff00",
+          accent: "#000000",
+        },
+      },
     ],
   },
   theme: {

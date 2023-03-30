@@ -18,6 +18,14 @@ import LoadingScreen from "./LoadingScreen";
 
 const App = () => {
   const dispatch = useDispatch();
+  const themeToIcon = {
+    darkTheme: "🌙",
+    lightTheme: "🔆",
+    cherryTheme: "🌸",
+    orangeTheme: "🎃",
+    darkCherryTheme: "🎴",
+  };
+  const theme = useSelector((state) => state.modalReducer.theme.theme);
 
   const trackClick = (payload) => {
     dispatch(addClick(payload));
@@ -64,23 +72,10 @@ const App = () => {
     // document.body.style.background = "red"
   }, []);
 
-  const [theme, setTheme] = useState("lightTheme");
-  const [icon, setIcon] = useState("D");
-  useEffect(() => {
-    if (theme === "darkTheme") {
-      document.body.style.backgroundColor = "#191D24";
-      setIcon("🔆");
-    }
-    if (theme === "lightTheme") {
-      document.body.style.backgroundColor = "white";
-      setIcon("🌙");
-    }
-  }, [theme]);
-
   useEffect(() => {
     if (localStorage.getItem("theme")) {
       const localTheme = localStorage.getItem("theme");
-      setTheme(localTheme);
+      setTheTheme(localTheme);
     }
   }, []);
 
@@ -93,18 +88,7 @@ const App = () => {
 
   let setTheTheme = (theme) => {
     localStorage.setItem("theme", theme);
-    setTheme(theme);
-  };
-
-  let switchTheme = () => {
-    if (theme === "lightTheme") {
-      localStorage.setItem("theme", "darkTheme");
-      setTheme("darkTheme");
-    }
-    if (theme === "darkTheme") {
-      localStorage.setItem("theme", "lightTheme");
-      setTheme("lightTheme");
-    }
+    dispatch(setTheme({ theme }));
   };
 
   let openThemeModal = () => {
@@ -112,23 +96,25 @@ const App = () => {
   };
 
   return (
-    <div className="relative app text-primary" data-theme={theme}>
-      <div className="container container2 ">
-        <button
-          id="btn3"
-          className="btn btn-active btn-ghost"
-          onClick={openThemeModal}
-        >
-          {icon}
-        </button>
-        <ThemeModal />
+    <div id="root" className="bg-base-100 text-primary" data-theme={theme}>
+      <div className="relative app text-primary">
+        <div className="container absolute top-0 right-0 flex flex-row justify-end">
+          <button
+            id="btn3"
+            className="right-0 btn btn-active btn-ghost"
+            onClick={openThemeModal}
+          >
+            {themeToIcon[theme]}
+          </button>
+          <ThemeModal />
+        </div>
+        <Overview />
+        <Related />
+        <QuestionsAnswers />
+        <RatingsReviews />
+        <PhotoModal />
+        <SupportModal />
       </div>
-      <Overview />
-      <Related />
-      <QuestionsAnswers />
-      <RatingsReviews />
-      <PhotoModal />
-      <SupportModal />
     </div>
   );
 };
