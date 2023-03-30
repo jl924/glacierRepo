@@ -97,16 +97,21 @@ const Selection = ({info, product, setStyle, sty }) => {
         <Form sty={sty}/>
         </div>
       </div>
-      <div className="flex items-center justify-evenly w-[200px]ml-[20px] mt-[25px]">
-        <FacebookShareButton className="flex items-center justify-center h-[75px] w-[75px]" url={"http://localhost:3000/"} quote={"quote"}>
-          <img className="h-[60px] w-[60px] hover:h-[65px] hover:w-[65px] transition-all duration-100" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
+      <div className="flex flex-col items-center justify-center mt-[25px]">
+        <p>Share</p>
+      <div className="flex items-center justify-center w-[200px]ml-[5px]">
+        <div className="flex border shadow-md shadow-black">
+        <FacebookShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
         </FacebookShareButton>
-        <TwitterShareButton className="flex items-center justify-center h-[75px] w-[75px]" url={"http://localhost:3000/"} quote={"quote"}>
-          <img className="h-[60px] w-[60px] hover:h-[65px] hover:w-[65px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" />
+        <TwitterShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" />
         </TwitterShareButton>
-        <PinterestShareButton className="flex items-center justify-center h-[75px] w-[75px]" url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
-          <img className="h-[60px] w-[60px] hover:h-[65px] hover:w-[65px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" />
+        <PinterestShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" />
         </PinterestShareButton>
+        </div>
+      </div>
       </div>
     </div>
   );
