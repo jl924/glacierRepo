@@ -158,6 +158,7 @@ const ReviewList = ({}) => {
         ["Add a Review"]: handleAddClick,
       }}
       showFirst={filteredReviews.length > 2}
+      module="Ratings"
     />,
   ];
 };
