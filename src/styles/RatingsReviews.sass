@@ -48,18 +48,26 @@
 .mainRatings
   margin-top: 50px
   box-sizing: border-box
-  @media(min-width: 970px)
-    flex-direction: row
-  @media(max-width: 1000px)
+  @media(max-width: 600px)
     flex-direction: column
     .left
-      flex-direction: row
-      align-items: end
       margin: 0 auto
-      > *
-        margin: 0 10px
+      margin-top: 25px
     .right
-      margin: 0 20px
+      margin: 0 10px
+  @media(min-width: 970px)
+    flex-direction: row
+  @media(min-width: 600px)
+    @media(max-width: 970px)
+      flex-direction: column
+      .left
+        flex-direction: row
+        align-items: end
+        margin: 0 auto
+        > *
+          margin: 0 10px
+      .right
+        margin: 0 20px
   width: 100%
   .rightReviews
     margin-bottom: 50px
@@ -92,13 +100,18 @@
         flex-grow: 1
         flex-basis: 0
         height: 50px
-        img.cursor-pointer
+        img
           width: 50px
           height: 50px
           object-fit: cover
-          box-sizing: border-box
+          box-sizing: content-box
           border-width: 1px
           border-style: solid
+          padding: 0
+        img:hover
+          width: 30px
+          height: 30px
+          padding: 10px
     div.showMore
       width: 100%
       display: flex
@@ -156,18 +169,13 @@
     transition: background-color 0.25s ease-in
     +keyframes(shiftCol)
       0%
-        background-color: black
-      25%
-        background-color: lightgrey
+        opacity: 1
       50%
-        background-color: grey
-      75%
-        background-color: darkgrey
+        opacity: 0.5
       100%
-        background-color: black
+        opacity: 1
   div.filledBar.animating
     +animate(shiftCol, 1s, linear, infinite)
-    background-color: black
 .sliderDisplay > *
   margin-bottom: 5px
 .userDateCheck

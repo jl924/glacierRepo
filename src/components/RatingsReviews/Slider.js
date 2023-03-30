@@ -14,7 +14,7 @@ export default function Slider({ numBlocks = 3, title, percentage }) {
         ></div>
       ))}
       <div
-        className="absolute"
+        className="absolute text-secondary"
         style={{ left: percentage * (maxWidth + 20) - 7 + "px" }}
       >
         <BsFillTriangleFill

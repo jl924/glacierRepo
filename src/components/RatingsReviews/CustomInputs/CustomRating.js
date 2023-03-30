@@ -20,7 +20,7 @@ export default function CustomRating({ label, ...props }) {
       )}
       <div className="rating rating-lg ">
         {ratings.map((rating) => [
-          <label key={rating + " label"} htmlFor="rating">
+          <label className="opacity-0" key={rating + " label"} htmlFor="rating">
             {rating}
           </label>,
           <input
@@ -29,23 +29,24 @@ export default function CustomRating({ label, ...props }) {
             name="rating"
             onMouseEnter={() => setHovered(rating)}
             onMouseOut={() => setHovered(undefined)}
-            className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
+            className={
+              rating === 0
+                ? "rating-hidden"
+                : "mask mask-star 2" +
+                  (hovered !== undefined &&
+                  ((hovered > field.value &&
+                    rating > field.value &&
+                    rating <= hovered) ||
+                    (hovered < field.value &&
+                      rating <= field.value &&
+                      rating > hovered))
+                    ? " bg-secondary"
+                    : " bg-primary")
+            }
             value={rating}
             readOnly={true}
             checked={field.value === rating}
             onChange={() => setRating(rating)}
-            style={{
-              backgroundColor:
-                hovered !== undefined &&
-                ((hovered > field.value &&
-                  rating > field.value &&
-                  rating <= hovered) ||
-                  (hovered < field.value &&
-                    rating <= field.value &&
-                    rating > hovered))
-                  ? "grey"
-                  : "",
-            }}
           />,
         ])}
       </div>
