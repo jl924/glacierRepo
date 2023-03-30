@@ -25,6 +25,12 @@ export default function CustomInput({
         onChange={handleChange}
         value={field.value}
         type={type}
+        module={
+          "newReview" +
+          props.name[0].toUpperCase() +
+          props.name.slice(1) +
+          "|Ratings"
+        }
         name={props.name}
         onBlur={field.onBlur}
         placeholder={placeholder}

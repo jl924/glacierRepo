@@ -169,6 +169,7 @@ const NewReviewForm = () => {
               type="submit"
               text={"Submit review"}
               disabled={isSubmitting}
+              module="Ratings"
             />
           </form>
         )}

@@ -5,6 +5,7 @@ export default function ButtonPair({
   buttons,
   showFirst = true,
   className = "flex flex-row justify-start mt-10",
+  module = "QA",
 }) {
   const buttonKeys = Object.keys(buttons);
   const plusButtonWhitelist = ["Add a Review", "Add A Question"];
@@ -18,6 +19,7 @@ export default function ButtonPair({
           text={name}
           handleClick={buttons[name]}
           plusIcon={plusButtonWhitelist.includes(name)}
+          module={module}
         />
       );
     }

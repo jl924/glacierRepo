@@ -35,6 +35,7 @@ export default function CustomBody({ label, ...props }) {
           value={field.value}
           name={props.name}
           onBlur={field.onBlur}
+          module="newReviewBody|Ratings"
           onFocus={(ev) => {
             console.log("setting hidden to true");
             setHidden(true);
@@ -56,6 +57,7 @@ export default function CustomBody({ label, ...props }) {
             className="ml-1 btn btn-secondary btn-xs btn-square text-xs w-[50px] z-20"
             onClick={handleSupportClick}
             type="button"
+            module="newReviewSupportButton|Ratings"
           >
             {"not :(?"}
           </button>

@@ -20,6 +20,7 @@ export default function CustomRecommended({ label, ...props }) {
         onClick={handleChange}
         type="text"
         name={props.name}
+        module="newReviewBodyRecommendedButton|Ratings"
         onBlur={field.onBlur}
       >
         {label}
