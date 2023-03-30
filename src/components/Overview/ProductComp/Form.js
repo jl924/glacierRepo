@@ -85,7 +85,7 @@ const Form = ({ sty }) => {
   }
 
   return (
-    <div className="mt-[20px]">
+    <div>
 
     <form onSubmit={handleSubmit}>
 
