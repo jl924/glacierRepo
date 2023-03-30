@@ -69,21 +69,21 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
 
   var handleQuestionDisplay = (e, index) => {
     e.preventDefault();
-    // setDisplayAnswers(!displayAnswers);
+    //setDisplayAnswers(!displayAnswers);
     setClickedQuestionIndex(clickedQuestionIndex === index ? null: index);
     setLoadMore(false);
   };
 
   return (
-    <div className='max-h-[700px] overflow-y-auto hideQAScroll'>
+    <div className='max-h-[950px] overflow-y-auto hideQAScroll'>
       {moreQuestions ?
       <div>
       {firstFour.map((question, index) => {
         return (
           <div key={question.question_id + '/' + question.question_helpfulness} className='question py-7 max-h-[600px] overflow-y-auto'>
             <h3>
-              <span className='QAheader text-lg'>Q: </span>
-              <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
+              <span module={`${question.question_id}|QA`} className='QAheader text-lg'>Q: </span>
+              <a module={`${question.question_id}|QA`} key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
                   handleQuestionReportClick={(e) => handleQuestionReportClick(e, question)}
@@ -102,7 +102,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               clickedQuestionIndex={clickedQuestionIndex}
               setClickedQuestionIndex={setClickedQuestionIndex}
               index={index} />
-            : <small className='px-5'>No answers, be the first!</small>}
+            : <small className ='px-7'>No answers to display, be the first!</small>}
           </div>
         )
       })}
@@ -113,8 +113,8 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
         return (
           <div key={question.question_id + '/' + question.question_helpfulness} className='question py-10 max-h-[600px] overflow-y-auto'>
             <h3>
-              <span className='QAheader text-lg'>Q: </span>
-              <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
+              <span module={`${question.question_id}|QA`} className='QAheader text-lg'>Q: </span>
+              <a module={`${question.question_id}|QA`} key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
                   handleQuestionReportClick={(e) => handleQuestionReportClick(e, question)}

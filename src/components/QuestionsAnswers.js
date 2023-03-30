@@ -84,7 +84,7 @@ const QuestionsAnswers = () => {
     <>
       <div className='text-left bg-white-400 py-2'>
         <h4 className='Q&A-heading'>Questions & Answers</h4>
-        <SearchQA searchHandler={onSearch}/>
+        <SearchQA searchHandler={onSearch} />
         <div>
           <Question questions={filteredQuestions}
           loadMore={loadMore}
