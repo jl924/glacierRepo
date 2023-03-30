@@ -181,7 +181,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
             <label className='label' htmlFor='body'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Answer:</span>
             </label>
-            <textarea onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='body' name='body' />
+            <textarea module='answerField|QA' onChange={onAnswerChange} className='textarea rounded-none textarea-primary h-20 bg-base-300' id='body' name='body' />
           </h2>
 
           <h2 className='py-5 text-center'>
@@ -190,7 +190,7 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
             <label className='label'htmlFor='nickname'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Nickname:</span>
             </label>
-            <input onChange={onNicknameChange} className='input rounded-none input-primary w-full bg-base-300' id='nickname' name='nickname' placeholder='Example: jack543!' />
+            <input module='nicknameAnswer|QA' onChange={onNicknameChange} className='input rounded-none input-primary w-full bg-base-300' id='nickname' name='nickname' placeholder='Example: jack543!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
           </h2>
 
@@ -199,18 +199,18 @@ const AddAnswerForm = ({ product, question, setAnswerForm }) => {
             <label className='label' htmlFor='email'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Email:</span>
             </label>
-            <input onChange={onEmailChange} className='input rounded-none input-primary w-full bg-base-300' id='email' name='email' type='email' placeholder='Example: jack@email.com' />
+            <input module='emailAnswer|QA' onChange={onEmailChange} className='input rounded-none input-primary w-full bg-base-300' id='email' name='email' type='email' placeholder='Example: jack@email.com' />
             <p p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
           </h2>
           <div className='text-center'>
             <p p className='py-2'>
               <label className='btn rounded-none btn-base-300 hover:cursor-pointer' htmlFor='files'>Upload Photos</label>
-              <input className="w-[350px] hidden" type='file' id='files' onChange={handlePhotoUpload} multiple={true} />
+              <input module='photoUpload|QA' className="w-[350px] hidden" type='file' id='files' onChange={handlePhotoUpload} multiple={true} />
               <p>
                 {(newAnswer.photos.length > 0) ? <small>{newAnswer.photos.length} selected</small> : <small>No Photos Attached</small>}
               </p>
             </p>
-            <button className='btn rounded-none btn-base-300'>Submit</button>
+            <button module='submitAnswer|QA' className='btn rounded-none btn-base-300'>Submit</button>
           </div>
 
         </Form>

@@ -14,7 +14,7 @@ export default function ReviewListSearchBar() {
   return (
     <div className="w-full">
       <input
-        className="w-full rounded-none input input-primary"
+        className="w-full rounded-none input input-primary placeholder-secondary"
         type="text"
         placeholder="Filter reviews..."
         value={textFilter}

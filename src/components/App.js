@@ -73,10 +73,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("theme")) {
-      const localTheme = localStorage.getItem("theme");
-      setTheTheme(localTheme);
-    }
+    const localTheme = localStorage.getItem("theme") || "darkCherryTheme";
+    setTheTheme(localTheme);
   }, []);
 
   useEffect(() => {

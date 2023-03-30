@@ -10,7 +10,7 @@ export default function BigButton({
   disabled = false,
 }) {
   const className =
-    "btn-outline text-xl btn btn-secondary rounded-none h-16 mr-3 py-3";
+    "flex flex-row items-center h-16 p-3 mr-3 text-xl uppercase transition-colors border rounded-none border-secondary bg-base-100 hover:bg-base-300 active:bg-secondary";
 
   return (
     <button
