@@ -16,7 +16,7 @@ const Photos = ({ photos, width = 150, height = 150, custom = false }) => {
             className={
               "cursor-pointer" +
               (custom
-                ? " border-base-200 hover:border-base-300 transition-colors"
+                ? " border-secondary hover:border-base-200 transition-colors"
                 : "")
             }
             key={photoUrl + index}
