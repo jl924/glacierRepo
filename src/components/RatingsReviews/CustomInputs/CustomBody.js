@@ -7,7 +7,7 @@ import {
   setSupportShown,
 } from "../../../reducers/modalSlice";
 
-export default function CustomBody({ label, ...props }) {
+export default function CustomBody({ label, noCrap = false, ...props }) {
   const [field, meta, helpers] = useField(props);
   const error = meta.touched && meta.error;
   const [hidden, setHidden] = useState(false);
@@ -58,10 +58,27 @@ export default function CustomBody({ label, ...props }) {
             onClick={handleSupportClick}
             type="button"
             module="newReviewSupportButton|Ratings"
+        {!noCrap ? (
+          <div
+            className={
+              "absolute flex flex-row top-2 left-2" + (hidden ? " hidden" : "")
+            }
           >
-            {"not :(?"}
-          </button>
-        </div>
+            <span className="z-20 text-sm pointer-events-none text-secondary">
+              What made this purchase absolutely delightful or{" "}
+            </span>
+            <button
+              className="ml-1 btn btn-secondary btn-xs btn-square text-xs w-[50px] z-20"
+              onClick={handleSupportClick}
+              type="button"
+              module="newReviewSupportButton|Ratings"
+            >
+              {"not :(?"}
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <MinimumReached text={field.value} />
     </div>
