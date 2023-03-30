@@ -4,7 +4,7 @@ import AuthorInfo from "./AuthorInfo";
 import Report from "./Report";
 import Helpful from "./Helpful";
 
-const QaStatus = ({ handleReportClick, handleHelpfulClick, data }) => {
+const QaStatus = ({ handleReportClick, handleHelpfulClick, data, messageType }) => {
   const sharedClasses = "flex-initial";
 
   return (
@@ -17,6 +17,7 @@ const QaStatus = ({ handleReportClick, handleHelpfulClick, data }) => {
           key={2}
           yesCount={data.helpfulCount}
           handleHelpfulClick={handleHelpfulClick}
+          messageType={messageType}
           className={sharedClasses + " status"}
         />,
         <Report
