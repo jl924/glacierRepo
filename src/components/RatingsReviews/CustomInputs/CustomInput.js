@@ -35,7 +35,7 @@ export default function CustomInput({
         onBlur={field.onBlur}
         placeholder={placeholder}
       />
-      {privacy !== "" && <h3>{privacy}</h3>}
+      {privacy !== "" && <h3 className="p-1 text-sm">{privacy}</h3>}
     </div>
   );
 }
