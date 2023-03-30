@@ -6,7 +6,7 @@ import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPutRequest } from "../../helpers/api.js";
 
 
-const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, hideClicked, loadMoreVisible, index, clickedQuestionIndex}) => {
+const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, loadMoreVisible, clickedQuestionIndex,setClickedQuestionIndex, index}) => {
   const dispatch = useDispatch();
   let answerId = Object.keys(answers);
 
@@ -35,14 +35,15 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, hideClicked
 
   var handleLoadMoreAnswers = (e) => {
     e.preventDefault();
+    setClickedQuestionIndex(index)
     setLoadMore(!loadMore);
-  };
 
+  };
 
   return (
     <div key={key}>
       <div>
-      {loadMore ? <h4>
+      {(loadMore && clickedQuestionIndex === index) ? <h4>
         {answerId.map((id) => {
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
@@ -73,7 +74,7 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, hideClicked
           );
         })}
         </h4>}
-        {(answerId.length > 2) ? <LoadMoreAnswers handleLoadMoreAnswers={handleLoadMoreAnswers} loadMore={loadMore} /> : null}
+        {(answerId.length > 2) ? <LoadMoreAnswers handleLoadMoreAnswers={handleLoadMoreAnswers} clickedQuestionIndex={clickedQuestionIndex} index={index} loadMore={loadMore} /> : null}
     </div>
     </div>
   );

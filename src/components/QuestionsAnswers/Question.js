@@ -15,7 +15,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
   const filteredQuestions = useSelector((state) => state.questionsAnswersReducer.filteredQuestions);
 
   const [displayAnswers, setDisplayAnswers] = useState(true);
-  const [clickedQuestionIndex, setClickedQuestionIndex] = useState(null);
+  const [clickedQuestionIndex, setClickedQuestionIndex] = useState();
   let [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -92,7 +92,6 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
                   handleAddAnswer={handleAddAnswer}
                   question={question} />
               </span>
-              {console.log(question)}
             </h3>
             { (Object.keys(question.answers).length > 0) ?
             <Answer answers={question.answers}
@@ -100,8 +99,9 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              hideClicked={clickedQuestionIndex === index}
-              clickedQuestionIndex={clickedQuestionIndex} />
+              clickedQuestionIndex={clickedQuestionIndex}
+              setClickedQuestionIndex={setClickedQuestionIndex}
+              index={index} />
             : <small className='px-5'>No answers, be the first!</small>}
           </div>
         )
@@ -130,8 +130,9 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              hideClicked={clickedQuestionIndex === index}
-              clickedQuestionIndex={clickedQuestionIndex} />
+              clickedQuestionIndex={clickedQuestionIndex}
+              setClickedQuestionIndex={setClickedQuestionIndex}
+              index={index} />
             : <small className='px-5'>No answers, be the first!</small>}
           </div>
         )
