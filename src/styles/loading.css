@@ -1,0 +1,15 @@
+.glowing-image {
+  filter: drop-shadow(0 0 5px #ffffff) drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 15px #ffffff);
+  transition: all 0.4s ease-in-out;
+}
+
+
+.glowing-image:hover {
+  filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 20px #ffffff) drop-shadow(0 0 30px #ffffff);
+}
+
+
+.loadButton:focus {
+  transform: scale(1000);
+  transition: all 1500ms ease-in-out;
+}
