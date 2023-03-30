@@ -112,7 +112,7 @@ const App = () => {
   };
 
   return (
-    <div className="relative  app text-primary" data-theme={theme}>
+    <div className="relative app text-primary" data-theme={theme}>
       <div className="container container2 ">
         <button
           id="btn3"

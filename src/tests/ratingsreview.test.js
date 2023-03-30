@@ -12,7 +12,6 @@ import { Provider } from "react-redux";
 import { act } from "react-dom/test-utils";
 import "./style.css";
 import "./style.sass";
-import App from "../components/App";
 
 let queryAllByText, container;
 describe("RatingsReview", function () {
