@@ -14,6 +14,7 @@ import {
 import PhotoModal from "./sharedComponents/PhotoModal";
 import SupportModal from "./RatingsReviews/SupportModal";
 import ThemeModal from "./sharedComponents/ThemeModal";
+import LoadingScreen from "./LoadingScreen";
 
 const App = () => {
   const dispatch = useDispatch();
