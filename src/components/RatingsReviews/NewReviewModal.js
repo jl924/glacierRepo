@@ -19,6 +19,7 @@ export default function NewReviewModal({ checked, name, hidden }) {
           dispatch(toggleReviewModal());
         }
       }}
+      module="newReviewModal|Ratings"
       key={100000000}
     >
       <section

@@ -8,6 +8,7 @@ const HelpfulStatus = ({
   handleReportClick,
   data,
   messageType = "question",
+  module = "QA",
 }) => {
   const sharedClasses = "flex-initial";
 
@@ -29,11 +30,13 @@ const HelpfulStatus = ({
           handleHelpfulClick={handleHelpfulClick}
           className={sharedClasses + " status"}
           messageType={messageType}
+          module={module}
         />,
         <Report
           key={2}
           handleReportClick={handleReportClick}
           className={sharedClasses + " status"}
+          module={module}
         />,
       ]}
     />

@@ -17,7 +17,7 @@ export default function ResetFilters() {
   }
 
   return ratingsReviews.length !== filteredResultsNum ? (
-    <h2 className="">
+    <h2 className="" module="resetFilter|Ratings">
       {filteredResultsNum + " results available. "}
       <a
         className="underline transition-all hover:cursor-pointer hover:bg-base-200 active:bg-base-300 active:tracking-widest"

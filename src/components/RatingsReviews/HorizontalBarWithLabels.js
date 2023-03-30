@@ -12,10 +12,11 @@ export const HorizontalBarWithLabels = ({
   return (
     <div
       className={
-        "flex flex-1 flex-row items-center mb-4 justify-around cursor-pointer hover:colorShift transition-colors duration-200" +
+        "flex distributionBar flex-1 flex-row items-center mb-4 justify-around cursor-pointer hover:colorShift transition-colors duration-200" +
         (selected ? " bg-accent" : "") +
         (isHovering ? " bg-gray-100" : "")
       }
+      module="distributionBar|Ratings"
       onClick={() => handleRatingClick()}
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
