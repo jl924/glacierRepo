@@ -49,7 +49,7 @@ export default function CustomBody({ label, ...props }) {
             "absolute flex flex-row top-2 left-2" + (hidden ? " hidden" : "")
           }
         >
-          <span className="text-sm">
+          <span className="z-20 text-sm pointer-events-none text-secondary">
             What made this purchase absolutely delightful or{" "}
           </span>
           <button

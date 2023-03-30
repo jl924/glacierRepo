@@ -36,7 +36,7 @@ export default function CustomCharacteristics({ label, ...props }) {
               className="range range-primary"
               step="1"
             />
-            <div className="w-full flex justify-between text-xs px-2">
+            <div className="flex justify-between w-full px-2 text-xs">
               {labels[trait].map((label) => (
                 <span key={label}>{label}</span>
               ))}
