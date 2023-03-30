@@ -48,18 +48,26 @@
 .mainRatings
   margin-top: 50px
   box-sizing: border-box
-  @media(min-width: 970px)
-    flex-direction: row
-  @media(max-width: 1000px)
+  @media(max-width: 600px)
     flex-direction: column
     .left
-      flex-direction: row
-      align-items: end
       margin: 0 auto
-      > *
-        margin: 0 10px
+      margin-top: 25px
     .right
-      margin: 0 20px
+      margin: 0 10px
+  @media(min-width: 970px)
+    flex-direction: row
+  @media(min-width: 600px)
+    @media(max-width: 970px)
+      flex-direction: column
+      .left
+        flex-direction: row
+        align-items: end
+        margin: 0 auto
+        > *
+          margin: 0 10px
+      .right
+        margin: 0 20px
   width: 100%
   .rightReviews
     margin-bottom: 50px
