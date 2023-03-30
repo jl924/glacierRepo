@@ -21,7 +21,7 @@ export default function CustomInput({
       {error && meta.touched && <div className="text-error">{error}</div>}
       <label htmlFor={props.name}>{label}</label>
       <input
-        className="rounded-none w-[450px] input input-sm bg-base-100 border-1 border-primary"
+        className="rounded-none w-[450px] input input-sm bg-base-100 border-1 border-primary placeholder-secondary"
         onChange={handleChange}
         value={field.value}
         type={type}

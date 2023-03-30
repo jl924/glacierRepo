@@ -4,7 +4,7 @@ import BigButton from "./BigButton";
 export default function ButtonPair({
   buttons,
   showFirst = true,
-  className = "mt-10",
+  className = "flex flex-row justify-start mt-10",
 }) {
   const buttonKeys = Object.keys(buttons);
   const plusButtonWhitelist = ["Add a Review", "Add A Question"];

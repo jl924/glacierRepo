@@ -12,7 +12,7 @@ const SearchQA = ({searchHandler}) => {
 
   return (
 
-    <div className=' input-container'>
+    <div module="clickSearchbar|QA" className=' input-container'>
       <MdSearch className='searchIcon' />
       <input onChange={searchHandler} className={inputCSS} placeholder='Have a question? Search for answers...' />
     </div>
