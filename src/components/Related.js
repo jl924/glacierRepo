@@ -190,7 +190,7 @@ const Related = () => {
     <div id='caro-related' className="carousel carousel-center max-w-4xl p-4 space-x-2" ref={carouselRef} onScroll={() => setScroll(scroll+1)}>
 
       {product.map((single) => (
-        <RelatedCard products={single} key={single.product_id} module="relatedCard|related"/>
+        <RelatedCard products={single} key={single.product_id}/>
       ))}
     </div>
     <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}} module="relatedCaroRight|related">{maximum ? '❯' : "ㅤ"}</button>
