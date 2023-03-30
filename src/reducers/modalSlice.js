@@ -4,6 +4,7 @@ const initialState = {
   support: { isShown: false, message: "" },
   newReview: { isShown: false },
   photo: { clickedPhoto: "" },
+  theme: { theme: "", isShown: false },
 };
 
 const modalSlice = createSlice({
@@ -30,7 +31,15 @@ const modalSlice = createSlice({
         state.newReview.isShown = false;
       } else if (state.photo.clickedPhoto !== "") {
         state.photo.clickedPhoto = "";
+      } else if (state.theme.isShown) {
+        state.theme.isShown = false;
       }
+    },
+    setThemeShown(state, action) {
+      state.theme.isShown = action.payload;
+    },
+    setTheme(state, action) {
+      state.theme.theme = action.payload.theme;
     },
   },
 });
@@ -41,5 +50,7 @@ export const {
   toggleReviewModal,
   setClickedPhoto,
   closeTopMostModal,
+  setThemeShown,
+  setTheme,
 } = modalSlice.actions;
 export default modalSlice.reducer;
