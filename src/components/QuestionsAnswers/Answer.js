@@ -47,12 +47,13 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, loadMoreVis
         {answerId.map((id) => {
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
-              <p><span className='QAheader'>A: </span>{answers[id].body}</p>
-              <Photos photos={answers[id].photos} />
+              <p className='QAheader'><span>A: </span>{answers[id].body}</p>
+              <div><Photos photos={answers[id].photos} custom={true} /></div>
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
-                handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}/>
+                handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}
+                messageType='answer'/>
               </div>
             </div>
           );
@@ -63,7 +64,7 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, loadMoreVis
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
               <p><span className='QAheader'>A: </span>{answers[id].body}</p>
-              <Photos photos={answers[id].photos} />
+              <div><Photos photos={answers[id].photos} custom={true} /></div>
               <div className='px-4'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}

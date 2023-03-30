@@ -124,7 +124,7 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
             <label className='label' htmlFor='question'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Question:</span>
             </label>
-            <textarea onChange={onQuestionChange} className='textarea rounded-none textarea-primary bg-base-300' id='question' name='question' />
+            <textarea module='questionField|QA' onChange={onQuestionChange} className='textarea rounded-none textarea-primary bg-base-300' id='question' name='question' />
           </h2>
 
           <h2 className='py-5 text-center'>
@@ -132,7 +132,7 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
             <label className='label' htmlFor='nickname'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Nickname:</span>
             </label>
-            <input onChange={onNicknameChange} className='input rounded-none input-primary w-full bg-base-300' id='nickname' name='nickname' placeholder='Example: jackson11!' />
+            <input module='nicknameQuestion|QA' onChange={onNicknameChange} className='input rounded-none input-primary w-full bg-base-300' id='nickname' name='nickname' placeholder='Example: jackson11!' />
             <p><small>For privacy reasons, do not use your full name or email address.</small></p>
           </h2>
 
@@ -141,12 +141,12 @@ const AddQuestionForm = ({ product, setQuestionForm }) => {
             <label className='label' htmlFor='email'>
               <span className='label-text flex flex-row justify-center w-full text-lg'>Email:</span>
             </label>
-            <input onChange={onEmailChange} className='input rounded-none input-primary w-full bg-base-300' id='email' name='email' type='email' placeholder='Why did you like the product or not?' />
+            <input module='emailQuestion|QA' onChange={onEmailChange} className='input rounded-none input-primary w-full bg-base-300' id='email' name='email' type='email' placeholder='Why did you like the product or not?' />
             <p className='py-1'><small>For authentication reasons, you will not be emailed.</small></p>
           </h2>
 
           <div className='text-center'>
-          <button className='btn rounded-none btn-base-300'>Submit</button>
+          <button module='submitQuestion|QA' className='btn rounded-none btn-base-300'>Submit</button>
           </div>
 
         </Form>
