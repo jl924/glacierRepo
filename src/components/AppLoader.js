@@ -1,7 +1,7 @@
 import React from "react";
 import { apiGetRequest } from "../helpers/api.js";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ratingsReviewsRequest,
   ratingsReviewsSuccess,
@@ -10,6 +10,7 @@ import {
   reRenderSuccess,
 } from "../reducers/ratingsReviewsSlice.js";
 import App from "./App";
+import LoadingScreen from "./LoadingScreen";
 
 export default function AppLoader() {
   const dispatch = useDispatch();
@@ -60,5 +61,23 @@ export default function AppLoader() {
     }
   }, [product]);
 
-  return <App />;
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  return (
+    <>
+    {isLoading ? (
+      <LoadingScreen />
+    ) : (
+      <App />
+    )}
+    </>
+  );
 }
+
+

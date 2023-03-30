@@ -97,19 +97,7 @@ const App = () => {
     }
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
   return (
-    <>
-    {isLoading ? (
-      <LoadingScreen />
-    ) : (
       <div className="app text-primary" data-theme={theme}>
       <div className="container container2">
         <button
@@ -127,8 +115,6 @@ const App = () => {
       <PhotoModal />
       <SupportModal />
     </div>
-    )}
-    </>
   );
 };
 
