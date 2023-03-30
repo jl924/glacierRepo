@@ -5,9 +5,10 @@ const Helpful = ({
   handleHelpfulClick,
   className,
   messageType = "question",
+  module,
 }) => {
   return (
-    <h5 className={className}>
+    <h5 module={"HelpfulButton|" + module} className={className}>
       Was this {messageType} helpful?{" "}
       <button onClick={handleHelpfulClick}>Yes</button> ({yesCount})
     </h5>

@@ -30,6 +30,7 @@ const ReviewListHeader = ({}) => {
             className="underline transition-colors duration-300 bg-base-100 hover:cursor-pointer hover:bg-base-200"
             onChange={handleSortingChange}
             value={sorting}
+            module="sortRatingsSelect|Ratings"
           >
             {options.map((option) => (
               <option key={option} className="" value={option}>
