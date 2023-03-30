@@ -35,6 +35,7 @@ const App = () => {
   console.log(clickObject);
   // Add this to any element you would like to be tracked
   // Format  - module="<eventName>|<yourModule>" (ex. <div module="styleBtn|Overview">)
+  // console.log(clickObject)
 
   // uncomment to test clicks -> logs click count object
 

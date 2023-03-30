@@ -1,13 +1,20 @@
 import React from 'react';
 import '../styles/loading.css'
 
-
+import {useEffect} from 'react'
 
 const LoadingScreen = ({setIsLoading, isLoading}) => {
 
 
+  useEffect(()=> {
+    if(isLoading===false) {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [isLoading])
 
-  setTimeout(() => {setIsLoading(false)}, 3000)
+  setTimeout(() => {setIsLoading(false);}, 3000)
 
 
   return (
