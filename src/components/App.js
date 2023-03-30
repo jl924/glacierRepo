@@ -6,9 +6,14 @@ import RatingsReviews from "./RatingsReviews";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addClick } from "../reducers/clickSlice";
-import { closeTopMostModal } from "../reducers/modalSlice";
+import {
+  closeTopMostModal,
+  setThemeShown,
+  setTheme,
+} from "../reducers/modalSlice";
 import PhotoModal from "./sharedComponents/PhotoModal";
 import SupportModal from "./RatingsReviews/SupportModal";
+import ThemeModal from "./sharedComponents/ThemeModal";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -85,6 +90,11 @@ const App = () => {
     );
   }, []);
 
+  let setTheTheme = (theme) => {
+    localStorage.setItem("theme", theme);
+    setTheme(theme);
+  };
+
   let switchTheme = () => {
     if (theme === "lightTheme") {
       localStorage.setItem("theme", "darkTheme");
@@ -96,16 +106,21 @@ const App = () => {
     }
   };
 
+  let openThemeModal = () => {
+    dispatch(setThemeShown(true));
+  };
+
   return (
-    <div className="app text-primary" data-theme={theme}>
-      <div className="container container2">
+    <div className="relative  app text-primary" data-theme={theme}>
+      <div className="container container2 ">
         <button
           id="btn3"
           className="btn btn-active btn-ghost"
-          onClick={switchTheme}
+          onClick={openThemeModal}
         >
           {icon}
         </button>
+        <ThemeModal />
       </div>
       <Overview />
       <Related />
