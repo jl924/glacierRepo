@@ -26,7 +26,7 @@ const Overview = (store) => {
     <div className="flex flex-col items-center">
       <Header id="header" />
       <Product productId={productId} info={selectedProduct}/>
-      <Description className="" info={selectedProduct}/>
+      <Description className="left-0" info={selectedProduct}/>
     </div>
   );
 }

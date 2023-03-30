@@ -63,16 +63,24 @@ export default function AppLoader() {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [z, setZ]= useState(20)
+  useEffect(() => {
+    if(isLoading === false) {
+      setTimeout(() => {setZ(1)}, 200)
+    }
+  },[isLoading])
 
   return (
     <>
-    {isLoading ? (
-      <LoadingScreen setIsLoading={setIsLoading}/>
-    ) : (
+    <div className={`z-${z} absolute`}>
+      <LoadingScreen isLoading={isLoading} setIsLoading={setIsLoading} />
+    </div>
+    <div>
       <App />
-    )}
-    </>
-  );
+    </div>
+  </>
+);
+
 }
 
 
