@@ -80,6 +80,7 @@ const ReviewListItem = ({
           <a
             className="underline cursor-pointer"
             onClick={() => setCap(!capBody)}
+            module="showMoreReview|Ratings"
           >
             {capBody ? "Show More" : "Show Less"}
           </a>
@@ -96,6 +97,7 @@ const ReviewListItem = ({
           messageType={"review"}
           data={{ helpfulCount: review.helpfulness }}
           loading={loading}
+          module={"Ratings"}
         />
         {review.photos.length > 0 && (
           <Photos
@@ -103,6 +105,7 @@ const ReviewListItem = ({
             height={50}
             custom={true}
             photos={review.photos.map((p) => p.url)}
+            module="Ratings"
           />
         )}
       </div>

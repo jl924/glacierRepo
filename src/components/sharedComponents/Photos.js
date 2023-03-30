@@ -5,7 +5,13 @@ import { useDispatch } from "react-redux";
 import { setClickedPhoto } from "../../reducers/modalSlice";
 import "../../style.css";
 
-const Photos = ({ photos, width = 150, height = 150, custom = false }) => {
+const Photos = ({
+  photos,
+  width = 150,
+  height = 150,
+  custom = false,
+  module = "QA",
+}) => {
   const dispatch = useDispatch();
 
   return (
@@ -13,6 +19,7 @@ const Photos = ({ photos, width = 150, height = 150, custom = false }) => {
       {photos.map((photoUrl, index) => {
         return (
           <img
+            module={module + "Photo|" + module}
             className={
               "cursor-pointer" +
               (custom

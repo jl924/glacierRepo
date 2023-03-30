@@ -44,6 +44,7 @@ export default function CustomRating({ label, ...props }) {
                     : " bg-primary")
             }
             value={rating}
+            module={"newReviewRating" + rating + "|Ratings"}
             readOnly={true}
             checked={field.value === rating}
             onChange={() => setRating(rating)}
