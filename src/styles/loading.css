@@ -6,11 +6,9 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
-
   }
   50% {
-    transform: scale(1.02);
-    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 15px #ffffff) drop-shadow(0 0 20px #ffffff);
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);

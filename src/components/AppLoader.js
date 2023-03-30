@@ -70,6 +70,12 @@ export default function AppLoader() {
     }
   },[isLoading])
 
+  useEffect(() => {
+    window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  }
+  }, [])
+
   return (
     <>
     <div className={`z-${z} absolute`}>
