@@ -6,14 +6,17 @@
 
 
 
-#root {
-  display: flex;
-  margin: 0 auto;
-  min-width: 600px;
-  max-width: 1000px;
+body, #bigRoot {
+  width: 100%;
 }
 
-#root > * {
+.app {
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.app > * {
   flex-grow: 1;
   flex-basis: 0;
   width: 100%;
@@ -66,8 +69,6 @@ body{
 #btn3 {
   display: inline-flex;
   position: relative;
-  left: 29.5rem;
-  top: 1.7rem;
   background-color: transparent;
 }
 

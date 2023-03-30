@@ -61,7 +61,9 @@ const RatingView = ({
           <input
             key={rating}
             type="radio"
-            className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
+            className={
+              rating === 0 ? "rating-hidden" : "bg-accent mask mask-star 2"
+            }
             style={starStyle(rating, false)}
             readOnly={true}
             checked={0 === rating}
@@ -80,7 +82,9 @@ const RatingView = ({
               type="radio"
               className={
                 ((rating !== 0 && "bottom-0 relative transition-all ") || "") +
-                (rating === 0 ? "rating-hidden" : "mask mask-star 2") +
+                (rating === 0
+                  ? "rating-hidden"
+                  : "bg-primary mask mask-star 2") +
                 ((rating !== 0 && animateOnHover && " hover:bottom-4") || "")
               }
               readOnly={true}
