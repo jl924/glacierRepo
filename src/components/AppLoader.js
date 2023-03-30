@@ -63,16 +63,11 @@ export default function AppLoader() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
 
   return (
     <>
     {isLoading ? (
-      <LoadingScreen />
+      <LoadingScreen setIsLoading={setIsLoading}/>
     ) : (
       <App />
     )}
