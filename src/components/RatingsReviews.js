@@ -69,7 +69,7 @@ const RatingsReviews = () => {
             ))}
         </div>
       </div>
-      <div className="flex flex-col rightReviews right">
+      <div className="flex flex-col rightReviews right max-w-[700px]">
         <ReviewListHeader />
         <ReviewList />
         <NewReviewModal
