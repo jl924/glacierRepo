@@ -25,8 +25,8 @@ const ThemeModal = () => {
           </span>
           <p>{"Theme: " + theme}</p>
           <div className="flex flex-row justify-around themeIcons">
-            <button>emoji</button>
-            <button>emoji</button>
+            <button>🌙</button>
+            <button>🔆</button>
             <button>emoji</button>
             <button>emoji</button>
           </div>
