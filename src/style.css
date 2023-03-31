@@ -45,12 +45,6 @@ body{
   font-family: 'Comfortaa';
 }
 
-*, *::after {
-  transition-property: background-color, border-color, color;
-
-  transition-duration: 100ms;
-}
-
 .PhotoModal {
   position: fixed;
   left: 0;
