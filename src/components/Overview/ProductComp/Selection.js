@@ -45,7 +45,6 @@ const Selection = ({info, product, setStyle, sty }) => {
   return (
     <div className="w-[450px] ml-[0px]">
       <div className="flex flex-col">
-
         <div className="flex mb-[20px] mt-[15px] items-center ml-[12px]">
         <RatingView
               width={108}
@@ -100,7 +99,7 @@ const Selection = ({info, product, setStyle, sty }) => {
       <div className="flex flex-col items-center justify-center mt-[25px]">
         <p>Share</p>
       <div className="flex items-center justify-center w-[200px]ml-[5px]">
-        <div className="flex border shadow-md shadow-black">
+        <div className="flex shadow-md shadow-primary">
         <FacebookShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} quote={"quote"}>
           <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
         </FacebookShareButton>
