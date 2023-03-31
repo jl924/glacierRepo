@@ -8,6 +8,9 @@ import { apiPutRequest } from "../../helpers/api.js";
 
 const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, loadMoreVisible, clickedQuestionIndex,setClickedQuestionIndex, index}) => {
   const dispatch = useDispatch();
+
+  const [clickedAnswerId, setClickedAnswerId] = useState();
+  const [reported, setReported] = useState(false);
   let answerId = Object.keys(answers);
 
   let [loading, setLoading] = useState(false);
@@ -29,8 +32,10 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, loadMoreVis
     }
   };
 
-  var handleAnswerReportClick = (e, answer) => {
-    console.log(answer, 'was reported!');
+  var handleAnswerReportClick = (e, id) => {
+    setReported(true);
+    setClickedAnswerId(id);
+
   };
 
   var handleLoadMoreAnswers = (e) => {
@@ -44,32 +49,40 @@ const Answer = ({answers, QaStatus, loadMore, firstTwo, setLoadMore, loadMoreVis
     <div key={key}>
       <div>
       {(loadMore && clickedQuestionIndex === index) ? <h4>
-        {answerId.map((id) => {
+        {answerId.map((id, idx) => {
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
               <p className='QAheader'><span>A: </span>{answers[id].body}</p>
               <div><Photos photos={answers[id].photos} custom={true} /></div>
-              <div className='px-4'>
+              <div className='px-4 flex flex-row'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
+                clickedAnswerId={clickedAnswerId}
+                id={id}
+                reported={reported}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
-                handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}
+                handleReportClick={(e) => handleAnswerReportClick(e, id)}
                 messageType='answer'/>
+                {(reported && clickedAnswerId === id) ? <span className='inline'>Reported ✓</span> : null}
               </div>
             </div>
           );
         })}
         </h4> :
         <h4>
-        {firstTwo.map((id) => {
+        {firstTwo.map((id, idx) => {
           return (
             <div key={id} className='container mx-auto py-4 px-2'>
               <p><span className='QAheader'>A: </span>{answers[id].body}</p>
-              <div><Photos photos={answers[id].photos} custom={true} /></div>
-              <div className='px-4'>
+              <div className='flex flex-row'><Photos photos={answers[id].photos} custom={true} /></div>
+              <div className='px-4 flex flex-row'>
                 <QaStatus data={{reviewer_name: answers[id].answerer_name, date: answers[id].date, helpfulCount: answers[id].helpfulness}}
+                clickedAnswerId={clickedAnswerId}
+                reported={reported}
+                index={idx}
                 handleHelpfulClick={(e) => handleAnswerHelpfulClick(e, id)}
-                 handleReportClick={(e) => handleAnswerReportClick(e, answers[id])}
+                 handleReportClick={(e) => handleAnswerReportClick(e, id)}
                  messageType='answer'/>
+                 {(reported && clickedAnswerId === id) ? <small>Reported ✓</small> : null}
               </div>
             </div>
           );

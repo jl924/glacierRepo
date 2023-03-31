@@ -21,13 +21,20 @@ function RelatedCompare({compare}) {
   const overviewPrice = Number(selectedProduct.default_price) > Number(compare.extra.default_price) ? '+' : '-'
   const outfitPrice = Number(selectedProduct.default_price) > Number(compare.extra.default_price) ? '-' : '+'
 
+  if (selectedProduct.name === 'Infinity Stone') {
+    return (
+
+      <div>hello world</div>
+    )
+  } else {
+
   return (
     <>
     <div className="compareModal">
     <div className="stats w-full">
 
     <div className="stat place-items-center">
-      <div className="stat-title font-bold"> Overview </div>
+      <div className="stat-title font-bold"> {selectedProduct.name} </div>
       <div>✓</div>
       <div>✓</div>
       <div>✓</div>
@@ -69,6 +76,7 @@ function RelatedCompare({compare}) {
 </div>
 </>
   );
+  }
 }
 
 export default RelatedCompare;

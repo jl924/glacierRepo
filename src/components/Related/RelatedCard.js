@@ -98,7 +98,7 @@ if (products.results[0].sale_price) {
         <RatingView width={108} rating={products.ratings}/>
         </div>
         <div className="card-actions justify-end">
-        <small></small>
+        <small id='ratingCount'>{products.count}</small>
         </div>
       </div>
     </div>

@@ -40,6 +40,7 @@ const Related = () => {
           count += Number(rate[keys])
         }
         productList[i].ratings = (add/count);
+        productList[i].count = count
 
       }
       // console.log(productList)
