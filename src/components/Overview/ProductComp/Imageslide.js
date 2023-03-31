@@ -41,7 +41,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
     if(carousel) {
       setTimeout(() => {carousel.scrollTop -= 1000}, 5000)
     }
-  }, product)
+  }, [product])
 
 
   const handleNavigationClick = (newIndex, oldIndex) => {
