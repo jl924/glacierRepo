@@ -161,8 +161,8 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
           })}
       </div>
     ) : (
-      <div className="h-full w-full border-r-4 border-b-4 border-double rounded">
-        <div className="carousel relative w-full h-full hover:cursor-zoom-in">
+      <div className="h-full w-full border-r-4 border-b-4 border-double border-primary rounded">
+        <div className="carousel relative w-full h-full border-primary hover:cursor-zoom-in">
           {mainImgs.map((img, index) => {
             const prev = index === 0 ? mainImgs.length - 1 : index - 1;
             const next = index === mainImgs.length - 1 ? 0 : index + 1;
