@@ -7,7 +7,6 @@ export default function NewReviewModal({ checked, name, hidden }) {
   const dispatch = useDispatch();
   const { showMore } = useSelector((state) => state.ratingsReviewsReducer);
   const { isShown } = useSelector((state) => state.modalReducer.newReview);
-  console.log(isShown);
 
   return (
     <div
