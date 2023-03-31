@@ -71,7 +71,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
     e.preventDefault();
     //setDisplayAnswers(!displayAnswers);
     setClickedQuestionIndex(clickedQuestionIndex === index ? null: index);
-    setLoadMore(false);
+    setLoadMore(!loadMore);
   };
 
   return (
