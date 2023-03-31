@@ -85,9 +85,11 @@ if (outfits.discountPrice) {
       <small>{outfits.category}</small>
         <h2 id="titleCard" className="card-title">{outfits.name}</h2>
         <small>{outfits.price}</small>
+        <div id='relatedRating'>
         <RatingView width={108} rating={outfits.rating}/>
+        </div>
         <div className="card-actions justify-end">
-        <small></small>
+        <small id='ratingCount'>{outfits.numReviews}</small>
         </div>
       </div>
     </div>
