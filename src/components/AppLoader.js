@@ -17,8 +17,9 @@ export default function AppLoader() {
   const product = useSelector(
     (state) => state.selectedProductReducer.selectedProduct
   );
-  const sorting = useSelector((state) => state.ratingsReviewsReducer.sorting);
-  const reRender = useSelector((state) => state.ratingsReviewsReducer.reRender);
+  const { ratingsReviews, sorting, reRender } = useSelector(
+    (s) => s.ratingsReviewsReducer
+  );
   useEffect(() => {
     if (reRender === true) {
       dispatch(reRenderSuccess());
@@ -39,54 +40,59 @@ export default function AppLoader() {
     dispatch(metaRequest());
     if (product && product.id) {
       apiGetRequest("/reviews/meta", { product_id: product.id }).then((res) => {
+        let num = ratingsReviews.length;
         let sum = 0;
-        let num = 0;
         let max = 0;
-        for (let key in res.ratings) {
-          sum += key * res.ratings[key];
-          num += parseInt(res.ratings[key]);
-          if (parseInt(res.ratings[key]) > max)
-            max = parseInt(res.ratings[key]);
+        var ratings = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+        ratingsReviews.forEach((review) => ratings[review.rating]++);
+
+        for (let key in ratings) {
+          sum += key * ratings[key];
+          if (ratings[key] > max) max = ratings[key];
         }
         const average = sum / num;
-        res.numReviews = num;
-        res.averageReviews = Math.floor(average * 10) / 10;
-        res.max = max;
-        res.recommend = Math.floor(
+        var recommend = Math.floor(
           (100 * res.recommended.true) /
             (parseInt(res.recommended.true) + parseInt(res.recommended.false))
         );
-        dispatch(metaSuccess({ meta: res }));
+        var ret = {
+          ...res,
+          numReviews: num,
+          averageReviews: Math.floor(average * 10) / 10,
+          max,
+          recommend,
+          ratings,
+        };
+        dispatch(metaSuccess({ meta: ret }));
       });
     }
-  }, [product]);
+  }, [product, ratingsReviews]);
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [z, setZ]= useState(20)
+  const [z, setZ] = useState(20);
   useEffect(() => {
-    if(isLoading === false) {
-      setTimeout(() => {setZ(1)}, 200)
+    if (isLoading === false) {
+      setTimeout(() => {
+        setZ(1);
+      }, 200);
     }
-  },[isLoading])
+  }, [isLoading]);
 
   useEffect(() => {
     window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-  }
-  }, [])
+      window.scrollTo(0, 0);
+    };
+  }, []);
 
   return (
     <>
-    <div className={`z-${z} absolute`}>
-      <LoadingScreen isLoading={isLoading} setIsLoading={setIsLoading} />
-    </div>
-    <div>
-      <App />
-    </div>
-  </>
-);
-
+      <div className={`z-${z} absolute`}>
+        <LoadingScreen isLoading={isLoading} setIsLoading={setIsLoading} />
+      </div>
+      <div>
+        <App />
+      </div>
+    </>
+  );
 }
-
-
