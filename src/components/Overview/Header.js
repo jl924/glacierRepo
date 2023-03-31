@@ -6,9 +6,9 @@ const Header = () => {
         <img className=" absolute h-[50px] mt-[10px]" src="https://i.imgur.com/beNiCcN.jpg" alt="Benj logo" />
       </div>
       <div className="flex justify-center items-center w-full text-gray-400 h-[35px]">
-        <p className="italic text-primary">SITE-WIDE ANNOUNCEMENT MESSAGE! &nbsp;</p><p className="text-secondary">-- SALE/DISCOUNT</p>
-        <p className="font-bold ml-[5px] text-primary">OFFER &nbsp;</p> --
-        <p className="text-secondary text-decoration: underline">&nbsp; NEW PRODUCT HIGHLIGHT</p>
+        <p className="italic text-primary">SITE-WIDE ANNOUNCEMENT MESSAGE! &nbsp; --  &nbsp;</p><p className="text-secondary"> SALE/DISCOUNT</p>
+        <p className="font-bold ml-[5px] text-primary">OFFER &nbsp; -- &nbsp;</p>
+        <p className="text-secondary text-decoration: underline"> Ocean Blue Camo Onsie</p>
       </div>
     </div>
   );
