@@ -54,10 +54,10 @@ const Selection = ({info, product, setStyle, sty }) => {
           <a module="reviews|Overview" onClick={() => {window.scrollTo({
             top: 10000,
             behavior: 'smooth'
-          })}} className="text-gray-400 underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {ratingsReviews.length} reviews</a>
+          })}} className="text-secondary underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {ratingsReviews.length} reviews</a>
         </div>
         <div className="ml-[20px]">
-        <p className="text-gray-400">{info ? (info.category) : (<p></p>)}</p>
+        <p className="text-secondary">{info ? (info.category) : (<p></p>)}</p>
         <p className="text-4xl mb-[8px]">{info ? (info.name) : (<p></p>)}</p>
         {sty.sale_price ? (
           <div className="flex">

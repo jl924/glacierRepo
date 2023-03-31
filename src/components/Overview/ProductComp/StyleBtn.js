@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const StyleBtn = ({sty, handleStyleClick, selectedId}) => {
 
-  var buttonClass = "flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100 rounded-full shadow-md shadow-primary"
+  var buttonClass = "flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100 rounded-full shadow-md shadow-secondary"
 
 
   return (
