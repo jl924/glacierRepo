@@ -117,3 +117,9 @@
   box-sizing: border-box;
   padding: 10px;
 }
+
+#ratingCount {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 5rem;
+}
