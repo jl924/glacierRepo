@@ -45,7 +45,6 @@ const Selection = ({info, product, setStyle, sty }) => {
   return (
     <div className="w-[450px] ml-[0px]">
       <div className="flex flex-col">
-
         <div className="flex mb-[20px] mt-[15px] items-center ml-[12px]">
         <RatingView
               width={108}
@@ -55,10 +54,10 @@ const Selection = ({info, product, setStyle, sty }) => {
           <a module="reviews|Overview" onClick={() => {window.scrollTo({
             top: 10000,
             behavior: 'smooth'
-          })}} className="text-gray-400 underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {ratingsReviews.length} reviews</a>
+          })}} className="text-secondary underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {ratingsReviews.length} reviews</a>
         </div>
         <div className="ml-[20px]">
-        <p className="text-gray-400">{info ? (info.category) : (<p></p>)}</p>
+        <p className="text-secondary">{info ? (info.category) : (<p></p>)}</p>
         <p className="text-4xl mb-[8px]">{info ? (info.name) : (<p></p>)}</p>
         {sty.sale_price ? (
           <div className="flex">
@@ -100,7 +99,7 @@ const Selection = ({info, product, setStyle, sty }) => {
       <div className="flex flex-col items-center justify-center mt-[25px]">
         <p>Share</p>
       <div className="flex items-center justify-center w-[200px]ml-[5px]">
-        <div className="flex border shadow-md shadow-black">
+        <div className="flex shadow-md shadow-primary">
         <FacebookShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} quote={"quote"}>
           <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
         </FacebookShareButton>
