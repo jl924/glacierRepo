@@ -60,7 +60,6 @@ const ReviewListItem = ({
   const firstMarkInBody = body.indexOf("<mark");
   let capLen =
     firstMarkInBody < 260 && firstMarkInBody >= 240 ? firstMarkInBody : 250;
-
   return (
     <div className="review">
       <ReviewHeader review={review} />
