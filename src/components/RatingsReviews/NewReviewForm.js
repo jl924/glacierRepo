@@ -13,10 +13,10 @@ import CustomBody from "./CustomInputs/CustomBody";
 import CustomPhotoLinks from "./CustomInputs/CustomPhotoLinks";
 import { apiLocalPostRequest } from "../../helpers/api.js";
 import {
-  toggleModal,
   sortingSet,
   reRenderRequest,
 } from "../../reducers/ratingsReviewsSlice.js";
+import { toggleReviewModal as toggleModal } from "../../reducers/modalSlice";
 
 let reviewSchema = object().shape({
   rating: number().integer().min(1, "Please select a rating between 1 and 5"),
@@ -140,23 +140,36 @@ const NewReviewForm = () => {
             </div>
             <CustomRating label="Rate this product" name="rating" />
             <CustomRecommended label="Recommended: " name="recommend" />
-            <CustomInput label="Summary: " name="summary" />
+            <CustomInput
+              placeholder="Best purchase ever!"
+              label="Summary: "
+              name="summary"
+            />
             <CustomBody label="Body: " name="body" />
             <CustomCharacteristics
               label="Characteristics: "
               name={"characteristics"}
             />
-            <CustomPhotos
-              label="Photos (URLs, separate by a new line):"
-              name="photos"
+            <CustomPhotos label="Photos:" name="photos" />
+            <CustomInput
+              placeholder="jackson11!"
+              privacy="For privacy reasons, do not use your full name or email address"
+              label="Nickname: "
+              name="name"
             />
-            <CustomInput label="Nickname: " name="name" />
-            <CustomInput label="Email:" type="email" name="email" />
+            <CustomInput
+              placeholder="jackson11@email.com"
+              label="Email:"
+              privacy="For authentication reasons. You will not be emailed."
+              type="email"
+              name="email"
+            />
             <BigButton
               classes="w-fit"
               type="submit"
               text={"Submit review"}
               disabled={isSubmitting}
+              module="Ratings"
             />
           </form>
         )}

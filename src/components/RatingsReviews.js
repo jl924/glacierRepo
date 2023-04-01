@@ -42,29 +42,34 @@ const RatingsReviews = () => {
   }
 
   return (
-    <div className="grid mx-auto mainRatings">
-      <div className="flex flex-col align-top leftReviews left">
-        <h4>Ratings & Reviews</h4>
-        <div className="averageAndStars flex items-start h-[80px]">
-          <h1 className="leading-[54px]">{meta.averageReviews}</h1>
-          <RatingView
-            animateOnHover={true}
-            width={108}
-            rating={meta.averageReviews}
-            numStars={5}
-          />
-        </div>
-        <RatingsDistributionGraph reviews={reviews} />
-        {meta.characteristics &&
-          Object.keys(meta.characteristics).map((characteristic) => (
-            <RatingsSlider
-              key={characteristic}
-              percentage={(meta.characteristics[characteristic].value - 1) / 4}
-              title={characteristic}
+    <div className="flex mx-auto mainRatings bg-inherit">
+      <div className="flex flex-col align-top leftReviews left min-w-[300px] max-w-[600px] bg-inherit">
+        <div className="graphAndAverage">
+          <div className="averageAndStars flex items-start h-[80px]">
+            <h1 className="leading-[54px]">{meta.averageReviews}</h1>
+            <RatingView
+              animateOnHover={true}
+              width={108}
+              rating={meta.averageReviews}
+              numStars={5}
             />
-          ))}
+          </div>
+          <RatingsDistributionGraph reviews={reviews} />
+        </div>
+        <div className="sliders">
+          {meta.characteristics &&
+            Object.keys(meta.characteristics).map((characteristic) => (
+              <RatingsSlider
+                key={characteristic}
+                percentage={
+                  (meta.characteristics[characteristic].value - 1) / 4
+                }
+                title={characteristic}
+              />
+            ))}
+        </div>
       </div>
-      <div className="flex flex-col rightReviews right">
+      <div className="flex flex-col rightReviews right max-w-[700px] flex-1">
         <ReviewListHeader />
         <ReviewList />
         <NewReviewModal

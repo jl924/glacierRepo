@@ -9,10 +9,12 @@ import helpers from '../reqHelpers'
 import { FacebookShareButton } from 'react-share';
 import { TwitterShareButton } from 'react-share';
 import { PinterestShareButton } from 'react-share';
+import { useSelector } from 'react-redux'
 
 
 const getRatingById = helpers.getRatingById
 const Selection = ({info, product, setStyle, sty }) => {
+
 
   const[imgs, setImgs] = useState([])
   const[rating, setRating] = useState([])
@@ -34,36 +36,28 @@ const Selection = ({info, product, setStyle, sty }) => {
     }
   }, [product])
 
-  useEffect(() => {
-    if(product) {
-      getRatingById(product.product_id)
-      .then((res) => {
-        var count = 0
-        var rating = 0
-        res.results.forEach((review) => {
-          count++
-          rating += review.rating
-        })
-        setRating(rating/count)
-        setRevCount(count)
-      })
-    }
-  }, [product])
+  const { meta, sorting, ratingsReviews } = useSelector(
+    (state) => state.ratingsReviewsReducer
+  );
+
 
 
   return (
     <div className="w-[450px] ml-[0px]">
       <div className="flex flex-col">
-
-        <div className="flex mb-[5px] items-center ml-[12px]">
-          <RatingView width={80} numStars={5} rating={rating} />
+        <div className="flex mb-[20px] mt-[15px] items-center ml-[12px]">
+        <RatingView
+              width={108}
+              rating={meta.averageReviews}
+              numStars={5}
+            />
           <a module="reviews|Overview" onClick={() => {window.scrollTo({
             top: 10000,
             behavior: 'smooth'
-          })}} className="text-gray-400 underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {rev} reviews</a>
+          })}} className="text-secondary underline ml-[20px] transition-all duration-1000 hover:cursor-pointer">Read all {ratingsReviews.length} reviews</a>
         </div>
         <div className="ml-[20px]">
-        <p className="text-gray-400">{info ? (info.category) : (<p></p>)}</p>
+        <p className="text-secondary">{info ? (info.category) : (<p></p>)}</p>
         <p className="text-4xl mb-[8px]">{info ? (info.name) : (<p></p>)}</p>
         {sty.sale_price ? (
           <div className="flex">
@@ -78,7 +72,7 @@ const Selection = ({info, product, setStyle, sty }) => {
 
       </div>
       <div>
-        <div className="flex ml-[20px] mt-[10px]">
+        <div className="flex ml-[20px] mt-[25px]">
            <p className="font-bold">STYLE > </p>
            <p> {sty.name} </p>
         </div>
@@ -87,7 +81,7 @@ const Selection = ({info, product, setStyle, sty }) => {
 
         {/*------STYLE BUTTONS------*/}
         <div>
-        <div className="flex flex-row flex-wrap justify-start w-[280px] h-[full] ml-[20px]">
+        <div className="flex flex-row flex-wrap justify-start w-[280px] h-[full] ml-[20px] mb-[25px]">
           {imgs.map((style, index) =>
             {
               return (
@@ -102,16 +96,21 @@ const Selection = ({info, product, setStyle, sty }) => {
         <Form sty={sty}/>
         </div>
       </div>
-      <div className="flex items-center justify-center mt-[15px]">
-        <FacebookShareButton url={"http://localhost:3000/"} quote={"quote"}>
-          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" /></button>
+      <div className="flex flex-col items-center justify-center mt-[25px]">
+        <p>Share</p>
+      <div className="flex items-center justify-center w-[200px]ml-[5px]">
+        <div className="flex shadow-md shadow-primary">
+        <FacebookShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/thumbs/facebook-logo-png/facebook-logo-3.png" />
         </FacebookShareButton>
-        <TwitterShareButton url={"http://localhost:3000/"} quote={"quote"}>
-          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" /></button>
+        <TwitterShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/twitter-icon--flat-gradient-social-iconset--limav-2.png" />
         </TwitterShareButton>
-        <PinterestShareButton url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
-          <button><img className="h-[50px] w-[50px]" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" /></button>
+        <PinterestShareButton className="flex items-center justify-center h-[55px] w-[55px]" url={"http://localhost:3000/"} media={"https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png"} quote={"quote"}>
+          <img className="h-[50px] w-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100" src="https://www.freeiconspng.com/uploads/pinterest-icon-png-3.png" />
         </PinterestShareButton>
+        </div>
+      </div>
       </div>
     </div>
   );

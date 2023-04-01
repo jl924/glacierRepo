@@ -6,7 +6,7 @@ export default function CustomRating({ label, ...props }) {
   const [field, meta, helpers] = useField(props);
   const [hovered, setHovered] = useState(undefined);
   const error = meta.touched && meta.error;
-  const ratingTexts = ['Poor', 'Fair', 'Average', 'Good', 'Great']
+  const ratingTexts = ["Poor", "Fair", "Average", "Good", "Great"];
 
   const setRating = async (rating) => {
     await helpers.setValue(rating);
@@ -15,34 +15,41 @@ export default function CustomRating({ label, ...props }) {
 
   return (
     <div className="flex flex-col">
-      {error && <div className="text-error">{error}</div> || <div>{ratingTexts[field.value - 1]}</div>}
+      {(error && <div className="text-error">{error}</div>) || (
+        <div>{ratingTexts[field.value - 1]}</div>
+      )}
       <div className="rating rating-lg ">
-        {ratings.map((rating) => (
+        {ratings.map((rating) => [
+          <label className="opacity-0" key={rating + " label"} htmlFor="rating">
+            {rating}
+          </label>,
           <input
             key={rating}
             type="radio"
             name="rating"
             onMouseEnter={() => setHovered(rating)}
             onMouseOut={() => setHovered(undefined)}
-            className={rating === 0 ? "rating-hidden" : "mask mask-star 2"}
+            className={
+              rating === 0
+                ? "rating-hidden"
+                : "mask mask-star 2" +
+                  (hovered !== undefined &&
+                  ((hovered > field.value &&
+                    rating > field.value &&
+                    rating <= hovered) ||
+                    (hovered < field.value &&
+                      rating <= field.value &&
+                      rating > hovered))
+                    ? " bg-secondary"
+                    : " bg-primary")
+            }
             value={rating}
+            module={"newReviewRating" + rating + "|Ratings"}
             readOnly={true}
             checked={field.value === rating}
             onChange={() => setRating(rating)}
-            style={{
-              backgroundColor:
-                hovered !== undefined &&
-                ((hovered > field.value &&
-                  rating > field.value &&
-                  rating <= hovered) ||
-                  (hovered < field.value &&
-                    rating <= field.value &&
-                    rating > hovered))
-                  ? "grey"
-                  : "",
-            }}
-          />
-        ))}
+          />,
+        ])}
       </div>
     </div>
   );

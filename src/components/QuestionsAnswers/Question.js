@@ -5,6 +5,7 @@ import HelpfulQA from './HelpfulQA.js';
 import {useSelector, useDispatch} from 'react-redux';
 import questionsAnswersSlice from '../../reducers/questionsAnswersSlice.js'
 import { apiPutRequest } from "../../helpers/api.js";
+import './QACss/QAScrollbar.css';
 import axios from 'axios';
 
 // Question component to house:
@@ -14,7 +15,7 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
   const filteredQuestions = useSelector((state) => state.questionsAnswersReducer.filteredQuestions);
 
   const [displayAnswers, setDisplayAnswers] = useState(true);
-  const [clickedQuestionIndex, setClickedQuestionIndex] = useState(null);
+  const [clickedQuestionIndex, setClickedQuestionIndex] = useState();
   let [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -68,21 +69,21 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
 
   var handleQuestionDisplay = (e, index) => {
     e.preventDefault();
-    // setDisplayAnswers(!displayAnswers);
+    //setDisplayAnswers(!displayAnswers);
     setClickedQuestionIndex(clickedQuestionIndex === index ? null: index);
-    setLoadMore(false);
+    setLoadMore(!loadMore);
   };
 
   return (
-    <div className='max-h-[700px] overflow-y-auto'>
+    <div className='max-h-[950px] overflow-y-auto hideQAScroll'>
       {moreQuestions ?
       <div>
       {firstFour.map((question, index) => {
         return (
           <div key={question.question_id + '/' + question.question_helpfulness} className='question py-7 max-h-[600px] overflow-y-auto'>
             <h3>
-              <span className='QAheader text-lg'>Q: </span>
-              <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
+              <span module={`${question.question_id}|QA`} className='QAheader text-lg'>Q: </span>
+              <a module={`${question.question_id}|QA`} key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
                   handleQuestionReportClick={(e) => handleQuestionReportClick(e, question)}
@@ -92,13 +93,16 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
                   question={question} />
               </span>
             </h3>
+            { (Object.keys(question.answers).length > 0) ?
             <Answer answers={question.answers}
               QaStatus={QaStatus}
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              hideClicked={clickedQuestionIndex === index}
-              clickedQuestionIndex={clickedQuestionIndex} />
+              clickedQuestionIndex={clickedQuestionIndex}
+              setClickedQuestionIndex={setClickedQuestionIndex}
+              index={index} />
+            : <small className ='px-7'>No answers to display, be the first!</small>}
           </div>
         )
       })}
@@ -109,8 +113,8 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
         return (
           <div key={question.question_id + '/' + question.question_helpfulness} className='question py-10 max-h-[600px] overflow-y-auto'>
             <h3>
-              <span className='QAheader text-lg'>Q: </span>
-              <a key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
+              <span module={`${question.question_id}|QA`} className='QAheader text-lg'>Q: </span>
+              <a module={`${question.question_id}|QA`} key={index} className ='questionHeader font-bold text-lg' onClick={(e) => handleQuestionDisplay(e, index)} href=''>{question.question_body}</a>
               <span className='float-right'>
                 <HelpfulQA
                   handleQuestionReportClick={(e) => handleQuestionReportClick(e, question)}
@@ -120,13 +124,16 @@ const Question = ({loadMore, setLoadMore, handleAddAnswer, product, moreQuestion
                   question={question} />
               </span>
             </h3>
+            { (Object.keys(question.answers).length > 0) ?
             <Answer answers={question.answers}
               QaStatus={QaStatus}
               loadMore={loadMore}
               firstTwo={getFirstTwo(question)}
               setLoadMore={setLoadMore}
-              hideClicked={clickedQuestionIndex === index}
-              clickedQuestionIndex={clickedQuestionIndex} />
+              clickedQuestionIndex={clickedQuestionIndex}
+              setClickedQuestionIndex={setClickedQuestionIndex}
+              index={index} />
+            : <small className='px-5'>No answers, be the first!</small>}
           </div>
         )
       })}

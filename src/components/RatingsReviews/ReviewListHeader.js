@@ -6,7 +6,9 @@ import ReviewListSearchBar from "./ReviewListSearchBar";
 import OpaqueHeader from "./OpaqueHeader";
 
 const ReviewListHeader = ({}) => {
-  const { meta, sorting } = useSelector((state) => state.ratingsReviewsReducer);
+  const { meta, sorting, ratingsReviews } = useSelector(
+    (state) => state.ratingsReviewsReducer
+  );
   const { scrollFromTop, reviewListScrolling } = useSelector(
     (s) => s.reviewListReducer
   );
@@ -23,11 +25,12 @@ const ReviewListHeader = ({}) => {
     <div className="relative nonHeader">
       <div className="header">
         <h3 className="text-lg font-bold">
-          {meta.numReviews} reviews, sorted by{" "}
+          {ratingsReviews.length} available reviews, sorted by{" "}
           <select
             className="underline transition-colors duration-300 bg-base-100 hover:cursor-pointer hover:bg-base-200"
             onChange={handleSortingChange}
             value={sorting}
+            module="sortRatingsSelect|Ratings"
           >
             {options.map((option) => (
               <option key={option} className="" value={option}>

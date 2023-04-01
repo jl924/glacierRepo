@@ -34,9 +34,10 @@ export default function CustomCharacteristics({ label, ...props }) {
               value={field.value[trait]}
               onChange={(ev) => handleChange(trait, ev)}
               className="range range-primary"
+      module="newReviewCharacteristicsSlider|Ratings"
               step="1"
             />
-            <div className="w-full flex justify-between text-xs px-2">
+            <div className="flex justify-between w-full px-2 text-xs">
               {labels[trait].map((label) => (
                 <span key={label}>{label}</span>
               ))}

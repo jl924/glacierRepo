@@ -2,9 +2,13 @@ import React from "react";
 import ReviewListItem from "./ReviewListItem.js";
 import ReviewListHeader from "./ReviewListHeader.js";
 import { useSelector, useDispatch } from "react-redux";
+import { toggleReviewModal } from "../../reducers/modalSlice.js";
 import {
-  toggleModal,
   toggleShowMore,
+  setFilteredResultsNum,
+  setFilteredReviews,
+  incrementHelpfulness,
+  removeResult,
 } from "../../reducers/ratingsReviewsSlice.js";
 import {
   scrollFromTopSet,
@@ -14,10 +18,6 @@ import { useState, useEffect, useRef } from "react";
 import ButtonPair from "../sharedComponents/ButtonPair";
 import ScrollToTop from "./ScrollToTop";
 import { apiPutRequest } from "../../helpers/api.js";
-import {
-  incrementHelpfulness,
-  removeResult,
-} from "../../reducers/ratingsReviewsSlice.js";
 
 const getReviewListItems = (reviews) => {
   const ret = [];
@@ -28,9 +28,13 @@ const getReviewListItems = (reviews) => {
 };
 
 const ReviewList = ({}) => {
-  const { ratingsReviews, showMore, ratingFilter, textFilter } = useSelector(
-    (s) => s.ratingsReviewsReducer
-  );
+  const {
+    ratingsReviews,
+    showMore,
+    ratingFilter,
+    textFilter,
+    filteredReviews,
+  } = useSelector((s) => s.ratingsReviewsReducer);
   const { scrollFromTop } = useSelector((s) => s.reviewListReducer);
   const scrollRef = useRef(0);
   const dispatch = useDispatch();
@@ -47,6 +51,26 @@ const ReviewList = ({}) => {
     }
   }, [scrollFromTop]);
 
+  useEffect(() => {
+    let filteredReviews = ratingsReviews.filter((review) => {
+      let tempTextFilter =
+        textFilter.length > 3 ? textFilter.toLowerCase() : "";
+      const foundText =
+        review.body.toLowerCase().includes(tempTextFilter) ||
+        review.summary.toLowerCase().includes(tempTextFilter);
+      let tempRatingFilter =
+        ratingFilter.length === 0
+          ? ["1", "2", "3", "4", "5"]
+          : ratingFilter.slice();
+
+      return foundText && tempRatingFilter.includes(review.rating + "");
+    });
+    dispatch(setFilteredReviews({ filteredReviews }));
+    dispatch(
+      setFilteredResultsNum({ filteredResultsNum: filteredReviews.length })
+    );
+  }, [ratingsReviews, ratingFilter, textFilter]);
+
   function handleMoreClick(ev) {
     ev.preventDefault();
     dispatch(toggleShowMore());
@@ -54,7 +78,7 @@ const ReviewList = ({}) => {
 
   function handleAddClick(ev) {
     ev.preventDefault();
-    dispatch(toggleModal());
+    dispatch(toggleReviewModal());
   }
 
   function handleScroll(ev) {
@@ -100,19 +124,6 @@ const ReviewList = ({}) => {
     }
   };
 
-  let filteredReviews = ratingsReviews.filter((review) => {
-    let tempTextFilter = textFilter.length > 3 ? textFilter.toLowerCase() : "";
-    const foundText =
-      review.body.toLowerCase().includes(tempTextFilter) ||
-      review.summary.toLowerCase().includes(tempTextFilter);
-    let tempRatingFilter =
-      ratingFilter.length === 0
-        ? ["1", "2", "3", "4", "5"]
-        : ratingFilter.slice();
-
-    return foundText && tempRatingFilter.includes(review.rating + "");
-  });
-
   return [
     <div
       key="uniqueio"
@@ -147,6 +158,7 @@ const ReviewList = ({}) => {
         ["Add a Review"]: handleAddClick,
       }}
       showFirst={filteredReviews.length > 2}
+      module="Ratings"
     />,
   ];
 };

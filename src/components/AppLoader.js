@@ -1,7 +1,7 @@
 import React from "react";
 import { apiGetRequest } from "../helpers/api.js";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ratingsReviewsRequest,
   ratingsReviewsSuccess,
@@ -10,14 +10,16 @@ import {
   reRenderSuccess,
 } from "../reducers/ratingsReviewsSlice.js";
 import App from "./App";
+import LoadingScreen from "./LoadingScreen";
 
 export default function AppLoader() {
   const dispatch = useDispatch();
   const product = useSelector(
     (state) => state.selectedProductReducer.selectedProduct
   );
-  const sorting = useSelector((state) => state.ratingsReviewsReducer.sorting);
-  const reRender = useSelector((state) => state.ratingsReviewsReducer.reRender);
+  const { ratingsReviews, sorting, reRender } = useSelector(
+    (s) => s.ratingsReviewsReducer
+  );
   useEffect(() => {
     if (reRender === true) {
       dispatch(reRenderSuccess());
@@ -60,5 +62,31 @@ export default function AppLoader() {
     }
   }, [product]);
 
-  return <App />;
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [z, setZ] = useState(20);
+  useEffect(() => {
+    if (isLoading === false) {
+      setTimeout(() => {
+        setZ(1);
+      }, 200);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
+  return (
+    <>
+      <div className={`z-${z} absolute`}>
+        <LoadingScreen isLoading={isLoading} setIsLoading={setIsLoading} />
+      </div>
+      <div>
+        <App />
+      </div>
+    </>
+  );
 }

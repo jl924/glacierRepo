@@ -1,20 +1,42 @@
-import React from 'react';
-import PhotoModal from './PhotoModal.js';
-import {useState} from 'react';
-import '../../style.css';
+import React from "react";
+import PhotoModal from "./PhotoModal.js";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setClickedPhoto } from "../../reducers/modalSlice";
+import "../../style.css";
 
-const Photos = ({ photos }) => {
-
-  const [clickedPhoto, setClickedPhoto] = useState('');
+const Photos = ({
+  photos,
+  width = 150,
+  height = 150,
+  custom = false,
+  module = "QA",
+}) => {
+  const dispatch = useDispatch();
 
   return (
-    <div className='py-3 px-5'>
+    <div className={"photos " + (custom ? "" : "px-5 py-3")}>
       {photos.map((photoUrl, index) => {
         return (
-          <img className='cursor-pointer' key={photoUrl + index} onClick ={(e) => setClickedPhoto(e.target.src)} key='photoUrl' src={photoUrl} width={150} height={150} alt='' />
+          <img
+            module={module + "Photo|" + module}
+            className={
+              "cursor-pointer" +
+              (custom
+                ? " border-primary hover:bg-base-300 hover:border-accent transition-all"
+                : "")
+            }
+            key={photoUrl + index}
+            onClick={(e) =>
+              dispatch(setClickedPhoto({ clickedPhoto: e.target.src }))
+            }
+            src={photoUrl}
+            width={width}
+            height={height}
+            alt=""
+          />
         );
       })}
-      <PhotoModal clickedPhoto={clickedPhoto} setClickedPhoto={setClickedPhoto} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const StyleBtn = ({sty, handleStyleClick, selectedId}) => {
 
-  var buttonClass = "flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100"
+  var buttonClass = "flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100 rounded-full shadow-md shadow-secondary"
 
 
   return (
@@ -11,7 +11,7 @@ const StyleBtn = ({sty, handleStyleClick, selectedId}) => {
         <div className="absolute bg-white mb-[40px] ml-[37px] w-[15px] h-[15px] rounded-full border border-black">
           <p className="text-xs ml-[1px] mb-[1px] font-light text-black">✓</p>
         </div>
-        <button onClick={() => handleStyleClick(sty.id)} className="flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100">
+        <button onClick={() => handleStyleClick(sty.id)} className="flex items-center justify-center w-[50px] h-[50px] hover:h-[55px] hover:w-[55px] transition-all duration-100 rounded-full shadow-md shadow-primary">
           <img module="styleBtn|Overview" src={sty.img} className="w-full h-full object-cover rounded-full border border-black hover:border-2" />
         </button>
       </div>

@@ -40,6 +40,7 @@ const Related = () => {
           count += Number(rate[keys])
         }
         productList[i].ratings = (add/count);
+        productList[i].count = count
 
       }
       // console.log(productList)
@@ -50,7 +51,7 @@ const Related = () => {
 
   var maxleftstart = 0
 
-
+  const [maximum2, setMaximum2] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,9 +65,14 @@ const Related = () => {
     }
     }
     setOutfit(yourOutfit)
+    // console.log(yourOutfit)
+    if (yourOutfit.length > 2) {
+      setMaximum2(true)
+    } else {
+      setMaximum2(false)
+    }
   }
   loadOutfit()
-
   }, [yourOutfitLoad]);
 
   const carouselRef = useRef(null);
@@ -125,7 +131,6 @@ const Related = () => {
 
   var showleft2 = false
   const [left2, setLeft2] = useState(false);
-  const [maximum2, setMaximum2] = useState(true);
 
   useEffect(() => {
 
@@ -143,9 +148,38 @@ const Related = () => {
       setMaximum2(true)
     }
     // console.log(showleft2, 'SHOW ME THE TRUTH')
+
   }, [scroll]);
 
+  useEffect(() => {
 
+    checkCarouselPosition()
+
+    if (checkCarouselPosition2() > 0) {
+      setLeft2(true)
+    } else if (checkCarouselPosition2() === 0) {
+      setLeft2(false)
+    }
+    if (checkCarouselPosition2() === maxLeft2) {
+      setMaximum2(false)
+    }
+    if (checkCarouselPosition2() < maxLeft2) {
+      setMaximum2(true)
+    }
+    var yourOutfit2 = []
+    for (var key in localStorage) {
+      if(Number(key)) {
+        yourOutfit2.push(JSON.parse(localStorage[key]))
+    }
+    }
+    // console.log(yourOutfit)
+    if (yourOutfit2.length > 2) {
+      setMaximum2(true)
+    } else {
+      setMaximum2(false)
+    }
+
+  }, []);
 
 
 
@@ -153,25 +187,25 @@ const Related = () => {
     <>
     <div id='relatedTitle'> Related Items </div>
     <div className='container container1'>
-    <button id='left-related' type='button' onClick={()=>document.getElementById('caro-related').scrollLeft -= 500}>{left1 ? '❮' : "ㅤ"}</button>
+    <button id='left-related' type='button' onClick={()=>document.getElementById('caro-related').scrollLeft -= 500} module="relatedCaroLeft|related">{left1 ? '❮' : "ㅤ"}</button>
     <div id='caro-related' className="carousel carousel-center max-w-4xl p-4 space-x-2" ref={carouselRef} onScroll={() => setScroll(scroll+1)}>
 
       {product.map((single) => (
         <RelatedCard products={single} key={single.product_id}/>
       ))}
     </div>
-    <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}}>{maximum ? '❯' : "ㅤ"}</button>
+    <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-related').scrollLeft += 400}} module="relatedCaroRight|related">{maximum ? '❯' : "ㅤ"}</button>
 </div>
 <div id='outfitTitle'> Your Outfits </div>
 <div className='container container1'>
-    <button id='left-related' type='button' onClick={()=>document.getElementById('caro-outfit').scrollLeft -= 500}>{left2 ? '❮' : "ㅤ"}</button>
+    <button id='left-related' type='button' onClick={()=>document.getElementById('caro-outfit').scrollLeft -= 500}module="YourOutfitCaroLeft|related">{left2 ? '❮' : "ㅤ"}</button>
     <div id='caro-outfit' className="carousel carousel-center max-w-4xl p-4 space-x-2" ref={carouselRef2} onScroll={() => setScroll(scroll+1)}>
-      <AddCard/>
+      <AddCard module="addCard|related"/>
       {outfit.map((double) => (
-        <YourOutfitCard outfits={double} key={double.id}/>
+        <YourOutfitCard outfits={double} key={double.id} module="YourOutfitCard|related"/>
       ))}
     </div>
-    <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-outfit').scrollLeft += 400}}>{maximum2 ? '❯' : "ㅤ"}</button>
+    <button id='right-related' type='button' onClick={()=>{return document.getElementById('caro-outfit').scrollLeft += 400}} module="YourOutfitCaroright|related">{maximum2 ? '❯' : "ㅤ"}</button>
 </div>
 </>
   );

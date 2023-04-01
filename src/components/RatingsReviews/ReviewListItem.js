@@ -5,6 +5,7 @@ import QaStatus from "../sharedComponents/QaStatus";
 import { useDispatch, useSelector } from "react-redux";
 import RecommendedWidget from "./RecommendedWidget";
 import ResponseFromSeller from "./ResponseFromSeller";
+import Photos from "../sharedComponents/Photos";
 
 const forEachReplaceAll = (text, textFilterLen, regexp) => {
   let textArr = text.split("");
@@ -59,7 +60,6 @@ const ReviewListItem = ({
   const firstMarkInBody = body.indexOf("<mark");
   let capLen =
     firstMarkInBody < 260 && firstMarkInBody >= 240 ? firstMarkInBody : 250;
-
   return (
     <div className="review">
       <ReviewHeader review={review} />
@@ -79,6 +79,7 @@ const ReviewListItem = ({
           <a
             className="underline cursor-pointer"
             onClick={() => setCap(!capBody)}
+            module="showMoreReview|Ratings"
           >
             {capBody ? "Show More" : "Show Less"}
           </a>
@@ -88,13 +89,25 @@ const ReviewListItem = ({
       {review && review.response && (
         <ResponseFromSeller response={review.response} />
       )}
-      <HelpfulStatus
-        handleHelpfulClick={handleHelpfulClick.bind(null, review.review_id)}
-        handleReportClick={handleReportClick.bind(null, review.review_id)}
-        messageType={"review"}
-        data={{ helpfulCount: review.helpfulness }}
-        loading={loading}
-      />
+      <div className="flex flex-row justify-between helpfulAndImage">
+        <HelpfulStatus
+          handleHelpfulClick={handleHelpfulClick.bind(null, review.review_id)}
+          handleReportClick={handleReportClick.bind(null, review.review_id)}
+          messageType={"review"}
+          data={{ helpfulCount: review.helpfulness }}
+          loading={loading}
+          module={"Ratings"}
+        />
+        {review.photos.length > 0 && (
+          <Photos
+            width={50}
+            height={50}
+            custom={true}
+            photos={review.photos.map((p) => p.url)}
+            module="Ratings"
+          />
+        )}
+      </div>
     </div>
   );
 };

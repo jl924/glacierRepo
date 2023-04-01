@@ -1,11 +1,16 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Header from '../components/Overview/Header';
 
-
-
-test('renders company name correctly', function () {
-  const {getByText} = render(<Header />);
-  let element = getByText('BENJ');
-  expect(element).toBeTruthy();
+test('renders company logo', function () {
+  render(<Header />);
+  const logoElement = screen.getByAltText('Benj logo');
+  expect(logoElement).toBeInTheDocument();
 });
+
+test('renders company logo', function () {
+  render(<Header />);
+  const logoElement = screen.getByAltText('Benj logo');
+  expect(logoElement).toBeInTheDocument();
+});
+

@@ -12,6 +12,10 @@ const AddCard = () => {
   const selectedProduct = useSelector((state) => state.selectedProductReducer.selectedProduct)
 
   const rating = useSelector((state) => state.ratingsReviewsReducer.meta.averageReviews)
+  const { meta, sorting, ratingsReviews } = useSelector(
+    (state) => state.ratingsReviewsReducer
+  );
+  const numReviews = useSelector((state) => state.ratingsReviewsReducer.meta.numReviews)
 
   const [addImage, setAddImage] = useState('https://images.unsplash.com/photo-1514866726862-0f081731e63f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80');
 
@@ -60,6 +64,7 @@ const headers = {
     curr.discountPrice = styles.results[0].sale_price
     curr.photo = styles.results[0].photos[0].thumbnail_url
     curr.rating = rating
+    curr.numReviews = numReviews
 
     var string = JSON.stringify(curr)
 
@@ -80,7 +85,7 @@ const headers = {
   return (
     <div className="relative">
     <div className="carousel-item container w-[220px]">
-    <div id="addCard" className="card w-96 bg-base-100 shadow-xl image-full rounded border-grey">
+    <div id="addCard" className="card w-96 bg-base-100 shadow-xl image-full rounded border-grey" module={"addCard " + selectedProduct.id + "|related"}>
   <figure><img className='w-full' src={addImage || "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6" } /></figure>
   <div className="card-body">
   <label onClick={() => addToOutfit()} id='plus' className="btn">+</label>

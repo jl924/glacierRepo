@@ -2,13 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sorting: "relevant",
-  showModal: false,
   showMore: false,
   reRender: false,
   reviewsLoading: false,
   metaLoading: false,
+  filteredResultsNum: 0,
   textFilter: "",
   ratingFilter: [],
+  filteredReviews: [],
   meta: {},
   characteristicLabels: {
     Size: ["Too small", "Perfect", "Too large"],
@@ -128,9 +129,6 @@ const ratingsReviewsSlice = createSlice({
     toggleShowMore(state) {
       state.showMore = !state.showMore;
     },
-    toggleModal(state) {
-      state.showModal = !state.showModal;
-    },
     incrementHelpfulness(state, action) {
       var i;
       const review = state.ratingsReviews.filter((review, index) => {
@@ -158,8 +156,17 @@ const ratingsReviewsSlice = createSlice({
       const index = state.ratingFilter.indexOf(action.payload.rating);
       if (index !== -1) state.ratingFilter.splice(index, 1);
     },
+    resetRatingFilter(state, action) {
+      state.ratingFilter = [];
+    },
     setTextFilter(state, action) {
       state.textFilter = action.payload.textFilter;
+    },
+    setFilteredResultsNum(state, action) {
+      state.filteredResultsNum = action.payload.filteredResultsNum;
+    },
+    setFilteredReviews(state, action) {
+      state.filteredReviews = action.payload.filteredReviews;
     },
   },
 });
@@ -174,10 +181,12 @@ export const {
   reRenderRequest,
   incrementHelpfulness,
   removeResult,
-  toggleModal,
   toggleShowMore,
   addRatingFilter,
   removeRatingFilter,
+  resetRatingFilter,
   setTextFilter,
+  setFilteredResultsNum,
+  setFilteredReviews,
 } = ratingsReviewsSlice.actions;
 export default ratingsReviewsSlice.reducer;

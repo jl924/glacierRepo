@@ -1,7 +1,12 @@
 import React from "react";
 import BigButton from "./BigButton";
 
-export default function ButtonPair({ buttons, showFirst = true }) {
+export default function ButtonPair({
+  buttons,
+  showFirst = true,
+  className = "flex flex-row justify-start mt-10",
+  module = "QA",
+}) {
   const buttonKeys = Object.keys(buttons);
   const plusButtonWhitelist = ["Add a Review", "Add A Question"];
   const buttonElements = [];
@@ -14,10 +19,11 @@ export default function ButtonPair({ buttons, showFirst = true }) {
           text={name}
           handleClick={buttons[name]}
           plusIcon={plusButtonWhitelist.includes(name)}
+          module={module}
         />
       );
     }
   }
 
-  return <div className="mt-10 buttonPair">{buttonElements}</div>;
+  return <div className={className + " buttonPair"}>{buttonElements}</div>;
 }

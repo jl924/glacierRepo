@@ -41,7 +41,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
     if(carousel) {
       setTimeout(() => {carousel.scrollTop -= 1000}, 5000)
     }
-  }, product)
+  }, [product])
 
 
   const handleNavigationClick = (newIndex, oldIndex) => {
@@ -161,8 +161,8 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
           })}
       </div>
     ) : (
-      <div className="h-full w-full">
-        <div className="carousel relative w-full h-full hover:cursor-zoom-in">
+      <div className="h-full w-full border-r-4 border-b-4 border-double border-primary rounded">
+        <div className="carousel relative w-full h-full border-primary hover:cursor-zoom-in">
           {mainImgs.map((img, index) => {
             const prev = index === 0 ? mainImgs.length - 1 : index - 1;
             const next = index === mainImgs.length - 1 ? 0 : index + 1;
@@ -214,7 +214,7 @@ const Imageslide = ({product, sty, expanded, setExpanded}) => {
              return(
               clickedThumb === index ? (
               <div key={index} className="carousel-item relative flex flex-col items-center h-[55px] mt-[10px]">
-                  <img className="h-[50px] w-[50px] border-2 border-black transition-all duration-200" src={img} />
+                  <img className="h-[50px] w-[50px] border-2 border-black transition-all duration-200 " src={img} />
                 <div className="bg-black h-[1px] w-[50px] mb-[2px] mt-[2px]"></div>
                 <div className="bg-black h-[1px] w-[35px]"></div>
               </div>

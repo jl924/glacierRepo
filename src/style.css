@@ -6,27 +6,21 @@
 
 
 
-#root {
-  display: flex;
-  justify-content: center;
-  min-width: 400px;
-  max-width: 1000px;
-  width: 1000px;
+body, #bigRoot {
+  width: 100%;
 }
 
-#root > * {
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.app > * {
   flex-grow: 1;
   flex-basis: 0;
+  width: 100%;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-}
-
-#titleCard {
-  color: #525252;
-}
 
 #tooltip {
   z-index: 9;
@@ -71,8 +65,6 @@ body{
 #btn3 {
   display: inline-flex;
   position: relative;
-  left: 29.5rem;
-  top: 1.7rem;
   background-color: transparent;
 }
 

@@ -1,6 +1,4 @@
-#titleCard {
-  color: darkgray;
-}
+
 
 #starbtn {
   z-index: 1;
@@ -105,4 +103,21 @@
 .cardStar {
   position: absolute;
   right: 0rem;
+}
+
+#relatedRating {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+}
+
+#compareModal {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+#ratingCount {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 5rem;
 }

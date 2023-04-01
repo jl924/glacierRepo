@@ -8,9 +8,10 @@ export default function BigButton({
   classes,
   type = "button",
   disabled = false,
+  module,
 }) {
   const className =
-    "btn-outline text-xl btn btn-secondary rounded-none h-16 mr-3 py-3";
+    "flex flex-row items-center h-16 p-3 mr-3 text-xl uppercase transition-colors border rounded-none border-secondary bg-base-100 hover:bg-base-300 active:bg-secondary";
 
   return (
     <button
@@ -18,6 +19,14 @@ export default function BigButton({
       type={type}
       className={className + " " + classes}
       onClick={handleClick}
+      module={
+        text
+          .split("")
+          .filter((v) => v !== " ")
+          .join("") +
+        "|" +
+        module
+      }
     >
       {text}
       {plusIcon ? <AiOutlinePlus className="m-1" /> : <></>}
