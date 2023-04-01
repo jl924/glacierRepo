@@ -34,11 +34,11 @@
 
 ## Overview
 
-Project Atelier is an dynamic and responsive web application that I built using [React](https://reactjs.org/) and [Node.js](https://nodejs.org/en/). The application showcases a range of products to potential customers, and facilitates a seamless shopping experience.
+Project Atelier is an dynamic and responsive web application built using [React](https://reactjs.org/) and [Node.js](https://nodejs.org/en/). The application showcases a range of products to potential customers, and facilitates a seamless shopping experience.
 
 This project met the goals of designing a retail portal to implement the following mentioned features:
 
-## Product Detail
+## Product Details
 
 - Product information
 
@@ -87,23 +87,23 @@ The Questions & Answers module allows asking and answering of questions for the 
 
 - View questions
 
-  - The section displays up to 4 questions and 2 answers per question. Questions only contain their question body and include helpfulness and report functionality.
-  - Each answer includes the same functionality, with additional user and date information for the posted answer. If more than 2 answers exist, then a See More Answers button will appear that displays the remaining questions when clicked.
+  - The section displays up to 4 questions and 2 answers per question. Questions include helpfulness and report functionality.
+  - Each answer includes the same functionality, with additional user and date information for the posted answer.
   - Clicking on the More Answered Questions button will expand the questions list to a scrollable list that includes the remaining questions.
-  - Each question and it's corresponding answers can be marked as helpful by clicking Yes. This will increase the helpfulness count of the respective question or answer by 1. Questions and answers can be reported by clicking on report which will mark them as reported in the system.
+  - Each question and it's corresponding answers can be marked as helpful or reported.
 
 - Search for a question
 
-  - The search bar in the section allows searching for specific questions. The typed text will be matched against the question body and return any matching results. Clearing the search bar will return the questions list to the original questions.
+  - The search bar in the section allows searching for specific questions.
 
 - Asking a question
 
-  - If a question is not found in the list, a new one can be asked by clicking the Add a Question button. This will bring up a modal from with 3 fields: question body, nickname, and email. All 3 fields are required and the cannot be submitted unless they are filled out.
+  - Clicking Add a Question will bring up a modal from with 3 fields: question body, nickname, and email.
+  - All 3 fields are validaed using Formik and Yup and the cannot be submitted unless they are filled out.
 
 - Answering a question
-
-  - Each question has an Add Answer button that will display a form modal for the question to be answered.
-  - This modal consists of 3 fields: answer body, nickname, and email. These 3 fields are required and must be filled out before submitting.
+  - Clicking Add Answer will open a form modal with 3 fields: answer body, nickname, and email.
+  - All 3 fields are validaed using Formik and Yup and the cannot be submitted unless they are filled out.
   - An optional photo is allowed to be uploaded by clicking on the Upload Photo button. Up to 5 photos can be selected.
 
 This component will extend the ability to view and search questions, ask questions, answer questions and provide feedback on questions about the current product.
@@ -144,9 +144,17 @@ The main purpose of this repository is for education and practicing building a R
 
 1. Create Github personal access token [here](https://github.com/settings/tokens) with repo permission, at the least.
 
-2. Fork and clone this repo, then open the terminal and navigate to the project root directory.
+2. Create a Cloudinary account [here](https://cloudinary.com/users/register_free#gsc.tab=0). Once you login, you should have a dashboard tab on the left. Copy the API Environment variable in that tab.
 
-3. Copy the provided .env.example and rename it to .env. Insert your GitHub token and Cloudinary api string.
+3. Fork and clone this repo, then open the terminal and navigate to the project root directory.
+
+4. Copy the provided .env.example and rename it to .env. Insert your GitHub token and Cloudinary api string.
+
+```bash
+API_KEY=This is your GitHub
+CLOUDINARY_URL=This is the Cloudinary string
+URL=This is the URL for the server (by default localhost:3000)
+```
 
 ```js
 TOKEN = "YOUR TOKEN";
@@ -168,10 +176,16 @@ npm start
 
 #### Creators:
 
-- [Brennin Joiner](https://github.com/SajanaB)
-- [Sajana Balal](https://github.com/SajanaB)
+- [Brennin Joiner](https://github.com/Jbrennin1)
+- [Brennin Joiner](https://www.linkedin.com/in/brennin-joiner-775317258/)
 - [Jae Hoon Lee](https://www.linkedin.com/in/jae-lee-2b116114b/) <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+<p>
+ <a href=https://www.linkedin.com/in/jae-lee-2b116114b/">
+ <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+ </a>
+</p>
 - [Jae Hoon Lee](https://github.com/jl924) <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+-
 - [Louise Ly](https://www.linkedin.com)
 - [Louise Ly](https://www.linkedin.com)
 - [Sajana Balal](https://github.com/SajanaB)
