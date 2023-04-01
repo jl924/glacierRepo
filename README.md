@@ -1,6 +1,6 @@
 ## BENJ
 
-<img src="https://i.imgur.com/beNiCcN.jpg" alt="Benj logo" />
+<img src="https://i.imgur.com/TLkWuwD.png" alt="Benj logo" />
 
 ## Tech Stack
 
