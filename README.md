@@ -1,6 +1,6 @@
 ## BENJ
 
-<div style="display:flex; justify-content:center;">
+<div style="display:flex; justify-content:center; width-100%">
 <img src="https://i.imgur.com/TLkWuwD.png" alt="Benj logo" />
 </div>
 ## Tech Stack
@@ -121,7 +121,7 @@ This component will extend the ability to view and search questions, ask questio
 
 ## Ratings and Reviews
 
-<img src="https://i.imgur.com/JFBhfRc.png">
+<img src="https://i.imgur.com/H0bdmCi.png">
 
 The Ratings & Reviews module offers an interactive and user-friendly interface to display product reviews. With various features designed to streamline the user experience, the module allows easy sorting, filtering, and reading of reviews. The module encompasses the following functionalities:
 
