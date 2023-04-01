@@ -1,7 +1,7 @@
 ## BENJ
 
 <div style="display:flex; justify-content:center;">
-<img src="https://i.imgur.com/ZN3rANB.png" alt="Benj logo" />
+<img src="https://i.imgur.com/TLkWuwD.png" alt="Benj logo" />
 </div>
 ## Tech Stack
 
