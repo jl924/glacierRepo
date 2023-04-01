@@ -1,5 +1,7 @@
 ## BENJ
 
+<img src="https://i.imgur.com/beNiCcN.jpg" alt="Benj logo" />
+
 ## Tech Stack
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -34,7 +36,7 @@
 
 ## Overview
 
-Project Atelier is an dynamic and responsive web application built using [React](https://reactjs.org/) and [Node.js](https://nodejs.org/en/). The application showcases a range of products to potential customers, and facilitates a seamless shopping experience.
+Project BENJ is an dynamic and responsive web application built using [React](https://reactjs.org/) and [Node.js](https://nodejs.org/en/). The application showcases a range of products to potential customers, and facilitates a seamless shopping experience.
 
 This project met the goals of designing a retail portal to implement the following mentioned features:
 
@@ -112,6 +114,8 @@ This component will extend the ability to view and search questions, ask questio
 
 ## Ratings and Reviews
 
+<img src="https://i.imgur.com/ky3QwG1.png">
+
 The Ratings & Reviews module offers an interactive and user-friendly interface to display product reviews. With various features designed to streamline the user experience, the module allows easy sorting, filtering, and reading of reviews. The module encompasses the following functionalities:
 
 - Reviews List:
@@ -173,7 +177,7 @@ npm start
 
 #### Creators:
 
-[Brennin Joiner](https://github.com/Jbrennin1)
+[Brennin Joiner](https://www.linkedin.com/in/brennin-joiner-775317258/)
 
 <p>
  <a href="https://www.linkedin.com/in/brennin-joiner-775317258/">
@@ -184,7 +188,8 @@ npm start
  </a>
 </p>
 
-- [Jae Hoon Lee](https://www.linkedin.com/in/jae-lee-2b116114b/)
+[Jae Hoon Lee](https://www.linkedin.com/in/jae-lee-2b116114b/)
+
 <p>
  <a href="https://www.linkedin.com/in/jae-lee-2b116114b/">
  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
@@ -205,12 +210,13 @@ npm start
  </a>
 </p>
 
-- [Natale Toscano](https://www.linkedin.com/in/jae-lee-2b116114b/)
+[Natale Toscano](https://www.linkedin.com/in/natale-toscano-309a1917a/)
+
 <p>
- <a href="https://www.linkedin.com/in/jae-lee-2b116114b/">
+ <a href="https://www.linkedin.com/in/natale-toscano-309a1917a/">
  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
  </a>
- <a href="https://github.com/jl924">
+ <a href="https://github.com/Vorelli">
  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
  </a>
 </p>
