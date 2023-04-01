@@ -103,7 +103,7 @@ The Questions & Answers module allows asking and answering of questions for the 
 
 - Answering a question
   - Clicking Add Answer will open a form modal with 3 fields: answer body, nickname, and email.
-  - All 3 fields are validaed using Formik and Yup and the cannot be submitted unless they are filled out.
+  - All 3 fields are validated using Formik and Yup and the cannot be submitted unless they are filled out.
   - An optional photo is allowed to be uploaded by clicking on the Upload Photo button. Up to 5 photos can be selected.
 
 This component will extend the ability to view and search questions, ask questions, answer questions and provide feedback on questions about the current product.
@@ -145,6 +145,7 @@ The main purpose of this repository is for education and practicing building a R
 1. Create Github personal access token [here](https://github.com/settings/tokens) with repo permission, at the least.
 
 2. Create a Cloudinary account [here](https://cloudinary.com/users/register_free#gsc.tab=0). Once you login, you should have a dashboard tab on the left. Copy the API Environment variable in that tab.
+   <img src="https://i.imgur.com/WZoVtMl.png">
 
 3. Fork and clone this repo, then open the terminal and navigate to the project root directory.
 
@@ -156,19 +157,15 @@ CLOUDINARY_URL=This is the Cloudinary string
 URL=This is the URL for the server (by default localhost:3000)
 ```
 
-```js
-TOKEN = "YOUR TOKEN";
-```
+5. In the terminal run the following scripts:
 
-4. In the terminal run the following scripts:
-
-```
+```bash
 npm install
-npm run build
+npm run b
 npm start
 ```
 
-5. Navigate to [localhost:3000](http://localhost:3000) in the browser.
+6. Navigate to [localhost:3000](http://localhost:3000) in the browser.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -178,14 +175,41 @@ npm start
 
 - [Brennin Joiner](https://github.com/Jbrennin1)
 - [Brennin Joiner](https://www.linkedin.com/in/brennin-joiner-775317258/)
-- [Jae Hoon Lee](https://www.linkedin.com/in/jae-lee-2b116114b/) <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
 <p>
- <a href=https://www.linkedin.com/in/jae-lee-2b116114b/">
+ <a href="https://www.linkedin.com/in/brennin-joiner-775317258/">
  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
  </a>
 </p>
-- [Jae Hoon Lee](https://github.com/jl924) <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
--
+<p>
+ <a href="https://github.com/Jbrennin1">
+ <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+ </a>
+</p>
+
+- [Jae Hoon Lee](https://www.linkedin.com/in/jae-lee-2b116114b/)
+<p>
+ <a href="https://www.linkedin.com/in/jae-lee-2b116114b/">
+ <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+ </a>
+</p>
+<p>
+ <a href="https://github.com/jl924">
+ <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+ </a>
+</p>
+
+- [Ermin Sljivo](https://github.com/Ermin17)
+- [Ermin Sljivo](https://www.linkedin.com/in/ermin-s/)
+<p>
+ <a href="https://github.com/Ermin17">
+ <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+ </a>
+</p>
+<p>
+ <a href="https://www.linkedin.com/in/ermin-s/">
+ <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+ </a>
+</p>
 - [Louise Ly](https://www.linkedin.com)
 - [Louise Ly](https://www.linkedin.com)
 - [Sajana Balal](https://github.com/SajanaB)
