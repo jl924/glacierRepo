@@ -56,9 +56,7 @@ This project met the goals of designing a retail portal to implement the followi
 
   - This component will guide the customer through finding the style combo they like, and display that specific product style in the image gallery.
 
-- Add to Cart
-
-  <p align="right">(<a href="#top">back to top</a>)</p>
+- Form Selection <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Items and Your Outfits
 
@@ -83,7 +81,7 @@ The Questions & Answers module allows asking and answering of questions for the 
 
 - View questions
   - The section displays up to 4 questions and 2 answers per question. Questions only contain their question body and include helpfulness and report functionality.
-  - Each answer includes the same functionality, with additional user and date information for the posted answer. If more than 2 answers exist, then a See More Answers button will appear that displays the remaining questions when clicked. Collapse Answers will then display at the bottom of the list to collapse the answers back to 2.
+  - Each answer includes the same functionality, with additional user and date information for the posted answer. If more than 2 answers exist, then a See More Answers button will appear that displays the remaining questions when clicked.
   - Clicking on the More Answered Questions button will expand the questions list to a scrollable list that includes the remaining questions.
   - Each question and it's corresponding answers can be marked as helpful by clicking Yes. This will increase the helpfulness count of the respective question or answer by 1. Questions can be reported by clicking on report which will mark them as reported in the system and remove them from the list.
   - Reporting answers will provide visual feedback that the answer has been marked as reported but keep the answer in the list.
@@ -107,7 +105,7 @@ The Ratings & Reviews module offers an interactive and user-friendly interface t
 
 - Reviews List:
 
-  - Core of the module and displays all available reviews for the user to read.
+  - Displays all available reviews for the user to read.
   - Sortable by helpfulness, relevance, or newest.
   - Filterable by text or rating given.
 
@@ -124,7 +122,6 @@ The Ratings & Reviews module offers an interactive and user-friendly interface t
 
 - Product Breakdown:
   - Displays the average feedback received for all relevant product characteristics
-  - This feature offers users a concise summary of the product's key characteristics.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -162,8 +159,8 @@ npm start
 
 - [Sajana Balal](https://github.com/SajanaB)
 - [Sajana Balal](https://github.com/SajanaB)
-- [Jae Hoon Lee](https://www.linkedin.com) (!https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)
-- [Jae Hoon Lee](https://github.com/SajanaB)
+- [Jae Hoon Lee](https://www.linkedin.com/in/jae-lee-2b116114b/) (https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)
+- [Jae Hoon Lee](https://github.com/SajanaB) (https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 - [Louise Ly](https://www.linkedin.com)
 - [Louise Ly](https://www.linkedin.com)
 - [Sajana Balal](https://github.com/SajanaB)
