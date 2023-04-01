@@ -138,7 +138,7 @@ The Ratings & Reviews module offers an interactive and user-friendly interface t
 
 ## Usage
 
-The main purpose of this repository is for education and practicing building a React application.
+The primary goal of this repository was to provide an educational platform for our team of developers to practice building a React application utilizing a microservice architecture. The project involved collaborative work between three other engineers to ensure a robust and well-designed application. By working on this project, we gained valuable experience in developing and deploying microservices in a real-world application using git workflow.
 
 ## Installation
 
@@ -173,14 +173,12 @@ npm start
 
 #### Creators:
 
-- [Brennin Joiner](https://github.com/Jbrennin1)
-- [Brennin Joiner](https://www.linkedin.com/in/brennin-joiner-775317258/)
+[Brennin Joiner](https://github.com/Jbrennin1)
+
 <p>
  <a href="https://www.linkedin.com/in/brennin-joiner-775317258/">
  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
  </a>
-</p>
-<p>
  <a href="https://github.com/Jbrennin1">
  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
  </a>
@@ -191,28 +189,30 @@ npm start
  <a href="https://www.linkedin.com/in/jae-lee-2b116114b/">
  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
  </a>
-</p>
-<p>
  <a href="https://github.com/jl924">
  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
  </a>
 </p>
 
-- [Ermin Sljivo](https://github.com/Ermin17)
-- [Ermin Sljivo](https://www.linkedin.com/in/ermin-s/)
+[Ermin Sljivo](https://www.linkedin.com/in/ermin-s/)
+
 <p>
  <a href="https://github.com/Ermin17">
  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
  </a>
-</p>
-<p>
  <a href="https://www.linkedin.com/in/ermin-s/">
  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
  </a>
 </p>
-- [Louise Ly](https://www.linkedin.com)
-- [Louise Ly](https://www.linkedin.com)
-- [Sajana Balal](https://github.com/SajanaB)
-- [Sajana Balal](https://github.com/SajanaB)
+
+- [Natale Toscano](https://www.linkedin.com/in/jae-lee-2b116114b/)
+<p>
+ <a href="https://www.linkedin.com/in/jae-lee-2b116114b/">
+ <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+ </a>
+ <a href="https://github.com/jl924">
+ <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+ </a>
+</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
