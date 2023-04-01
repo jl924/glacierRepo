@@ -1,7 +1,8 @@
 ## BENJ
 
-<img src="https://i.imgur.com/TLkWuwD.png" alt="Benj logo" />
-
+<div style="display:flex; justify-content:center;">
+<img src="https://i.imgur.com/ZN3rANB.png" alt="Benj logo" />
+</div>
 ## Tech Stack
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -68,6 +69,8 @@ This project met the goals of designing a retail portal to implement the followi
 
 ## Related Items and Your Outfits
 
+<img src="https://i.imgur.com/TvWBo7S.png">
+
 The Related Items & Your Outfits module will display two sets of Carousels with cards about the product. The first set, 'Related Items', will be a list of products determined internally, that are related to the product currently being shown in the overview. The second set, 'Your Outfits', will be a list custom created by the user with products which the user has added to the carousel themselves.
 
 - Related Product
@@ -75,6 +78,8 @@ The Related Items & Your Outfits module will display two sets of Carousels with 
   - The product card itself will be clickable. Clicking the card will navigate to the detail page for that product.
   - The product card will also have a ☆ button, that opens up a modal.
     - Inside the modal will be a comparison of features with the clicked card, and current overview item.
+
+<img src="https://i.imgur.com/JFBhfRc.png">
 - Your Outfit
   - The outfit list contain products which the user has selected to group together as an outfit.
   - the first card in this carousel is a custom card button, and when clicked will add the current overview product.
@@ -85,7 +90,9 @@ The Related Items & Your Outfits module will display two sets of Carousels with 
 
 ## Questions and Answers
 
-The Questions & Answers module allows asking and answering of questions for the product selected. The module contains the following components:
+<img src="https://i.imgur.com/ZIjkpPo.png">
+
+The Questions & Answers module allows asking, answering, and searching of questions for the product selected. The module contains the following components:
 
 - View questions
 
@@ -114,7 +121,7 @@ This component will extend the ability to view and search questions, ask questio
 
 ## Ratings and Reviews
 
-<img src="https://i.imgur.com/ky3QwG1.png">
+<img src="https://i.imgur.com/JFBhfRc.png">
 
 The Ratings & Reviews module offers an interactive and user-friendly interface to display product reviews. With various features designed to streamline the user experience, the module allows easy sorting, filtering, and reading of reviews. The module encompasses the following functionalities:
 
