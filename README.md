@@ -69,7 +69,7 @@ This project met the goals of designing a retail portal to implement the followi
 
 ## Related Items and Your Outfits
 
-<img src="https://i.imgur.com/TvWBo7S.png">
+<img src="https://i.imgur.com/JFBhfRc.png">
 
 The Related Items & Your Outfits module will display two sets of Carousels with cards about the product. The first set, 'Related Items', will be a list of products determined internally, that are related to the product currently being shown in the overview. The second set, 'Your Outfits', will be a list custom created by the user with products which the user has added to the carousel themselves.
 
@@ -79,7 +79,8 @@ The Related Items & Your Outfits module will display two sets of Carousels with 
   - The product card will also have a ☆ button, that opens up a modal.
     - Inside the modal will be a comparison of features with the clicked card, and current overview item.
 
-<img src="https://i.imgur.com/JFBhfRc.png">
+<img src="https://i.imgur.com/TvWBo7S.png">
+
 - Your Outfit
   - The outfit list contain products which the user has selected to group together as an outfit.
   - the first card in this carousel is a custom card button, and when clicked will add the current overview product.
